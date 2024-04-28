@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {CardFooter} from "@/components/ui/card";
 import {
@@ -11,18 +12,9 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 
-// function CustomCheckbox(props: { id: string }) {
-//   return (
-//     <Checkbox
-//       {...props}
-//       className="rounded text-blue-700 bg-white border border-blue-700"
-//       // チェックボックスのアイコンの色を青にする
-//       iconClassName="text-blue-700"
-//     />
-//   );
-// }
-
 export default function Home() {
+
+
   return (
     <main className="min-h-screen  items-center justify-between  bg-blue-950">
       <form>
@@ -46,9 +38,11 @@ export default function Home() {
           <div className="space-y-1.5">
                     <Label className="text-2xl text-blue-700" htmlFor="レベル">レベル</Label>
                     <Input
-                      id="name"
+                      id="level"
                       placeholder="Please tell me the level of the Pokémon."
                       className="bg-gray-400 text-white w-4/5"
+                      // value={level}
+                      // onChange={handleChange}
                     />
           </div>
           <div className="space-y-1.5">
@@ -58,7 +52,7 @@ export default function Home() {
                       <SelectValue placeholder="サブスキル" />
                     </SelectTrigger>
                       <SelectContent position="popper" className="bg-gray-400 text-white">
-                      <SelectItem value="S">おてつだいスピードS</SelectItem>
+                      <SelectItem value="S" >おてつだいスピードS</SelectItem>
                       <SelectItem value="M">おてつだいスピードM</SelectItem>
                       <SelectItem value="M&S">両方</SelectItem>
                       <SelectItem value="なし">なし</SelectItem>
@@ -143,10 +137,11 @@ export default function Home() {
               className="text-2xl text-blue-700">おてつだい時間</Label>
             <Input
               id="result"
-              readOnly type="text"
-              value="0"
-              className="bg-gray-400 text-white w-1/6 "
-            />
+              readOnly
+              type="text"
+              value={0}
+              className="bg-gray-400 text-white w-1/6"
+             />
         </div>
       </form>
     </main>

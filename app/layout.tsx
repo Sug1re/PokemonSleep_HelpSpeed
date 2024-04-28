@@ -6,7 +6,7 @@ import Header from "./components/layouts/header/Header";
 const notoSansJP = Noto_Sans_JP({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Pokemon Sleep おてスピチェック",
+  title: "Pokemon Sleep おてスピチェックPC版",
   description: "ポケモンスリープのおてつだい時間を計算してくれます",
 };
 
