@@ -30,7 +30,7 @@ export default function Home() {
             <Skill />
           </div>
         </div>
-        <div className="space-y-2 mx-24 my-7 pb-4 flex justify-center items-center shadow-md rounded bg-sky-950">
+        <div className="space-y-2 mx-24 my-7 pb-4 flex justify-center items-center shadow-md rounded  bg-sky-950 text-white ">
           <Bonuss />
           <Energy />
         </div>
@@ -49,7 +49,7 @@ export default function Home() {
         <div className=" mx-96  pt-2 pb-4  flex justify-center items-center flex-col space-y-1.5 shadow-md rounded bg-sky-950">
             <Label
               htmlFor="result"
-              className="text-2xl text-blue-700">おてつだい時間</Label>
+              className="text-2xl text-white">おてつだい時間</Label>
             <Input
               id="result"
               readOnly

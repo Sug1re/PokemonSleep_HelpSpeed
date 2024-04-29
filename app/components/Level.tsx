@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 const Level = () => {
   return (
     <div className="space-y-1.5 mx-10">
-                    <Label className="text-2xl text-blue-700" htmlFor="レベル">レベル</Label>
+                    <Label className="text-2xl text-white" htmlFor="レベル">レベル</Label>
                     <Input
                       id="level"
                       placeholder="Please tell me the level of the Pokémon."

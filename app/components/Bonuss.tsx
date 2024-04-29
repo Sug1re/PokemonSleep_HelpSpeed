@@ -15,7 +15,7 @@ const Bonuss = () => {
   return (
     <div className="flex flex-row-reverse">
     <div className="flex flex-col space-y-1.5 mx-10">
-        <Label className="text-2xl text-blue-700 " htmlFor="おてつだいボーナス">おてつだいボーナス</Label>
+        <Label className="text-2xl text-white" htmlFor="おてつだいボーナス">おてつだいボーナス</Label>
           <Select>
             <SelectTrigger
               id="おてつだいボーナス"
@@ -39,11 +39,11 @@ const Bonuss = () => {
     <div className="space-x-4 px-8 pt-10 ml-20">
         <Checkbox
             id="bonuss"
-            className="rounded text-blue-700 bg-gray-400 appearance-none border-none"
+            className="rounded  bg-gray-400 appearance-none  border-white "
         />
         <Label
             htmlFor="bonuss"
-            className="text-1xl text-blue-700">
+            className="text-1xl text-white">
               おてつだいボーナス
         </Label>
     </div>

@@ -12,7 +12,7 @@ import {
 const Skill = () => {
   return (
     <div className="space-y-1.5 mx-10">
-    <Label className="text-2xl text-blue-700" htmlFor="skill">サブスキル</Label>
+    <Label className="text-2xl text-white" htmlFor="skill">サブスキル</Label>
       <Select>
         <SelectTrigger id="skill" className="bg-gray-400 text-white border-blue-700">
           <SelectValue placeholder="サブスキル" />

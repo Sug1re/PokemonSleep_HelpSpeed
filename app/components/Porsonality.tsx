@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 const Porsonality = () => {
   return (
     <div className="space-y-1.5 mx-10">
-                    <Label className="text-2xl text-blue-700" htmlFor="性格">性格</Label>
+                    <Label className="text-2xl text-white" htmlFor="性格">性格</Label>
                     <Input
                       id="personality"
                       placeholder="Please input the Pokémon’s personality."

@@ -15,7 +15,7 @@ const Energy = () => {
   return (
     <div className="flex flex-row-reverse">
     <div className="flex flex-col space-y-1.5 mx-10">
-        <Label className="text-2xl text-blue-700 " htmlFor="げんき補正">げんき補正</Label>
+        <Label className="text-2xl text-white " htmlFor="げんき補正">げんき補正</Label>
           <Select>
             <SelectTrigger
               id="げんき補正"
@@ -42,7 +42,7 @@ const Energy = () => {
         />
         <Label
             htmlFor="energy"
-            className="text-1xl text-blue-700">
+            className="text-1xl text-white">
               げんき補正
         </Label>
     </div>
