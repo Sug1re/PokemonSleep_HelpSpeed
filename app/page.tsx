@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {CardFooter} from "@/components/ui/card";
 import {
@@ -9,115 +8,31 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import Porsonality from "./components/Porsonality";
+import Level from "./components/Level";
+import Skill from "./components/Skill";
+import Bonuss from "./components/Bonuss";
+import Energy from "./components/Energy";
+import Pokemon from "./components/Pokemon";
 
 export default function Home() {
 
-
   return (
-    <main className="min-h-screen  items-center justify-between  bg-blue-950">
+    <main className="min-h-screen items-center justify-between bg-blue-950">
       <form>
-        <div className="grid lg:grid-cols-3 pt-4 px-24 gap-4">
-          <div className="space-y-1.5">
-                    <Label className="text-2xl text-blue-700" htmlFor="ポケモン">ポケモン</Label>
-                    <Input
-                      id="name"
-                      placeholder="Please input the Pokémon."
-                      className="bg-gray-400 text-white w-4/5"
-                    />
-          </div>
-          <div className="space-y-1.5">
-                    <Label className="text-2xl text-blue-700" htmlFor="性格">性格</Label>
-                    <Input
-                      id="name"
-                      placeholder="Please input the Pokémon’s personality."
-                      className="bg-gray-400 text-white w-4/5"
-                    />
-          </div>
-          <div className="space-y-1.5">
-                    <Label className="text-2xl text-blue-700" htmlFor="レベル">レベル</Label>
-                    <Input
-                      id="level"
-                      placeholder="Please tell me the level of the Pokémon."
-                      className="bg-gray-400 text-white w-4/5"
-                      // value={level}
-                      // onChange={handleChange}
-                    />
-          </div>
-          <div className="space-y-1.5">
-                <Label className="text-2xl text-blue-700" htmlFor="framework">サブスキル</Label>
-                  <Select>
-                    <SelectTrigger id="framework" className="bg-gray-400 text-white w-4/5">
-                      <SelectValue placeholder="サブスキル" />
-                    </SelectTrigger>
-                      <SelectContent position="popper" className="bg-gray-400 text-white">
-                      <SelectItem value="S" >おてつだいスピードS</SelectItem>
-                      <SelectItem value="M">おてつだいスピードM</SelectItem>
-                      <SelectItem value="M&S">両方</SelectItem>
-                      <SelectItem value="なし">なし</SelectItem>
-                    </SelectContent>
-                  </Select>
+        <div className="pt-4">
+          <div className="grid lg:grid-cols-3 pb-4  pt-2 mx-24 gap-4 shadow-md rounded bg-sky-950">
+            <Pokemon />
+            <Porsonality />
+            <Level />
+            <Skill />
           </div>
         </div>
-        <div className="space-y-2 pr-48">
-              <div className="flex flex-row-reverse">
-                    <div className="flex flex-col space-y-1.5">
-                        <Label className="text-2xl text-blue-700 " htmlFor="framework">おてつだいボーナス</Label>
-                          <Select>
-                            <SelectTrigger id="framework" className="bg-gray-400 text-white ">
-                              <SelectValue placeholder="おてつだいボーナス" />
-                            </SelectTrigger>
-                              <SelectContent position="popper" className="bg-gray-400 text-white">
-                              <SelectItem value="1">1</SelectItem>
-                              <SelectItem value="2">2</SelectItem>
-                              <SelectItem value="3">3</SelectItem>
-                              <SelectItem value="4">4</SelectItem>
-                              <SelectItem value="5">5</SelectItem>
-                              <SelectItem value="0">0</SelectItem>
-                            </SelectContent>
-                          </Select>
-                    </div>
-                    <div className="space-x-4 px-8 pt-10 ml-20">
-                        <Checkbox
-                            id="bonuss"
-                            className="rounded text-white bg-gray-400"
-                        />
-                        <Label
-                            htmlFor="bonuss"
-                            className="text-1xl text-blue-700">
-                              おてつだいボーナス
-                        </Label>
-                    </div>
-              </div>
-              <div className="flex flex-row-reverse">
-                    <div className="flex flex-col space-y-1.5">
-                        <Label className="text-2xl text-blue-700 " htmlFor="framework">げんき補正</Label>
-                          <Select>
-                            <SelectTrigger id="framework" className="bg-gray-400 text-white w-52">
-                              <SelectValue placeholder="げんき補正" />
-                            </SelectTrigger>
-                              <SelectContent position="popper" className="bg-gray-400 text-white">
-                              <SelectItem value="80">80以上</SelectItem>
-                                  <SelectItem value="60">80未満60以上</SelectItem>
-                                  <SelectItem value="40">60未満40以上</SelectItem>
-                                  <SelectItem value="20">40未満20以上</SelectItem>
-                                  <SelectItem value="0">20未満</SelectItem>
-                            </SelectContent>
-                          </Select>
-                    </div>
-                    <div className="space-x-4 px-8 pt-10 ml-20">
-                        <Checkbox
-                            id="energy"
-                            className="rounded text-white bg-gray-400"
-                        />
-                        <Label
-                            htmlFor="energy"
-                            className="text-1xl text-blue-700">
-                              げんき補正
-                        </Label>
-                    </div>
-              </div>
+        <div className="space-y-2 mx-24 my-7 pb-4 flex justify-center items-center shadow-md rounded bg-sky-950">
+          <Bonuss />
+          <Energy />
         </div>
           <CardFooter className="flex flex-row justify-center items-center pt-10 pb-5 space-x-96">
             <div className=" pr-48">
@@ -131,7 +46,7 @@ export default function Home() {
                 </Button>
             </div>
           </CardFooter>
-        <div className="px-8 flex justify-center items-center flex-col space-y-4">
+        <div className=" mx-96  pt-2 pb-4  flex justify-center items-center flex-col space-y-1.5 shadow-md rounded bg-sky-950">
             <Label
               htmlFor="result"
               className="text-2xl text-blue-700">おてつだい時間</Label>
@@ -140,7 +55,7 @@ export default function Home() {
               readOnly
               type="text"
               value={0}
-              className="bg-gray-400 text-white w-1/6"
+              className="bg-gray-400 text-white w-1/3 border-blue-700"
              />
         </div>
       </form>
