@@ -1,15 +1,7 @@
 import { Button } from "@/components/ui/button";
 import {CardFooter} from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
 import Porsonality from "./components/Porsonality";
 import Level from "./components/Level";
 import Skill from "./components/Skill";
@@ -36,12 +28,12 @@ export default function Home() {
         </div>
           <CardFooter className="flex flex-row justify-center items-center pt-10 pb-5 space-x-96">
             <div className=" pr-48">
-                <Button className=" bg-gray-900  text-white rounded transform hover:bg-gray-800 hover:scale-95">
+                <Button className=" bg-sky-900  text-white rounded transform hover:bg-sky-950 hover:scale-95">
                   Cancel
                 </Button>
             </div>
             <div className=" pl-48">
-                <Button className=" bg-blue-700 text-white rounded transform hover:bg-blue-600 hover:scale-95">
+                <Button className=" bg-gray-400 text-white rounded transform hover:bg-gray-500 hover:scale-95">
                   Check
                 </Button>
             </div>
