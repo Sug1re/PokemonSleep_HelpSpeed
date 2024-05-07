@@ -12,7 +12,7 @@ const Porsonality = () => {
                       placeholder="Please input the Pokémon’s personality."
                       className="bg-gray-400 text-white border-blue-700"
                     />
-          </div>
+    </div>
   )
 }
 
