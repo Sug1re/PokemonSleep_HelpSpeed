@@ -51,13 +51,11 @@ const pokemonPersonalityMap: { [pokemonPersonality: string]: number } = {
 //使用する関数一覧
 export default function Home() {
   const [pokemonName, setPokemonName] = useState("");
-  const [pokemonPersonality, setPokemonPesonality] = useState("");
-  const [pokekemonLevel, setPokemonLebel] = useState("");
-  const [pokekemonSkill, setPokemonSkill] = useState("");
-  const [pokekemonBonuss, setPokemonBonuss] = useState("");
-  const [pokekemonEnergy, setPokemonEnergy] = useState("");
-  const [pokemonTime, setPokemonTime] = useState(0);
-  const [pokemonTimeMagnification, setPokemonPesonalityMagnification] = useState(0);
+  const [pokemonPersonality, setPokemonPersonality] = useState("");
+  const [pokemonLevel, setPokemonLevel] = useState("");
+  const [pokemonSkill, setPokemonSkill] = useState("");
+  const [pokemonBonuss, setPokemonBonuss] = useState("");
+  const [pokemonEnergy, setPokemonEnergy] = useState("");
   const [helperTime, setHelperTime] = useState(0);
 
  //ポケモンの名前の入力フィールドの値が変更されたとき即座に対応する役割
@@ -67,7 +65,13 @@ export default function Home() {
 
   //ポケモンの性格の入力フィールドの値が変更されたとき即座に対応する役割
   const handlePokemonPesonalityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPokemonPesonality(event.target.value);
+    setPokemonPersonality(event.target.value);
+  };
+
+  //ポケモンのレベルの入力フィールドの値が変更されたとき即座に対応する役割
+  const handlePokemonlevelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // setPokemonLevel(parseInt(event.target.value));
+    setPokemonLevel(event.target.value);
   };
 
   //checkボタンをクリック時のフォームのリセット防止
@@ -78,6 +82,19 @@ export default function Home() {
     if (pokemonName.trim() === "") {
       return; // ポケモンの名前が空の場合、何もしない
     }
+
+    // ポケモンの性格が空でないかをチェック
+    if (pokemonPersonality.trim() === "") {
+      return; // ポケモンの性格が空の場合、何もしない
+    }
+
+   // ポケモンのレベルが空でないかをチェック
+    // if (pokemonLevel === 0 || isNaN(pokemonLevel)) {
+    //   return; // ポケモンのレベルが空の場合、何もしない
+    // }
+    if (pokemonLevel.trim() === "") {
+      return; // ポケモンのレベルが空の場合、何もしない
+    }
   };
 
   //cancelボタンをクリック時のフォームを初期化
@@ -85,38 +102,10 @@ export default function Home() {
     // フォームの状態を初期化
     setHelperTime(0);
     setPokemonName("");
-    setPokemonPesonality("");
+    setPokemonPersonality("");
+    setPokemonLevel("");
     // その他の状態を初期化する場合はここに追加
   };
-
-    //入力フィールドに入力しなかった場合の制御措置
-  // const handleCheckButtonClick = () => {
-  //   // ポケモンの名前が空でないかをチェック
-  //   if (pokemonName.trim() === "") {
-  //     return; // ポケモンの名前が空の場合、何もしない
-  //   }
-  //   // ポケモンの性格が空でないかをチェック
-  //   if (pokemonPersonality.trim() === "") {
-  //     return; // ポケモンの性格が空の場合、何もしない
-  //   }
-
-  //   //ポケモンの名前を数値に変換
-  //   const pokemontime = pokemonTimeMap[pokemonName];
-  //   if (pokemontime !== undefined) {
-  //     setPokemonTime(pokemontime);// 状態を設定
-  //   } else {
-  //     setPokemonTime(0);//　存在しない場合はデフォルト値を設定
-  //   }
-
-  //   //ポケモンの性格を数値に変換
-  //   const pokemonpersonality = pokemonPersonalityMap[pokemonPersonality];
-  //   if (pokemonpersonality !== undefined) {
-  //     setPokemonPesonalityMagnification(pokemonpersonality); // 状態を設定
-  //   } else {
-  //     setPokemonPesonalityMagnification(0); // 存在しない場合はデフォルト値を設定
-  //   }
-
-  // };
 
   // checkボタンをクリックしたときの処理
 const handleCheckButtonClick = () => {
@@ -129,14 +118,24 @@ const handleCheckButtonClick = () => {
     return; // ポケモンの性格が空の場合、何もしない
   }
 
+  // ポケモンのレベルが空でないかをチェック
+    // if (pokemonLevel === 0 || isNaN(pokemonLevel)) {
+    //   return; // ポケモンのレベルが空の場合、何もしない
+    // }
+    if (pokemonLevel.trim() === "") {
+      return; // ポケモンのレベルが空の場合、何もしない
+    }
+
   // ポケモンの名前と性格を数値に変換
   const pokemonTimeValue = pokemonTimeMap[pokemonName];
   const pokemonPersonalityValue = pokemonPersonalityMap[pokemonPersonality];
 
-  // ポケモンの名前と性格が存在する場合のみ計算を行う
-  if (pokemonTimeValue !== undefined && pokemonPersonalityValue !== undefined) {
+  // ポケモンの名前と性格とレベルが存在する場合のみ計算を行う
+  if (pokemonTimeValue !== undefined && pokemonPersonalityValue !== undefined && pokemonLevel !== undefined) {
     // おてつだい時間を計算し、状態に設定する
-    const calculatedHelperTime = pokemonTimeValue * pokemonPersonalityValue;
+    const calculatedHelperTime = Math.floor(Math.floor(pokemonTimeValue *
+                                                       pokemonPersonalityValue) *
+                                                       (1.000 - (Math.floor( Number(pokemonLevel) - 1 )) * 0.002 ));
     setHelperTime(calculatedHelperTime);
   } else {
     // 存在しない場合はデフォルト値を設定
@@ -172,11 +171,14 @@ const handleCheckButtonClick = () => {
                     />
              </div>
              <div className="space-y-1.5 mx-10">
-                    <Label className="text-2xl text-white" htmlFor="レベル">レベル</Label>
+                    <Label className="text-2xl text-white" htmlFor="pokemonLevel">レベル</Label>
                     <Input
-                      id="level"
+                      id="pokemonLevel"
+                      type="text"
                       placeholder="Please tell me the level of the Pokémon."
                       className="bg-gray-400 text-white border-blue-700"
+                      value={pokemonLevel}
+                      onChange={handlePokemonlevelChange}
                     />
              </div>
             <Skill />

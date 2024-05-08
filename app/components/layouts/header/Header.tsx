@@ -8,7 +8,7 @@ const Header = () => {
         おてスピチェック　PC版
       </h1>
       <div className='text-white'>
-        Let’s check your Pokemon’s speed.
+        Let’s check your Pokemon’s Speed.
       </div>
     </header>
   )
