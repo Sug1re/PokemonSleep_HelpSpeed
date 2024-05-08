@@ -53,6 +53,7 @@ export default function Home() {
   const [pokemonName, setPokemonName] = useState("");
   const [pokemonPersonality, setPokemonPersonality] = useState("");
   const [pokemonLevel, setPokemonLevel] = useState("");
+  // const [pokemonLevel, setPokemonLevel] = useState(0);
   const [pokemonSkill, setPokemonSkill] = useState("");
   const [pokemonBonuss, setPokemonBonuss] = useState("");
   const [pokemonEnergy, setPokemonEnergy] = useState("");
@@ -70,9 +71,21 @@ export default function Home() {
 
   //ポケモンのレベルの入力フィールドの値が変更されたとき即座に対応する役割
   const handlePokemonlevelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // setPokemonLevel(parseInt(event.target.value));
     setPokemonLevel(event.target.value);
   };
+
+  // const handlePokemonlevelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   let level = parseInt(event.target.value);
+  //   // レベルが1未満の場合、1に制限する
+  //   if (level < 1) {
+  //     level = 1;
+  //   }
+  //   // レベルが100を超える場合、100に制限する
+  //   if (level > 100) {
+  //     level = 100;
+  //   }
+  //   setPokemonLevel(level);
+  // };
 
   //checkボタンをクリック時のフォームのリセット防止
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -104,6 +117,7 @@ export default function Home() {
     setPokemonName("");
     setPokemonPersonality("");
     setPokemonLevel("");
+    // setPokemonLevel(0);
     // その他の状態を初期化する場合はここに追加
   };
 
@@ -136,6 +150,7 @@ const handleCheckButtonClick = () => {
     const calculatedHelperTime = Math.floor(Math.floor(pokemonTimeValue *
                                                        pokemonPersonalityValue) *
                                                        (1.000 - (Math.floor( Number(pokemonLevel) - 1 )) * 0.002 ));
+                                                      //  (1.000 - (Math.floor( pokemonLevel - 1 )) * 0.002 ));
     setHelperTime(calculatedHelperTime);
   } else {
     // 存在しない場合はデフォルト値を設定
