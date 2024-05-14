@@ -21,7 +21,7 @@ const Bonuss = () => {
               id="おてつだいボーナス"
               className="bg-gray-400 text-white border-blue-700"
             >
-              <SelectValue placeholder="おてつだいボーナス" />
+              <SelectValue placeholder="おてつだいボーナスを選択" />
             </SelectTrigger>
               <SelectContent
                 position="popper"

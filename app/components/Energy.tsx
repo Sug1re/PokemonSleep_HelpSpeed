@@ -21,7 +21,7 @@ const Energy = () => {
               id="げんき補正"
               className="bg-gray-400 text-white w-52 border-blue-700"
             >
-              <SelectValue placeholder="げんき補正" />
+              <SelectValue placeholder="げんきを選択" />
             </SelectTrigger>
               <SelectContent
                 position="popper"

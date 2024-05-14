@@ -282,7 +282,7 @@ export default function Home() {
       pokemonSkill !== undefined
     ) {
       // おてつだい時間を計算し、状態に設定する
-      const calculatedHelperTime = Math.floor(
+      const calculatedHelperTime = Math.round(
                                    Math.floor(
                                    Math.floor( pokemonTimeValue *
                                                pokemonPersonalityValue ) *
@@ -293,7 +293,12 @@ export default function Home() {
       console.log(pokemonPersonalityValue)
       console.log(pokemonLevel)
       console.log(pokemonSkill)
-
+//ライチュウ,Lv37,ゆうかん,おてM　誤差1秒 1579.82
+//オコリザル,Lv25,すなお,おてM　誤差1秒 2291.9 2292.416
+//エーフィー,Lv40,ゆうかん,おてM 誤差なし
+//リザードン,Lv36,ゆうかん,両方 誤差なし
+//アーボック,Lv18,せっかち,おてM 誤差なし
+//ロコン,Lv15,ゆうかん,おてM 誤差なし
 
       if (calculatedHelperTime >= 3600) {
         const hours = Math.floor(calculatedHelperTime / 3600);
