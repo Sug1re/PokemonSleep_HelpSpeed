@@ -24,13 +24,6 @@ interface SkillProps {
 }
 
 const Skill: React.FC<SkillProps> = ({ pokemonSkill, setPokemonSkill }) => {
-  // const handlePokemonSkillChange = (value: string) => {
-  //   // 選択されたサブスキルに対応する数値を取得
-  //   const skillMultiplier = pokemonSkillMap[value];
-  //   // pokemonSkill の状態を数値に更新
-  //   setPokemonSkill(skillMultiplier.toString());
-  // };
-
   const handlePokemonSkillChange = (value: string) => {
     // 選択されたサブスキルに対応する数値を取得
     const skillMultiplier = pokemonSkillMap[value];

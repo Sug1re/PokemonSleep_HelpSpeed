@@ -1,42 +1,97 @@
-import React from 'react'
+"use client";
 
+import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-  } from "@/components/ui/select";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 
+const pokemonBonussMap: { [pokemonBonuss: string]: number } = {
+  1: 0.05,
+  2: 0.1,
+  3: 0.15,
+  4: 0.2,
+  5: 0.25,
+  0: 0.0,
+};
 
-const Bonuss = () => {
+// プロップの型を定義
+interface BonussProps {
+  pokemonBonuss: string;
+  setPokemonBonuss: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Bonuss: React.FC<BonussProps> = ({ pokemonBonuss, setPokemonBonuss }) => {
+  const handlePokemonBonussChange = (value: string) => {
+    // 選択されたおてつだいボーナスに対応する数値を取得
+    const bonussMultiplier = pokemonBonussMap[value];
+    if (bonussMultiplier !== undefined) {
+      // pokemonBonuss の状態を数値に更新
+      setPokemonBonuss(bonussMultiplier.toString());
+    }
+  };
   return (
     <div className="flex flex-row-reverse">
-    <div className="flex flex-col space-y-1.5 mx-10">
-        <Label className="text-2xl text-white" htmlFor="おてつだいボーナス">おてつだいボーナス</Label>
-          <Select>
-            <SelectTrigger
-              id="おてつだいボーナス"
-              className="bg-gray-400 text-white border-blue-700"
+      <div className="flex flex-col space-y-1.5 mx-10">
+        <Label className="text-2xl text-white" htmlFor="pokemonBonuss">
+          おてつだいボーナス
+        </Label>
+        <Select onValueChange={handlePokemonBonussChange} >
+          <SelectTrigger
+            id="pokemonBonuss"
+            className="bg-gray-400 text-white border-blue-700"
+          >
+            <SelectValue placeholder="おてつだいボーナスを選択" />
+          </SelectTrigger>
+          <SelectContent
+            position="popper"
+            className="bg-gray-400 text-white border-blue-700"
+          >
+            <SelectItem
+              value="1"
+              onClick={() => handlePokemonBonussChange("1")}
             >
-              <SelectValue placeholder="おてつだいボーナスを選択" />
-            </SelectTrigger>
-              <SelectContent
-                position="popper"
-                className="bg-gray-400 text-white border-blue-700"
-              >
-              <SelectItem value="1">1</SelectItem>
-              <SelectItem value="2">2</SelectItem>
-              <SelectItem value="3">3</SelectItem>
-              <SelectItem value="4">4</SelectItem>
-              <SelectItem value="5">5</SelectItem>
-              <SelectItem value="0">0</SelectItem>
-            </SelectContent>
-          </Select>
-    </div>
-    <div className="space-x-4 px-8 pt-10 ml-20">
+              1
+            </SelectItem>
+            <SelectItem
+              value="2"
+              onClick={() => handlePokemonBonussChange("2")}
+            >
+              2
+            </SelectItem>
+            <SelectItem
+              value="3"
+              onClick={() => handlePokemonBonussChange("3")}
+            >
+              3
+            </SelectItem>
+            <SelectItem
+              value="4"
+              onClick={() => handlePokemonBonussChange("4")}
+            >
+              4
+            </SelectItem>
+            <SelectItem
+              value="5"
+              onClick={() => handlePokemonBonussChange("5")}
+            >
+              5
+            </SelectItem>
+            <SelectItem
+              value="0"
+              onClick={() => handlePokemonBonussChange("0")}
+            >
+              0
+            </SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      {/* <div className="space-x-4 px-8 pt-10 ml-20">
         <Checkbox
             id="bonuss"
             className="rounded  bg-gray-400 appearance-none  border-white "
@@ -46,9 +101,9 @@ const Bonuss = () => {
             className="text-1xl text-white">
               おてつだいボーナス
         </Label>
+    </div> */}
     </div>
-</div>
-  )
-}
+  );
+};
 
-export default Bonuss
+export default Bonuss;

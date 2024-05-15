@@ -194,6 +194,16 @@ export default function Home() {
   const [pokemonEnergy, setPokemonEnergy] = useState("");
   const [helperTime, setHelperTime] = useState("");
 
+  // TotalSkill の計算
+  const calculateTotalSkill = () => {
+    const skill = parseFloat(pokemonSkill);
+    const bonuss = parseFloat(pokemonBonuss);
+    const difference = skill - bonuss;
+    return difference < 0.65 ? 0.65 : difference;
+  };
+
+  const TotalSkill = calculateTotalSkill();
+
   //ポケモンの名前の入力フィールドの値が変更されたとき即座に対応する役割
   const handlePokemonNameChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -241,7 +251,9 @@ export default function Home() {
       pokemonName.trim() === "" ||
       pokemonPersonality.trim() === "" ||
       pokemonLevel.trim() === "" ||
-      pokemonSkill.trim() === ""
+      pokemonSkill.trim() === "" ||
+      pokemonBonuss.trim() === "" ||
+      pokemonEnergy.trim() === ""
     ) {
       return;
     }
@@ -255,6 +267,8 @@ export default function Home() {
     setPokemonPersonality("");
     setPokemonLevel("");
     setPokemonSkill("");
+    setPokemonBonuss("");
+    setPokemonEnergy("");
 
     // その他の状態を初期化する場合はここに追加
   };
@@ -265,7 +279,9 @@ export default function Home() {
       pokemonName.trim() === "" ||
       pokemonPersonality.trim() === "" ||
       pokemonLevel.trim() === "" ||
-      pokemonSkill.trim() === ""
+      pokemonSkill.trim() === "" ||
+      pokemonBonuss.trim() === "" ||
+      pokemonEnergy.trim() === ""
     ) {
       return;
     }
@@ -274,31 +290,32 @@ export default function Home() {
     const pokemonTimeValue = pokemonTimeMap[pokemonName];
     const pokemonPersonalityValue = pokemonPersonalityMap[pokemonPersonality];
 
-    // ポケモンの名前と性格とレベルとサブスキルが存在する場合のみ計算を行う
+    console.log("ポケモン:",pokemonName);
+    console.log("基礎時間:",pokemonTimeValue);
+    console.log("性格:",pokemonPersonality);
+    console.log("性格倍率:",pokemonPersonalityValue);
+    console.log("レベル:",pokemonLevel);
+    console.log("サブスキル倍率:",pokemonSkill);
+    console.log("おてつだいボーナス倍率:",pokemonBonuss);
+    console.log("トータルスキル倍率:",TotalSkill);
+    console.log("げんき倍率:",pokemonEnergy);
+
+    // すべてのフォームが入力済みの場合のみ計算を行う
     if (
       pokemonTimeValue !== undefined &&
       pokemonPersonalityValue !== undefined &&
       pokemonLevel !== undefined &&
-      pokemonSkill !== undefined
+      pokemonSkill !== undefined &&
+      pokemonBonuss !== undefined &&
+      pokemonEnergy !== undefined
     ) {
       // おてつだい時間を計算し、状態に設定する
       const calculatedHelperTime = Math.round(
-                                   Math.floor(
-                                   Math.floor( pokemonTimeValue *
-                                               pokemonPersonalityValue ) *
-                                             (1.0 - Math.floor(Number(pokemonLevel) - 1) * 0.002 )) *
-                                               Number(pokemonSkill))
-      ;
-      console.log(pokemonTimeValue)
-      console.log(pokemonPersonalityValue)
-      console.log(pokemonLevel)
-      console.log(pokemonSkill)
-//ライチュウ,Lv37,ゆうかん,おてM　誤差1秒 1579.82
-//オコリザル,Lv25,すなお,おてM　誤差1秒 2291.9 2292.416
-//エーフィー,Lv40,ゆうかん,おてM 誤差なし
-//リザードン,Lv36,ゆうかん,両方 誤差なし
-//アーボック,Lv18,せっかち,おてM 誤差なし
-//ロコン,Lv15,ゆうかん,おてM 誤差なし
+        Math.floor(
+          Math.floor(pokemonTimeValue * pokemonPersonalityValue) *
+            (1.0 - Math.floor(Number(pokemonLevel) - 1) * 0.002)
+        ) * TotalSkill
+      );
 
       if (calculatedHelperTime >= 3600) {
         const hours = Math.floor(calculatedHelperTime / 3600);
@@ -306,21 +323,19 @@ export default function Home() {
         const seconds = Math.floor(calculatedHelperTime % 60);
 
         setHelperTime(`${hours}時間 ${minutes}分 ${seconds}秒`);
-      }
-      else {
+      } else {
         const minutes = Math.floor(calculatedHelperTime / 60);
         const seconds = Math.floor(calculatedHelperTime % 60);
 
         setHelperTime(`${minutes}分 ${seconds}秒`);
       }
-
-
-
     } else {
       // 存在しない場合はデフォルト値を設定
       setHelperTime("");
     }
   };
+
+  
 
   return (
     <main className="min-h-screen items-center justify-between bg-blue-950">
@@ -334,7 +349,7 @@ export default function Home() {
               <Input
                 id="pokemonName"
                 type="text"
-                placeholder="Please input the Pokémon."
+                placeholder="ポケモンを入力"
                 className="bg-gray-400 text-white border-blue-700"
                 value={pokemonName}
                 onChange={handlePokemonNameChange}
@@ -350,7 +365,7 @@ export default function Home() {
               <Input
                 id="pokemonPersonality"
                 type="text"
-                placeholder="Please input the Pokémon’s personality."
+                placeholder="性格を入力"
                 className="bg-gray-400 text-white border-blue-700"
                 value={pokemonPersonality}
                 onChange={handlePokemonPesonalityChange}
@@ -363,7 +378,7 @@ export default function Home() {
               <Input
                 id="pokemonLevel"
                 type="text"
-                placeholder="Please tell me the level of the Pokémon."
+                placeholder="レベルを入力"
                 className="bg-gray-400 text-white border-blue-700"
                 value={pokemonLevel}
                 onChange={handlePokemonlevelChange}
@@ -375,9 +390,15 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="space-y-2 mx-24 my-7 pb-4 flex justify-center items-center shadow-md rounded  bg-sky-950 text-white ">
-          <Bonuss />
-          <Energy />
+        <div className="grid lg:grid-cols-2 pb-4 my-7 pt-2 mx-24 gap-4 shadow-md rounded bg-sky-950">
+          <Bonuss
+            pokemonBonuss={pokemonBonuss}
+            setPokemonBonuss={setPokemonBonuss}
+          />
+          <Energy
+            pokemonEnergy={pokemonEnergy}
+            setPokemonEnergy={setPokemonEnergy}
+          />
         </div>
         <CardFooter className="flex flex-row justify-center items-center pt-10 pb-5 space-x-96">
           <div className=" pr-48">
