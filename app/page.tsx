@@ -263,17 +263,10 @@ const TotalSkill = calculateTotalSkill();
 
   //cancelボタンをクリック時のフォームを初期化
   const handleCancelClick = () => {
-    // フォームの状態を初期化
-    setHelperTime("");
-    setPokemonName("");
-    setPokemonPersonality("");
-    setPokemonLevel("");
-    setPokemonSkill("");
-    setPokemonBonuss("");
-    // setPokemonEnergy("");
-
-    // その他の状態を初期化する場合はここに追加
+    // ページをリロードする
+    window.location.reload();
   };
+
 
   // checkボタンをクリックしたときの処理
   const handleCheckButtonClick = () => {
@@ -323,7 +316,7 @@ const TotalSkill = calculateTotalSkill();
       //   ) * TotalSkill
       // );
 
-      //最後に切り捨てする式
+      //全ての項をかけた後に切り捨てする式
       const calculatedHelperTime = Math.floor(
          pokemonTimeValue * pokemonPersonalityValue *
             (1.0 - (Number(pokemonLevel) - 1) * 0.002)
