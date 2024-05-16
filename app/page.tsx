@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Skill from "./components/Skill";
 import Bonuss from "./components/Bonuss";
-import Energy from "./components/Energy";
+// import Energy from "./components/Energy";
 import {
   Select,
   SelectContent,
