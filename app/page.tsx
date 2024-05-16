@@ -52,7 +52,7 @@ const pokemonTimeMap: { [pokemonName: string]: number } = {
   ゴルダック: 3400,
   マンキー: 4200,
   オコリザル: 2800,
-  ガーディー: 4300,
+  ガーディ: 4300,
   ウインディ: 2500,
   マダツボミ: 5200,
   ウツドン: 3800,
@@ -79,7 +79,7 @@ const pokemonTimeMap: { [pokemonName: string]: number } = {
   イーブイ: 3700,
   シャワーズ: 3100,
   サンダース: 2200,
-  ブースター: 2400,
+  ブースター: 2700,
   ミニリュウ: 5000,
   ハクリュウ: 3800,
   カイリュウ: 2600,
@@ -103,7 +103,7 @@ const pokemonTimeMap: { [pokemonName: string]: number } = {
   ウソッキー: 4000,
   エーフィー: 2400,
   ブラッキー: 3500,
-  ヤドキング: 3700,
+  ヤドキング: 3400,
   ソーナンス: 3500,
   ハガネール: 3000,
   ヘラクロス: 2500,
@@ -115,7 +115,7 @@ const pokemonTimeMap: { [pokemonName: string]: number } = {
   // "スイクン":time[11][1],
   ヨーギラス: 4800,
   サナギラス: 3600,
-  バンギラス: 2400,
+  バンギラス: 2700,
   ラルトス: 4800,
   キルリア: 3500,
   サーナイト: 2400,
@@ -139,13 +139,13 @@ const pokemonTimeMap: { [pokemonName: string]: number } = {
   リオル: 4200,
   ルカリオ: 2600,
   グレッグル: 5600,
-  ドクロック: 3400,
+  ドクロッグ: 3400,
   ユキカブリ: 5600,
   ユキノオー: 3000,
   ジバコイル: 3100,
   トゲキッス: 2600,
   リーフィア: 3000,
-  グレイシア: 3500,
+  グレイシア: 3200,
   エルレイド: 2400,
   ニンフィア: 2600,
   デデンネ: 2500,
@@ -195,14 +195,15 @@ export default function Home() {
   const [helperTime, setHelperTime] = useState("");
 
   // TotalSkill の計算
-  const calculateTotalSkill = () => {
-    const skill = parseFloat(pokemonSkill);
-    const bonuss = parseFloat(pokemonBonuss);
-    const difference = skill - bonuss;
-    return difference < 0.65 ? 0.65 : difference;
-  };
+const calculateTotalSkill = () => {
+  const skill = parseFloat(pokemonSkill);
+  const bonuss = parseFloat(pokemonBonuss);
+  const totalSkill = 1 - skill - bonuss;
+  return totalSkill < 0.65 ? 0.65 : totalSkill;
+};
 
-  const TotalSkill = calculateTotalSkill();
+const TotalSkill = calculateTotalSkill();
+
 
   //ポケモンの名前の入力フィールドの値が変更されたとき即座に対応する役割
   const handlePokemonNameChange = (
@@ -252,8 +253,9 @@ export default function Home() {
       pokemonPersonality.trim() === "" ||
       pokemonLevel.trim() === "" ||
       pokemonSkill.trim() === "" ||
-      pokemonBonuss.trim() === "" ||
-      pokemonEnergy.trim() === ""
+      pokemonBonuss.trim() === ""
+      //  ||
+      // pokemonEnergy.trim() === ""
     ) {
       return;
     }
@@ -268,7 +270,7 @@ export default function Home() {
     setPokemonLevel("");
     setPokemonSkill("");
     setPokemonBonuss("");
-    setPokemonEnergy("");
+    // setPokemonEnergy("");
 
     // その他の状態を初期化する場合はここに追加
   };
@@ -280,8 +282,9 @@ export default function Home() {
       pokemonPersonality.trim() === "" ||
       pokemonLevel.trim() === "" ||
       pokemonSkill.trim() === "" ||
-      pokemonBonuss.trim() === "" ||
-      pokemonEnergy.trim() === ""
+      pokemonBonuss.trim() === ""
+      //  ||
+      // pokemonEnergy.trim() === ""
     ) {
       return;
     }
@@ -298,7 +301,7 @@ export default function Home() {
     console.log("サブスキル倍率:",pokemonSkill);
     console.log("おてつだいボーナス倍率:",pokemonBonuss);
     console.log("トータルスキル倍率:",TotalSkill);
-    console.log("げんき倍率:",pokemonEnergy);
+    // console.log("げんき倍率:",pokemonEnergy);
 
     // すべてのフォームが入力済みの場合のみ計算を行う
     if (
@@ -306,16 +309,30 @@ export default function Home() {
       pokemonPersonalityValue !== undefined &&
       pokemonLevel !== undefined &&
       pokemonSkill !== undefined &&
-      pokemonBonuss !== undefined &&
-      pokemonEnergy !== undefined
+      pokemonBonuss !== undefined
+      //  &&
+      // pokemonEnergy !== undefined
     ) {
       // おてつだい時間を計算し、状態に設定する
-      const calculatedHelperTime = Math.round(
-        Math.floor(
-          Math.floor(pokemonTimeValue * pokemonPersonalityValue) *
-            (1.0 - Math.floor(Number(pokemonLevel) - 1) * 0.002)
-        ) * TotalSkill
+      //掛けるたびに切り捨てする式
+      // const calculatedHelperTime = Math.floor(
+      //   Math.floor(
+      //     Math.floor(pokemonTimeValue * pokemonPersonalityValue) *
+      //       (1.0 - Math.floor(Number(pokemonLevel) - 1) * 0.002)
+      //   ) * TotalSkill
+      // );
+
+      //最後に切り捨てする式
+      const calculatedHelperTime = Math.floor(
+         pokemonTimeValue * pokemonPersonalityValue *
+            (1.0 - (Number(pokemonLevel) - 1) * 0.002)
+         * TotalSkill
       );
+      //ガルーラ誤差1秒
+      //メリープ誤差1秒
+
+      console.log("おてつだい時間:",calculatedHelperTime);
+
 
       if (calculatedHelperTime >= 3600) {
         const hours = Math.floor(calculatedHelperTime / 3600);
@@ -334,8 +351,6 @@ export default function Home() {
       setHelperTime("");
     }
   };
-
-  
 
   return (
     <main className="min-h-screen items-center justify-between bg-blue-950">
@@ -395,10 +410,10 @@ export default function Home() {
             pokemonBonuss={pokemonBonuss}
             setPokemonBonuss={setPokemonBonuss}
           />
-          <Energy
+          {/* <Energy
             pokemonEnergy={pokemonEnergy}
             setPokemonEnergy={setPokemonEnergy}
-          />
+          /> */}
         </div>
         <CardFooter className="flex flex-row justify-center items-center pt-10 pb-5 space-x-96">
           <div className=" pr-48">

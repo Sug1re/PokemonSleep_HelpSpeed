@@ -11,10 +11,10 @@ import {
 } from "@/components/ui/select";
 
 const pokemonSkillMap: { [pokemonSkill: string]: number } = {
-  おてつだいスピードS: 0.93,
-  おてつだいスピードM: 0.86,
-  両方: 0.79,
-  なし: 1.0,
+  おてつだいスピードS: 0.07,
+  おてつだいスピードM: 0.14,
+  両方: 0.21,
+  なし: 0.0,
 };
 
 // プロップの型を定義
