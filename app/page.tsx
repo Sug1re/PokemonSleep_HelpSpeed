@@ -315,19 +315,19 @@ const TotalSkill = calculateTotalSkill();
     ) {
       // おてつだい時間を計算し、状態に設定する
       //掛けるたびに切り捨てする式
-      // const calculatedHelperTime = Math.floor(
-      //   Math.floor(
-      //     Math.floor(pokemonTimeValue * pokemonPersonalityValue) *
-      //       (1.0 - Math.floor(Number(pokemonLevel) - 1) * 0.002)
-      //   ) * TotalSkill
-      // );
+      const calculatedHelperTime = Math.floor(
+        Math.floor(
+          Math.floor(pokemonTimeValue * pokemonPersonalityValue) *
+            (1.0 - Math.floor(Number(pokemonLevel) - 1) * 0.002)
+        ) * TotalSkill
+      );
 
       //最後に切り捨てする式
-      const calculatedHelperTime = Math.floor(
-         pokemonTimeValue * pokemonPersonalityValue *
-            (1.0 - (Number(pokemonLevel) - 1) * 0.002)
-         * TotalSkill
-      );
+      // const calculatedHelperTime = Math.floor(
+      //    pokemonTimeValue * pokemonPersonalityValue *
+      //       (1.0 - (Number(pokemonLevel) - 1) * 0.002)
+      //    * TotalSkill
+      // );
       //ガルーラ誤差1秒
       //メリープ誤差1秒
 
