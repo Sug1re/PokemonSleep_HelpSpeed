@@ -7,14 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Skill from "./components/Skill";
 import Bonuss from "./components/Bonuss";
-// import Energy from "./components/Energy";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@radix-ui/react-select";
+import Energy from "./components/Energy";
 
 //ポケモンの固有のおてつだい時間を示す表
 const pokemonTimeMap: { [pokemonName: string]: number } = {
@@ -110,8 +103,8 @@ const pokemonTimeMap: { [pokemonName: string]: number } = {
   デリバード: 2500,
   デルビル: 4900,
   ヘルガー: 3300,
+  エンテイ: 2400,
   ライコウ: 2100,
-  // "エンテイ":time[11][1],
   // "スイクン":time[11][1],
   ヨーギラス: 4800,
   サナギラス: 3600,
@@ -193,17 +186,21 @@ export default function Home() {
   const [pokemonBonuss, setPokemonBonuss] = useState("");
   const [pokemonEnergy, setPokemonEnergy] = useState("");
   const [helperTime, setHelperTime] = useState("");
+  const [isEnergyChecked, setIsEnergyChecked] = useState(false);
+
+  const handleEnergyCheckboxChange = () => {
+    setIsEnergyChecked(!isEnergyChecked);
+  };
 
   // TotalSkill の計算
-const calculateTotalSkill = () => {
-  const skill = parseFloat(pokemonSkill);
-  const bonuss = parseFloat(pokemonBonuss);
-  const totalSkill = 1 - skill - bonuss;
-  return totalSkill < 0.65 ? 0.65 : totalSkill;
-};
+  const calculateTotalSkill = () => {
+    const skill = parseFloat(pokemonSkill);
+    const bonuss = parseFloat(pokemonBonuss);
+    const totalSkill = 1 - skill - bonuss;
+    return totalSkill < 0.65 ? 0.65 : totalSkill;
+  };
 
-const TotalSkill = calculateTotalSkill();
-
+  const TotalSkill = calculateTotalSkill();
 
   //ポケモンの名前の入力フィールドの値が変更されたとき即座に対応する役割
   const handlePokemonNameChange = (
@@ -253,9 +250,8 @@ const TotalSkill = calculateTotalSkill();
       pokemonPersonality.trim() === "" ||
       pokemonLevel.trim() === "" ||
       pokemonSkill.trim() === "" ||
-      pokemonBonuss.trim() === ""
-      //  ||
-      // pokemonEnergy.trim() === ""
+      pokemonBonuss.trim() === "" ||
+      pokemonEnergy.trim() === ""
     ) {
       return;
     }
@@ -267,8 +263,8 @@ const TotalSkill = calculateTotalSkill();
     window.location.reload();
   };
 
-
   // checkボタンをクリックしたときの処理
+
   const handleCheckButtonClick = () => {
     if (
       pokemonName.trim() === "" ||
@@ -276,8 +272,6 @@ const TotalSkill = calculateTotalSkill();
       pokemonLevel.trim() === "" ||
       pokemonSkill.trim() === "" ||
       pokemonBonuss.trim() === ""
-      //  ||
-      // pokemonEnergy.trim() === ""
     ) {
       return;
     }
@@ -286,15 +280,18 @@ const TotalSkill = calculateTotalSkill();
     const pokemonTimeValue = pokemonTimeMap[pokemonName];
     const pokemonPersonalityValue = pokemonPersonalityMap[pokemonPersonality];
 
-    console.log("ポケモン:",pokemonName);
-    console.log("基礎時間:",pokemonTimeValue);
-    console.log("性格:",pokemonPersonality);
-    console.log("性格倍率:",pokemonPersonalityValue);
-    console.log("レベル:",pokemonLevel);
-    console.log("サブスキル倍率:",pokemonSkill);
-    console.log("おてつだいボーナス倍率:",pokemonBonuss);
-    console.log("トータルスキル倍率:",TotalSkill);
-    // console.log("げんき倍率:",pokemonEnergy);
+    console.log("ポケモン:", pokemonName);
+    console.log("基礎時間:", pokemonTimeValue);
+    console.log("性格:", pokemonPersonality);
+    console.log("性格倍率:", pokemonPersonalityValue);
+    console.log("レベル:", pokemonLevel);
+    console.log("サブスキル倍率:", pokemonSkill);
+    console.log("おてつだいボーナス倍率:", pokemonBonuss);
+    console.log("トータルスキル倍率:", TotalSkill);
+    console.log("げんき倍率:", pokemonEnergy);
+
+    //おてつだい時間を計算する
+    let calculatedHelperTime;
 
     // すべてのフォームが入力済みの場合のみ計算を行う
     if (
@@ -303,28 +300,28 @@ const TotalSkill = calculateTotalSkill();
       pokemonLevel !== undefined &&
       pokemonSkill !== undefined &&
       pokemonBonuss !== undefined
-      //  &&
-      // pokemonEnergy !== undefined
     ) {
-      // おてつだい時間を計算し、状態に設定する
-      //掛けるたびに切り捨てする式
-      // const calculatedHelperTime = Math.floor(
-      //   //四捨五入
-      //   Math.round(
-      //     Math.floor(pokemonTimeValue * pokemonPersonalityValue) *
-      //       (1.0 - Math.floor(Number(pokemonLevel) - 1) * 0.002)
-      //   ) * TotalSkill
-      // );
+      // チェックボタンの状態で分岐
+      if (pokemonEnergy.trim() !== "") {
+        // チェックボタンがチェックされている場合の計算式
+        calculatedHelperTime = Math.floor(
+          pokemonTimeValue *
+          pokemonPersonalityValue *
+          (1.0 - (Number(pokemonLevel) - 1) * 0.002) *
+          TotalSkill *
+          Number(pokemonEnergy)
+        );
+      } else {
+        // チェックボタンがチェックされていない場合の計算式
+        calculatedHelperTime = Math.floor(
+          pokemonTimeValue *
+          pokemonPersonalityValue *
+          (1.0 - (Number(pokemonLevel) - 1) * 0.002) *
+          TotalSkill
+        );
+      }
 
-      //全ての項をかけた後に切り捨てする式
-      const calculatedHelperTime = Math.floor(
-         pokemonTimeValue * pokemonPersonalityValue *
-            (1.0 - (Number(pokemonLevel) - 1) * 0.002)
-         * TotalSkill
-      );
-
-      console.log("おてつだい時間:",calculatedHelperTime);
-
+      console.log("おてつだい時間:", calculatedHelperTime);
 
       if (calculatedHelperTime >= 3600) {
         const hours = Math.floor(calculatedHelperTime / 3600);
@@ -402,10 +399,10 @@ const TotalSkill = calculateTotalSkill();
             pokemonBonuss={pokemonBonuss}
             setPokemonBonuss={setPokemonBonuss}
           />
-          {/* <Energy
+          <Energy
             pokemonEnergy={pokemonEnergy}
             setPokemonEnergy={setPokemonEnergy}
-          /> */}
+          />
         </div>
         <CardFooter className="flex flex-row justify-center items-center pt-10 pb-5 space-x-96">
           <div className=" pr-48">
