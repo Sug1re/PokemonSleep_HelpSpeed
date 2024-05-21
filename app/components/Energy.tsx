@@ -36,15 +36,14 @@ const Energy: React.FC<EnergyProps> = ({ pokemonEnergy, setPokemonEnergy }) => {
   };
 
   return (
-    <div className="flex flex-row-reverse">
-      <div className=" space-y-1.5 mx-10">
+    <div className=" space-y-1.5 mx-40">
         <Label className="text-2xl text-white " htmlFor="pokemonEnergy">
           げんき補正
         </Label>
         <Select onValueChange={handlePokemonBonussChange}>
           <SelectTrigger
             id="pokemonEnergy"
-            className="bg-gray-400 text-white w-52 border-blue-700"
+            className="bg-gray-400 text-white border-blue-700"
           >
             <SelectValue placeholder="げんきを選択" />
           </SelectTrigger>
@@ -85,7 +84,6 @@ const Energy: React.FC<EnergyProps> = ({ pokemonEnergy, setPokemonEnergy }) => {
             </SelectItem>
           </SelectContent>
         </Select>
-      </div>
     </div>
   );
 };

@@ -345,7 +345,7 @@ export default function Home() {
     <main className="min-h-screen items-center justify-between bg-blue-950">
       <form onSubmit={handleSubmit}>
         <div className="pt-4">
-          <div className="grid lg:grid-cols-3 pb-4  pt-2 mx-24 gap-4 shadow-md rounded bg-sky-950">
+          <div className="grid lg:grid-cols-3 py-4 mx-24 gap-4 shadow-md rounded bg-sky-950">
             <div className="space-y-1.5 mx-10">
               <Label className="text-2xl text-white" htmlFor="pokemonName">
                 ポケモン
@@ -394,15 +394,16 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="grid lg:grid-cols-2 pb-4 my-7 pt-2 mx-24 gap-4 shadow-md rounded bg-sky-950">
-          <Bonuss
-            pokemonBonuss={pokemonBonuss}
-            setPokemonBonuss={setPokemonBonuss}
-          />
-          <Energy
-            pokemonEnergy={pokemonEnergy}
-            setPokemonEnergy={setPokemonEnergy}
-          />
+        <div className="grid lg:grid-cols-2 py-4 my-8 mx-24 gap-4 shadow-md rounded bg-sky-950">
+            <Bonuss
+              pokemonBonuss={pokemonBonuss}
+              setPokemonBonuss={setPokemonBonuss}
+            />
+              <Energy
+                pokemonEnergy={pokemonEnergy}
+                setPokemonEnergy={setPokemonEnergy}
+              />
+          {/* </div> */}
         </div>
         <CardFooter className="flex flex-row justify-center items-center pt-10 pb-5 space-x-96">
           <div className=" pr-48">
@@ -422,7 +423,7 @@ export default function Home() {
             </Button>
           </div>
         </CardFooter>
-        <div className=" mx-96  pt-2 pb-4  flex justify-center items-center flex-col space-y-1.5 shadow-md rounded bg-sky-950">
+        <div className=" mx-96 py-4 flex justify-center items-center flex-col space-y-1.5 shadow-md rounded bg-sky-950">
           <Label htmlFor="helperTime" className="text-2xl text-white">
             おてつだい時間
           </Label>

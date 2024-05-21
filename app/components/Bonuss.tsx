@@ -36,8 +36,7 @@ const Bonuss: React.FC<BonussProps> = ({ pokemonBonuss, setPokemonBonuss }) => {
     }
   };
   return (
-    <div className="flex flex-row-reverse">
-      <div className="flex flex-col space-y-1.5 mx-10">
+    <div className=" space-y-1.5 mx-40">
         <Label className="text-2xl text-white" htmlFor="pokemonBonuss">
           おてつだいボーナス
         </Label>
@@ -90,18 +89,6 @@ const Bonuss: React.FC<BonussProps> = ({ pokemonBonuss, setPokemonBonuss }) => {
             </SelectItem>
           </SelectContent>
         </Select>
-      </div>
-      {/* <div className="space-x-4 px-8 pt-10 ml-20">
-        <Checkbox
-            id="bonuss"
-            className="rounded  bg-gray-400 appearance-none  border-white "
-        />
-        <Label
-            htmlFor="bonuss"
-            className="text-1xl text-white">
-              おてつだいボーナス
-        </Label>
-    </div> */}
     </div>
   );
 };
