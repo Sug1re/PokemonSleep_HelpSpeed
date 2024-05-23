@@ -3,9 +3,9 @@ import React from 'react'
 
 const Header = () => {
   return (
-    <header className="flex flex-col items-center justify-center h-[14vh] bg-gray-900 ">
+    <header className=' bg-gray-900 p-4 mx-auto container flex flex-col items-center max-w-full'>
       <h1 className="text-4xl font-bold text-gray-400 ">
-        おてスピチェック　PC版
+        おてスピチェック
       </h1>
       <div className='text-white'>
         Let’s check your Pokemon’s Speed.

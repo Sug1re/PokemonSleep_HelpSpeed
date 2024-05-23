@@ -186,11 +186,6 @@ export default function Home() {
   const [pokemonBonuss, setPokemonBonuss] = useState("");
   const [pokemonEnergy, setPokemonEnergy] = useState("");
   const [helperTime, setHelperTime] = useState("");
-  const [isEnergyChecked, setIsEnergyChecked] = useState(false);
-
-  const handleEnergyCheckboxChange = () => {
-    setIsEnergyChecked(!isEnergyChecked);
-  };
 
   // TotalSkill の計算
   const calculateTotalSkill = () => {
@@ -258,7 +253,7 @@ export default function Home() {
   };
 
   //cancelボタンをクリック時のフォームを初期化
-  const handleCancelClick = () => {
+  const handleCancelButtonClick = () => {
     // ページをリロードする
     window.location.reload();
   };
@@ -306,18 +301,18 @@ export default function Home() {
         // チェックボタンがチェックされている場合の計算式
         calculatedHelperTime = Math.floor(
           pokemonTimeValue *
-          pokemonPersonalityValue *
-          (1.0 - (Number(pokemonLevel) - 1) * 0.002) *
-          TotalSkill *
-          Number(pokemonEnergy)
+            pokemonPersonalityValue *
+            (1.0 - (Number(pokemonLevel) - 1) * 0.002) *
+            TotalSkill *
+            Number(pokemonEnergy)
         );
       } else {
         // チェックボタンがチェックされていない場合の計算式
         calculatedHelperTime = Math.floor(
           pokemonTimeValue *
-          pokemonPersonalityValue *
-          (1.0 - (Number(pokemonLevel) - 1) * 0.002) *
-          TotalSkill
+            pokemonPersonalityValue *
+            (1.0 - (Number(pokemonLevel) - 1) * 0.002) *
+            TotalSkill
         );
       }
 
@@ -342,98 +337,103 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen items-center justify-between bg-blue-950">
+    <main className="bg-blue-950 min-h-screen">
       <form onSubmit={handleSubmit}>
-        <div className="pt-4">
-          <div className="grid lg:grid-cols-3 py-4 mx-24 gap-4 shadow-md rounded bg-sky-950">
-            <div className="space-y-1.5 mx-10">
+        <div className="p-4 sm:py-4 sm:px-12 md:px-16 lg:px-32">
+          <div className="grid sm:grid-cols-3 gap-4 bg-sky-950 rounded shadow-md  py-4">
+            <div className=" flex flex-col space-y-2 container">
               <Label className="text-2xl text-white" htmlFor="pokemonName">
                 ポケモン
               </Label>
               <Input
                 id="pokemonName"
                 type="text"
-                placeholder="ポケモンを入力"
-                className="bg-gray-400 text-white border-blue-700"
+                className=" bg-gray-400 text-white border-blue-700"
+                placeholder="ポケモン名を入力"
                 value={pokemonName}
                 onChange={handlePokemonNameChange}
               />
             </div>
-            <div className="space-y-1.5 mx-10">
+            <div className=" flex flex-col space-y-2 container">
               <Label
                 className="text-2xl text-white"
-                htmlFor="pokemonPesonality"
+                htmlFor="pokemonPersonality"
               >
                 性格
               </Label>
               <Input
                 id="pokemonPersonality"
                 type="text"
+                className=" bg-gray-400 text-white border-blue-700"
                 placeholder="性格を入力"
-                className="bg-gray-400 text-white border-blue-700"
                 value={pokemonPersonality}
                 onChange={handlePokemonPesonalityChange}
               />
             </div>
-            <div className="space-y-1.5 mx-10">
+            <div className=" flex flex-col space-y-2 container">
               <Label className="text-2xl text-white" htmlFor="pokemonLevel">
                 レベル
               </Label>
               <Input
                 id="pokemonLevel"
                 type="text"
+                className=" bg-gray-400 text-white border-blue-700"
                 placeholder="レベルを入力"
-                className="bg-gray-400 text-white border-blue-700"
                 value={pokemonLevel}
                 onChange={handlePokemonlevelChange}
               />
             </div>
-            <Skill
-              pokemonSkill={pokemonSkill}
-              setPokemonSkill={setPokemonSkill}
-            />
+            <div>
+              <Skill
+                pokemonSkill="pokemonSkill"
+                setPokemonSkill={setPokemonSkill}
+              />
+            </div>
           </div>
         </div>
-        <div className="grid lg:grid-cols-2 py-4 my-8 mx-24 gap-4 shadow-md rounded bg-sky-950">
+        <div className="p-4 sm:py-4 md:px-12 lg:px-32 container">
+          <div className="grid sm:grid-cols-2 gap-4 shadow-md rounded bg-sky-950 py-4 my-8 ">
             <Bonuss
               pokemonBonuss={pokemonBonuss}
               setPokemonBonuss={setPokemonBonuss}
             />
-              <Energy
-                pokemonEnergy={pokemonEnergy}
-                setPokemonEnergy={setPokemonEnergy}
-              />
-          {/* </div> */}
+            <Energy
+              pokemonEnergy={pokemonEnergy}
+              setPokemonEnergy={setPokemonEnergy}
+            />
+          </div>
         </div>
-        <CardFooter className="flex flex-row justify-center items-center pt-10 pb-5 space-x-96">
-          <div className=" pr-48">
+        <CardFooter className="flex justify-evenly">
+          <div>
             <Button
-              className="bg-sky-900 text-white rounded transform hover:bg-sky-950 hover:scale-95"
-              onClick={handleCancelClick} // クリックされたときに呼び出す関数を指定
+              className=" bg-purple-900 text-white rounded transform hover:bg-purple-800 hover:scale-90"
+              onClick={handleCancelButtonClick}
             >
               Cancel
             </Button>
           </div>
-          <div className=" pl-48">
+          <div>
             <Button
-              className=" bg-gray-400 text-white rounded transform hover:bg-gray-500 hover:scale-95"
-              onClick={handleCheckButtonClick} // "Check"ボタンがクリックされたときに実行される関数を指定
+              className=" bg-gray-800 text-white rounded transform hover:bg-gray-700 hover:scale-90"
+              onClick={handleCheckButtonClick}
             >
               Check
             </Button>
           </div>
         </CardFooter>
-        <div className=" mx-96 py-4 flex justify-center items-center flex-col space-y-1.5 shadow-md rounded bg-sky-950">
-          <Label htmlFor="helperTime" className="text-2xl text-white">
-            おてつだい時間
-          </Label>
-          <Input
-            id="helperTime"
-            type="text"
-            readOnly
-            value={helperTime}
-            className="bg-gray-400 text-white w-1/3 border-blue-700"
-          />
+        <div className="p-4 ">
+          <div className=" bg-sky-950 rounded shadow-md space-y-2 py-4 flex items-center flex-col container w-4/5 md:w-3/5 lg:w-2/7">
+            <Label htmlFor="helperTime" className="text-2xl text-white flex">
+              おてつだい時間
+            </Label>
+            <Input
+              id="helperTime"
+              type="text"
+              readOnly
+              value={helperTime}
+              className=" bg-gray-400 text-white border-blue-700 w-1/2 "
+            />
+          </div>
         </div>
       </form>
     </main>

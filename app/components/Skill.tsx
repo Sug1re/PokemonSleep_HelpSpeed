@@ -34,7 +34,7 @@ const Skill: React.FC<SkillProps> = ({ pokemonSkill, setPokemonSkill }) => {
   };
 
   return (
-      <div className="space-y-1.5 mx-10">
+      <div className=" flex flex-col space-y-2 container">
         <Label className="text-2xl text-white" htmlFor="pokemonSkill">
           サブスキル
         </Label>
