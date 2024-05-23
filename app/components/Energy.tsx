@@ -37,7 +37,7 @@ const Energy: React.FC<EnergyProps> = ({ pokemonEnergy, setPokemonEnergy }) => {
 
   return (
     <div className="flex flex-col space-y-2 container md:w-4/5">
-        <Label className="text-xl text-white " htmlFor="pokemonEnergy">
+        <Label className="text-xl text-white font-semibold" htmlFor="pokemonEnergy">
           げんき補正
         </Label>
         <Select onValueChange={handlePokemonBonussChange}>

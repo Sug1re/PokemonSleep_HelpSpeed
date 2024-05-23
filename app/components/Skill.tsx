@@ -35,7 +35,7 @@ const Skill: React.FC<SkillProps> = ({ pokemonSkill, setPokemonSkill }) => {
 
   return (
       <div className=" flex flex-col space-y-2 container">
-        <Label className="text-xl text-white" htmlFor="pokemonSkill">
+        <Label className="text-xl text-white font-semibold" htmlFor="pokemonSkill">
           サブスキル
         </Label>
         <Select onValueChange={handlePokemonSkillChange} >

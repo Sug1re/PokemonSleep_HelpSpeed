@@ -342,7 +342,10 @@ export default function Home() {
         <div className="p-4 sm:py-4 sm:px-12 md:px-16 lg:px-32">
           <div className="grid sm:grid-cols-3 gap-4 bg-sky-950 rounded shadow-md  py-4">
             <div className=" flex flex-col space-y-2 container">
-              <Label className="text-xl text-white" htmlFor="pokemonName">
+              <Label
+                className="text-xl text-white font-semibold"
+                htmlFor="pokemonName"
+              >
                 ポケモン
               </Label>
               <Input
@@ -356,7 +359,7 @@ export default function Home() {
             </div>
             <div className=" flex flex-col space-y-2 container">
               <Label
-                className="text-xl text-white"
+                className="text-xl text-white font-semibold"
                 htmlFor="pokemonPersonality"
               >
                 性格
@@ -371,7 +374,10 @@ export default function Home() {
               />
             </div>
             <div className=" flex flex-col space-y-2 container">
-              <Label className="text-xl text-white" htmlFor="pokemonLevel">
+              <Label
+                className="text-xl text-white font-semibold"
+                htmlFor="pokemonLevel"
+              >
                 レベル
               </Label>
               <Input
@@ -391,7 +397,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="p-4 sm:py-4 md:px-12 lg:px-32 container">
+        <div className="p-4 sm:py-4 sm:px-12 md:px-16 lg:px-36 ">
           <div className="grid sm:grid-cols-2 gap-4 shadow-md rounded bg-sky-950 py-4 my-8 ">
             <Bonuss
               pokemonBonuss={pokemonBonuss}
@@ -406,7 +412,7 @@ export default function Home() {
         <CardFooter className="flex justify-evenly">
           <div>
             <Button
-              className=" bg-purple-900 text-white rounded transform hover:bg-purple-800 hover:scale-90"
+              className=" bg-purple-900 text-white rounded transform hover:bg-purple-800 hover:scale-90 font-semibold"
               onClick={handleCancelButtonClick}
             >
               Cancel
@@ -414,7 +420,7 @@ export default function Home() {
           </div>
           <div>
             <Button
-              className=" bg-gray-800 text-white rounded transform hover:bg-gray-700 hover:scale-90"
+              className=" bg-gray-800 text-white rounded transform hover:bg-gray-700 hover:scale-90 font-semibold"
               onClick={handleCheckButtonClick}
             >
               Check
