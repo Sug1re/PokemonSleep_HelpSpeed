@@ -342,7 +342,7 @@ export default function Home() {
         <div className="p-4 sm:py-4 sm:px-12 md:px-16 lg:px-32">
           <div className="grid sm:grid-cols-3 gap-4 bg-sky-950 rounded shadow-md  py-4">
             <div className=" flex flex-col space-y-2 container">
-              <Label className="text-2xl text-white" htmlFor="pokemonName">
+              <Label className="text-xl text-white" htmlFor="pokemonName">
                 ポケモン
               </Label>
               <Input
@@ -356,7 +356,7 @@ export default function Home() {
             </div>
             <div className=" flex flex-col space-y-2 container">
               <Label
-                className="text-2xl text-white"
+                className="text-xl text-white"
                 htmlFor="pokemonPersonality"
               >
                 性格
@@ -371,7 +371,7 @@ export default function Home() {
               />
             </div>
             <div className=" flex flex-col space-y-2 container">
-              <Label className="text-2xl text-white" htmlFor="pokemonLevel">
+              <Label className="text-xl text-white" htmlFor="pokemonLevel">
                 レベル
               </Label>
               <Input
@@ -423,7 +423,7 @@ export default function Home() {
         </CardFooter>
         <div className="p-4 ">
           <div className=" bg-sky-950 rounded shadow-md space-y-2 py-4 flex items-center flex-col container w-4/5 md:w-3/5 lg:w-2/7">
-            <Label htmlFor="helperTime" className="text-2xl text-white flex">
+            <Label htmlFor="helperTime" className="text-xl text-white flex">
               おてつだい時間
             </Label>
             <Input
@@ -431,7 +431,7 @@ export default function Home() {
               type="text"
               readOnly
               value={helperTime}
-              className=" bg-gray-400 text-white border-blue-700 w-1/2 "
+              className=" bg-gray-400 text-white border-yellow-500 w-1/2 "
             />
           </div>
         </div>
