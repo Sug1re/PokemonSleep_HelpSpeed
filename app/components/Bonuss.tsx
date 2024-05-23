@@ -37,9 +37,8 @@ const Bonuss: React.FC<BonussProps> = ({ pokemonBonuss, setPokemonBonuss }) => {
   };
   return (
     <div className="flex flex-col space-y-2 container md:w-4/5">
-        <Label className="md:text-2xl sm:text-xl text-white flex" htmlFor="pokemonBonuss">
+        <Label className="text-2xl text-white flex" htmlFor="pokemonBonuss">
           おてつだいボーナス
-          {/* おてボ */}
         </Label>
         <Select onValueChange={handlePokemonBonussChange}  >
           <SelectTrigger
