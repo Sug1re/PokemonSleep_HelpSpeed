@@ -94,7 +94,7 @@ const pokemonTimeMap: { [pokemonName: string]: number } = {
   モココ: 3300,
   デンリュウ: 2500,
   ウソッキー: 4000,
-  エーフィー: 2400,
+  エーフィ: 2400,
   ブラッキー: 3500,
   ヤドキング: 3400,
   ソーナンス: 3500,
@@ -352,7 +352,7 @@ export default function Home() {
                 id="pokemonName"
                 type="text"
                 className=" bg-gray-400 text-white border-blue-700"
-                placeholder="ポケモン名を入力"
+                placeholder="ポケモンを入力"
                 value={pokemonName}
                 onChange={handlePokemonNameChange}
               />
@@ -412,7 +412,7 @@ export default function Home() {
         <CardFooter className="flex justify-evenly">
           <div>
             <Button
-              className=" bg-purple-900 text-white rounded transform hover:bg-purple-800 hover:scale-90 font-semibold"
+              className=" bg-purple-900 text-white rounded transform hover:bg-purple-800 hover:scale-90 font-semibold transition-all duration-300"
               onClick={handleCancelButtonClick}
             >
               Cancel
@@ -420,7 +420,7 @@ export default function Home() {
           </div>
           <div>
             <Button
-              className=" bg-gray-800 text-white rounded transform hover:bg-gray-700 hover:scale-90 font-semibold"
+              className=" bg-gray-800 text-white rounded transform hover:bg-gray-700 hover:scale-90 font-semibold transition-all duration-300"
               onClick={handleCheckButtonClick}
             >
               Check
