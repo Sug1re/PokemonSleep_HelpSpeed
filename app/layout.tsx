@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import Header from "./components/layouts/header/Header";
+import { RocknRoll_One } from "next/font/google";
+const RocknRollOne = RocknRoll_One({ weight: "400", subsets: ["latin"] });
 
-const notoSansJP = Noto_Sans_JP({ subsets: ["latin"] });
+// const notoSansJP = Noto_Sans_JP({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Pokemon Sleep おてスピチェック PC版",
@@ -17,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={notoSansJP.className}>
+      <body className={RocknRollOne.className}>
         <Header/>
         {children}
       </body>
