@@ -92,7 +92,7 @@ const Header = () => {
                   <SheetDescription>
                     <div className="space-y-4 max-h-[650px] overflow-y-auto">
                       <div className=" space-y-2">
-                        <div className=" bg-inputbox-bg min-h-[350px] bg-cover bg-center object-cover"></div>
+                        <div className=" bg-inputbox-bg min-h-[350px] bg-cover bg-center object-cover "></div>
                         <div>
                           <p className=" bg-red-200 mr-16">
                             ①「ポケモン」「性格」「レベル」を入力

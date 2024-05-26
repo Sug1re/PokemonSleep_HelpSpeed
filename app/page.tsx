@@ -412,7 +412,7 @@ export default function Home() {
         <CardFooter className="flex justify-evenly">
           <div>
             <Button
-              className=" bg-purple-900 text-white rounded transform hover:bg-purple-800 hover:scale-90 font-semibold transition-all duration-300"
+              className=" bg-gray-300 rounded transform hover:bg-gray-400 hover:scale-90 font-semibold transition-all duration-300"
               onClick={handleCancelButtonClick}
             >
               Cancel
@@ -420,7 +420,7 @@ export default function Home() {
           </div>
           <div>
             <Button
-              className=" bg-gray-800 text-white rounded transform hover:bg-gray-700 hover:scale-90 font-semibold transition-all duration-300"
+              className=" bg-green-300 rounded transform hover:bg-green-400 hover:scale-90 font-semibold transition-all duration-300"
               onClick={handleCheckButtonClick}
             >
               Check
