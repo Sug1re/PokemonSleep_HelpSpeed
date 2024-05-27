@@ -7,7 +7,7 @@ const RocknRollOne = RocknRoll_One({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "おてスピ計算ツール",
-  description: "ポケモンスリープのおてつだい時間を計算ツールです。今後実装されるであろうLv100まで対応しているのでぜひ一足先にLv100のおてつだい時間をチェックしてみてください。",
+  description: "ポケモンスリープのおてつだい時間を計算するサイトです。今後実装されるであろうLv100まで対応しているのでぜひ一足先にLv100のおてつだい時間をチェックしてみてください。",
 };
 
 export default function RootLayout({

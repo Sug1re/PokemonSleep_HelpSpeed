@@ -13,7 +13,7 @@ const CommonMeta = (props: Props) => {
   return (
     <Head>
       <title>{"おてスピ計算ツール"}</title>
-      <meta name="description" content={"ポケモンスリープのおてつだい時間を計算ツールです。今後実装されるであろうLv100まで対応しているのでぜひ一足先にLv100のおてつだい時間をチェックしてみてください。"} />
+      <meta name="description" content={"ポケモンスリープのおてつだい時間を計算するサイトです。今後実装されるであろうLv100まで対応しているのでぜひ一足先にLv100のおてつだい時間をチェックしてみてください。"} />
       <meta name="keywords" content="ポケモンスリープ,ポケスリ,おてスピ,おてつだいスピード,おてつだい時間,おてつだい時間計算"/>
       <meta name="twitter:card" content="summary_large_image" />
       <meta property="og:title" content={"おてスピ計算ツール"} />
