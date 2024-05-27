@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import Header from "./components/layouts/header/Header";
 import { RocknRoll_One } from "next/font/google";
 const RocknRollOne = RocknRoll_One({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "おてスピ計算ツール",
+  title: "おてスピ計算サイト",
   description: "ポケモンスリープのおてつだい時間を計算するサイトです。今後実装されるであろうLv100まで対応しているのでぜひ一足先にLv100のおてつだい時間をチェックしてみてください。",
 };
 
