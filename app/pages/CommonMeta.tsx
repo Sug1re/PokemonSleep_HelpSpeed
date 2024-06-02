@@ -13,7 +13,6 @@ const CommonMeta = (props: Props) => {
   return (
     <Head>
       <title>{"おてスピ計算サイト"}</title>
-      <meta name="google-adsense-account" content="ca-pub-5584222931737430"></meta>  {/* 広告表示用に追加 */}
       <meta name="description" content={"ポケモンスリープのおてつだい時間を計算するサイトです。今後実装されるであろうLv100まで対応しているのでぜひ一足先にLv100のおてつだい時間をチェックしてみてください。"} />
       <meta name="keywords" content="ポケモンスリープ,ポケスリ,おてスピ,おてつだいスピード,おてつだい時間,おてつだい時間計算"/>
       <meta name="twitter:card" content="summary_large_image" />
