@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -336,11 +336,12 @@ export default function Home() {
     }
   };
 
+//768px以上の時のpadding,marginの調整（やること）
   return (
-    <main className="bg-blue-950 min-h-screen">
-      <form onSubmit={handleSubmit}>
-        <div className="p-4 sm:py-4 sm:px-12 md:px-16 lg:px-32">
-          <div className="grid sm:grid-cols-3 gap-4 bg-sky-950 rounded shadow-md  py-4">
+    <main className=" min-h-screen bg-gray-400">
+       <form onSubmit={handleSubmit}>
+        <div className=" py-4 px-4 sm:px-12 md:px-16 lg:px-32 md:pt-32">
+          <div className="grid sm:grid-cols-3 gap-4 bg-gray-900 rounded shadow-md  py-4">
             <div className=" flex flex-col space-y-2 container">
               <Label
                 className="text-xl text-white font-semibold"
@@ -351,7 +352,7 @@ export default function Home() {
               <Input
                 id="pokemonName"
                 type="text"
-                className=" bg-gray-400 text-white border-blue-700"
+                className=" bg-gray-500 text-white border-blue-500"
                 placeholder="ポケモンを入力"
                 value={pokemonName}
                 onChange={handlePokemonNameChange}
@@ -367,7 +368,7 @@ export default function Home() {
               <Input
                 id="pokemonPersonality"
                 type="text"
-                className=" bg-gray-400 text-white border-blue-700"
+                className=" bg-gray-500 text-white border-blue-500"
                 placeholder="性格を入力"
                 value={pokemonPersonality}
                 onChange={handlePokemonPesonalityChange}
@@ -383,7 +384,7 @@ export default function Home() {
               <Input
                 id="pokemonLevel"
                 type="text"
-                className=" bg-gray-400 text-white border-blue-700"
+                className=" bg-gray-500 text-white border-blue-500"
                 placeholder="レベルを入力"
                 value={pokemonLevel}
                 onChange={handlePokemonlevelChange}
@@ -398,7 +399,7 @@ export default function Home() {
           </div>
         </div>
         <div className="p-4 sm:py-4 sm:px-12 md:px-16 lg:px-36 ">
-          <div className="grid sm:grid-cols-2 gap-4 shadow-md rounded bg-sky-950 py-4 my-8 ">
+          <div className="grid sm:grid-cols-2 gap-4 shadow-md rounded bg-gray-900 py-4 my-8 ">
             <Bonuss
               pokemonBonuss={pokemonBonuss}
               setPokemonBonuss={setPokemonBonuss}
@@ -412,7 +413,7 @@ export default function Home() {
         <CardFooter className="flex justify-evenly">
           <div>
             <Button
-              className=" bg-gray-300 rounded transform hover:bg-gray-400 hover:scale-90 font-semibold transition-all duration-300"
+              className=" bg-white rounded transform hover:bg-gray-200 hover:scale-90 font-semibold transition-all duration-300"
               onClick={handleCancelButtonClick}
             >
               Cancel
@@ -420,7 +421,7 @@ export default function Home() {
           </div>
           <div>
             <Button
-              className=" bg-green-300 rounded transform hover:bg-green-400 hover:scale-90 font-semibold transition-all duration-300"
+              className=" text-white bg-gray-800 rounded transform hover:bg-gray-900 hover:scale-90 font-semibold transition-all duration-300"
               onClick={handleCheckButtonClick}
             >
               Check
@@ -428,7 +429,7 @@ export default function Home() {
           </div>
         </CardFooter>
         <div className="p-4 ">
-          <div className=" bg-sky-950 rounded shadow-md space-y-2 py-4 flex items-center flex-col container w-4/5 md:w-3/5 lg:w-2/7">
+          <div className=" bg-gray-900 rounded shadow-md space-y-2 py-4 flex items-center flex-col container w-4/5 md:w-3/5 lg:w-2/7">
             <Label htmlFor="helperTime" className="text-xl text-white flex">
               おてつだい時間
             </Label>
@@ -437,7 +438,7 @@ export default function Home() {
               type="text"
               readOnly
               value={helperTime}
-              className=" bg-gray-400 text-white border-yellow-500 w-1/2 "
+              className=" bg-gray-500 text-white border-yellow-500 w-1/2 "
             />
           </div>
         </div>
@@ -445,3 +446,4 @@ export default function Home() {
     </main>
   );
 }
+

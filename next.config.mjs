@@ -1,6 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: 'standalone',
-  };
+  output: 'standalone',
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.cache = false;
+    }
+    return config;
+  },
+};
 
-  export default nextConfig;
+export default nextConfig;

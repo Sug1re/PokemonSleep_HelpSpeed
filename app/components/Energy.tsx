@@ -43,14 +43,14 @@ const Energy: React.FC<EnergyProps> = ({ pokemonEnergy, setPokemonEnergy }) => {
         <Select onValueChange={handlePokemonBonussChange}>
           <SelectTrigger
             id="pokemonEnergy"
-            className="bg-gray-400 text-white border-red-700 "
+            className="bg-gray-500 text-white border-red-500 "
           >
             <SelectValue placeholder="げんきを選択" />
           </SelectTrigger>
 
           <SelectContent
             position="popper"
-            className="bg-gray-400 text-white border-red-700"
+            className="bg-gray-500 text-white border-red-500"
           >
             <SelectItem
               value="80"

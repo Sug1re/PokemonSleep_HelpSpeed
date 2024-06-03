@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "./components/layouts/header/Header";
+import Header from "./Header";
 import { RocknRoll_One } from "next/font/google";
 const RocknRollOne = RocknRoll_One({ weight: "400", subsets: ["latin"] });
 
