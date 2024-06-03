@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import Skill from "./components/Skill";
 import Bonuss from "./components/Bonuss";
 import Energy from "./components/Energy";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 //ポケモンの固有のおてつだい時間を示す表
 const pokemonTimeMap: { [pokemonName: string]: number } = {
@@ -179,6 +180,8 @@ const pokemonPersonalityMap: { [pokemonPersonality: string]: number } = {
 
 //使用する関数一覧
 export default function Home() {
+  <GoogleAnalytics gaId="G-TL1C6DW00G" />
+
   const [pokemonName, setPokemonName] = useState("");
   const [pokemonPersonality, setPokemonPersonality] = useState("");
   const [pokemonLevel, setPokemonLevel] = useState("");
