@@ -73,11 +73,8 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
+    //画像を持ってくる場所
     backgroundImage:{
-      "inputbox-bg": "url('../app/img/inputbox.png')",
-      "selectbox-bg": "url('../app/img/selectbox.png')",
-      "energybox-bg": "url('../app/img/energybox.png')",
-      "helpertime-bg": "url('../app/img/helpertime.png')"
     },
   },
   plugins: [require("tailwindcss-animate")],

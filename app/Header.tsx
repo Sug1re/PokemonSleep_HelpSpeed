@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, Dispatch, SetStateAction } from "react";
+import React from "react";
+import Link from "next/link";
 import {
   Sheet,
   SheetClose,
@@ -13,13 +14,11 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const Header = () => {
   return (
@@ -58,129 +57,85 @@ const Header = () => {
             </SheetTrigger>
             <SheetContent className="bg-gray-900 text-white border-gray-900 bg-opacity-70">
               <SheetTitle className="text-blue-500">おてスピ計算</SheetTitle>
-              <SheetDescription className=" flex flex-col items-center min-h-screen ">
-                <ul className=" mt-10 space-y-20">
-                  <li className="hover:text-blue-300 duration-300">
-                    <a href="#">トップ</a>
+              <SheetDescription className=" max-h-full overflow-y-auto">
+                <ul className="p-4 mt-10 space-y-20">
+                  <li className="hover:text-blue-300 duration-300 w-full flex flex-col">
+                    <a href="/" className="text-base">
+                      トップ
+                    </a>
                   </li>
-                  <li className="hover:text-blue-300 duration-300">
-                    <a href="#">本サイトについて</a>
+                  <li className="w-full flex flex-col">
+                    <Accordion type="single" collapsible className="w-full">
+                      <AccordionItem value="item-1">
+                        <AccordionTrigger className="text-base hover:text-blue-300 duration-300">
+                          本サイトについて
+                        </AccordionTrigger>
+                        <AccordionContent className="mt-4 flex flex-col space-y-8">
+                          <a href="/how-to-use" className="text-sm">
+                            おてスピ計算の使い方
+                          </a>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
                   </li>
-                  <li className="hover:text-blue-300 duration-300">
-                    <a href="#">ブログ</a>
+                  <li className="w-full flex flex-col">
+                    <Accordion type="single" collapsible className="w-full">
+                      <AccordionItem value="item-2">
+                        <AccordionTrigger className="text-base hover:text-blue-300 duration-300">
+                          お知らせ
+                        </AccordionTrigger>
+                        <AccordionContent className="mt-4 flex flex-col space-y-8">
+                          <Link href="/information" className="text-sm hover:text-red-300 duration-300">
+                            アップデートのお知らせ
+                          </Link>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
                   </li>
-                  <li className="hover:text-blue-300 duration-300">
-                    <a href="#">料理レシピ</a>
+                  <li className="w-full flex flex-col">
+                    <Accordion type="single" collapsible className="w-full">
+                      <AccordionItem value="item-3">
+                        <AccordionTrigger className="text-base hover:text-blue-300 duration-300">
+                          料理レシピ
+                        </AccordionTrigger>
+                        <AccordionContent className="mt-4 flex flex-col space-y-8">
+                          <a
+                            href="#"
+                            className="text-sm hover:text-red-300 duration-300"
+                          >
+                            カレー・シチュー
+                          </a>
+                          <a
+                            href="#"
+                            className="text-sm hover:text-green-300 duration-300"
+                          >
+                            サラダ
+                          </a>
+                          <a
+                            href="#"
+                            className="text-sm hover:text-blue-300 duration-300"
+                          >
+                            デザート・ドリンク
+                          </a>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
                   </li>
-                  <li className="hover:text-blue-300 duration-300">
-                    <a href="#">ポケモン一覧</a>
+                  <li className="hover:text-blue-300 duration-300 w-full flex flex-col">
+                    <a href="#" className="text-base">
+                      ポケモン一覧
+                    </a>
                   </li>
-                  <li className="hover:text-blue-300 duration-300">
-                    <a href="#">お問い合わせ</a>
+                  <li className="hover:text-blue-300 duration-300 w-full flex flex-col">
+                    <a href="#" className="text-base">
+                      お問い合わせ
+                    </a>
                   </li>
                 </ul>
               </SheetDescription>
             </SheetContent>
           </Sheet>
         </div>
-        {/* <div className="flex justify-evuenly">
-          <div className="flex items-center justify-center">
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button
-                  className="text-white rounded transform hover:text-green-300 transition-all duration-300"
-                  variant="outline"
-                >
-                  Infomation
-                </Button>
-              </SheetTrigger>
-              <SheetContent className=" bg-gray-200">
-                <SheetHeader>
-                  <SheetTitle >
-                    アップデートのお知らせ
-                  </SheetTitle>
-                  <SheetDescription>
-                  <Card className=" rounded shadow bg-sky-200 border-slate-400">
-                    <CardHeader>
-                      <CardTitle className="text-xl text-purple-700">ポケモンの追加</CardTitle>
-                      <CardDescription className="text-xs">2024/05/20 :「エンテイ」を追加</CardDescription>
-                    </CardHeader>
-                  </Card>
-                    <div className="py-4 space-y-2">
-                      <h1>おてつだい時間に関する情報の出典</h1>
-                      <a
-                        href="https://wikiwiki.jp/poke_sleep/%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%81%AE%E4%B8%80%E8%A6%A7"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className=" text-blue-400 transform hover:text-red-400"
-                      >
-                        ポケモンスリープ攻略・検証Wiki様
-                      </a>
-                    </div>
-                  </SheetDescription>
-                </SheetHeader>
-              </SheetContent>
-            </Sheet>
-          </div>
-          <div className="flex items-center justify-center">
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button
-                  className="text-white rounded transform hover:text-green-300 transition-all duration-300 "
-                  variant="outline"
-                >
-                  使い方
-                </Button>
-              </SheetTrigger>
-              <SheetContent className=" bg-gray-200">
-                <SheetHeader>
-                  <SheetTitle>
-                    当サイトの使用手順
-                  </SheetTitle>
-                  <SheetDescription>
-                    <div className="space-y-4 max-h-[650px] overflow-y-auto">
-                      <div className=" space-y-2">
-                        <div className=" bg-inputbox-bg min-h-[350px] bg-cover bg-center object-cover "></div>
-                        <div>
-                          <p className=" bg-red-200 mr-16">
-                            ①「ポケモン」「性格」「レベル」を入力
-                          </p>
-                        </div>
-                      </div>
-                      <div className=" space-y-2">
-                        <div className=" bg-selectbox-bg min-h-[250px] bg-cover bg-center object-cover"></div>
-                        <div>
-                          <p className=" bg-red-200 mr-6">
-                            ②「サブスキル」「おてつだいボーナス」を選択
-                          </p>
-                        </div>
-                      </div>
-                      <div className=" space-y-2">
-                        <div className=" bg-energybox-bg min-h-[250px] bg-cover bg-center object-cover"></div>
-                        <div>
-                          <p className=" bg-red-200">
-                            ③ ①,②の項目が終わったらCheckボタンをクリック!
-                          </p>
-                          <p className=" bg-red-200">
-                            * 表示おてつだい時間を知りたい場合は「げんき補正」は無視 内部のおてつだい時間を知りたい場合は選択 もし間違って選択してしまった場合は「20未満」を選択すると表示おてつだい時間が表示されます *
-                          </p>
-                        </div>
-                      </div>
-                      <div className=" space-y-2">
-                        <div className=" bg-helpertime-bg min-h-[150px] bg-cover bg-center object-cover"></div>
-                        <div>
-                          <p className=" bg-red-200 mr-28">
-                            ④ おてつだい時間が表示される!!
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </SheetDescription>
-                </SheetHeader>
-              </SheetContent>
-            </Sheet>
-          </div>
-        </div> */}
       </nav>
     </header>
   );
