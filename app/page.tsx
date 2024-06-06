@@ -343,7 +343,7 @@ export default function Home() {
   return (
     <main className=" min-h-screen bg-gray-400">
        <form onSubmit={handleSubmit}>
-        <div className=" py-4 px-4 sm:px-12 md:px-16 lg:px-32 md:pt-32">
+        <div className=" py-4 px-4 sm:px-12 md:px-16 lg:px-32 md:pt-32 lg:pt-16">
           <div className="grid sm:grid-cols-3 gap-4 bg-gray-900 rounded shadow-md  py-4">
             <div className=" flex flex-col space-y-2 container">
               <Label

@@ -73,8 +73,16 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
-    //画像を持ってくる場所
     backgroundImage:{
+      "244-bg":"url('../app/img/244.png')",
+      "input-bg":"url('../app/img/input.png')",
+      "select-bg":"url('../app/img/select.png')",
+      "button-bg":"url('../app/img/button.png')",
+      "results-bg":"url('../app/img/results.png')",
+      "ピカチュウ.1-bg":"url('../app/img/ピカチュウ.1.png')",
+      "ピカチュウ.2-bg":"url('../app/img/ピカチュウ.2.png')",
+      "ピカチュウ.3-bg":"url('../app/img/ピカチュウ.3.png')",
+      "ピカチュウ.4-bg":"url('../app/img/ピカチュウ.4.png')",
     },
   },
   plugins: [require("tailwindcss-animate")],

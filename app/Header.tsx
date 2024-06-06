@@ -31,7 +31,7 @@ const Header = () => {
           </div>
         </div>
         <div>
-          <Sheet>
+          <Sheet >
             <SheetTrigger asChild>
               <Button className="text-white flex flex-col -space-y-4 hover:text-blue-300 duration-300">
                 <svg
@@ -55,11 +55,11 @@ const Header = () => {
                 </svg>
               </Button>
             </SheetTrigger>
-            <SheetContent className="bg-gray-900 text-white border-gray-900 bg-opacity-70">
+            <SheetContent className="bg-gray-900 text-white border-white border-l-2 border-b-2 bg-opacity-70">
               <SheetTitle className="text-blue-500">おてスピ計算</SheetTitle>
               <SheetDescription className=" max-h-full overflow-y-auto">
-                <ul className="p-4 mt-10 space-y-20">
-                  <li className="hover:text-blue-300 duration-300 w-full flex flex-col">
+                <ul className="p-4 my-10 space-y-16">
+                  <li className="hover:text-gray-400 duration-300 w-full flex flex-col">
                     <a href="/" className="text-base">
                       トップ
                     </a>
@@ -71,7 +71,7 @@ const Header = () => {
                           本サイトについて
                         </AccordionTrigger>
                         <AccordionContent className="mt-4 flex flex-col space-y-8">
-                          <a href="/how-to-use" className="text-sm">
+                          <a href="/how-to-use" className="text-sm hover:text-blue-300 duration-300">
                             おてスピ計算の使い方
                           </a>
                         </AccordionContent>
@@ -99,34 +99,34 @@ const Header = () => {
                           料理レシピ
                         </AccordionTrigger>
                         <AccordionContent className="mt-4 flex flex-col space-y-8">
-                          <a
-                            href="#"
+                          <Link
+                            href="/cooking-recipes#K&S"
                             className="text-sm hover:text-red-300 duration-300"
                           >
                             カレー・シチュー
-                          </a>
-                          <a
-                            href="#"
+                          </Link>
+                          <Link
+                            href="/cooking-recipes#S"
                             className="text-sm hover:text-green-300 duration-300"
                           >
                             サラダ
-                          </a>
-                          <a
-                            href="#"
+                          </Link>
+                          <Link
+                            href="/cooking-recipes#D$D"
                             className="text-sm hover:text-blue-300 duration-300"
                           >
                             デザート・ドリンク
-                          </a>
+                          </Link>
                         </AccordionContent>
                       </AccordionItem>
                     </Accordion>
                   </li>
-                  <li className="hover:text-blue-300 duration-300 w-full flex flex-col">
+                  <li className="hover:text-yellow-300 duration-300 w-full flex flex-col">
                     <a href="#" className="text-base">
                       ポケモン一覧
                     </a>
                   </li>
-                  <li className="hover:text-blue-300 duration-300 w-full flex flex-col">
+                  <li className="hover:text-green-300 duration-300 w-full flex flex-col">
                     <a href="#" className="text-base">
                       お問い合わせ
                     </a>
