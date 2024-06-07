@@ -43,13 +43,13 @@ const Bonuss: React.FC<BonussProps> = ({ pokemonBonuss, setPokemonBonuss }) => {
         <Select onValueChange={handlePokemonBonussChange}  >
           <SelectTrigger
             id="pokemonBonuss"
-            className="bg-gray-500 text-white border-red-500"
+            className="bg-gray-400 text-white border-red-500"
           >
             <SelectValue placeholder="おてつだいボーナスを選択" />
           </SelectTrigger>
           <SelectContent
             position="popper"
-            className="bg-gray-500 text-white border-red-500"
+            className="bg-gray-400 text-white border-red-500"
           >
             <SelectItem
               value="1"

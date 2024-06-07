@@ -9,7 +9,7 @@ import React from "react";
 
 const information = () => {
   return (
-    <main className="bg-gray-100 min-h-screen pt-20">
+    <main className=" min-h-screen pt-20">
       <div className=" p-4 ">
         <Card className=" rounded sm:w-1/2 lg:w-1/3">
           <CardHeader>
