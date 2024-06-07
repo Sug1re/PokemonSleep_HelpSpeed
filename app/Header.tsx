@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+// import Link from "next/link";
 import {
   Sheet,
   SheetClose,
@@ -85,9 +85,9 @@ const Header = () => {
                           お知らせ
                         </AccordionTrigger>
                         <AccordionContent className="mt-4 flex flex-col space-y-8">
-                          <Link href="/information" className="text-sm hover:text-red-300 duration-300">
+                          <a href="/information" className="text-sm hover:text-red-300 duration-300">
                             アップデートのお知らせ
-                          </Link>
+                          </a>
                         </AccordionContent>
                       </AccordionItem>
                     </Accordion>
@@ -99,24 +99,24 @@ const Header = () => {
                           料理レシピ
                         </AccordionTrigger>
                         <AccordionContent className="mt-4 flex flex-col space-y-8">
-                          <Link
+                          <a
                             href="/cooking-recipes#K&S"
                             className="text-sm hover:text-red-300 duration-300"
                           >
                             カレー・シチュー
-                          </Link>
-                          <Link
+                          </a>
+                          <a
                             href="/cooking-recipes#S"
                             className="text-sm hover:text-green-300 duration-300"
                           >
                             サラダ
-                          </Link>
-                          <Link
+                          </a>
+                          <a
                             href="/cooking-recipes#D$D"
                             className="text-sm hover:text-blue-300 duration-300"
                           >
                             デザート・ドリンク
-                          </Link>
+                          </a>
                         </AccordionContent>
                       </AccordionItem>
                     </Accordion>
