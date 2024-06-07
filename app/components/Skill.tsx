@@ -41,7 +41,7 @@ const Skill: React.FC<SkillProps> = ({ pokemonSkill, setPokemonSkill }) => {
         <Select onValueChange={handlePokemonSkillChange} >
           <SelectTrigger
             id="pokemonSkill"
-            className="bg-gray-400 text-white border-blue-500"
+            className="bg-gray-500 text-white border-blue-500"
           >
             <SelectValue placeholder="サブスキルを選択" />
           </SelectTrigger>

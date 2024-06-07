@@ -340,7 +340,7 @@ export default function Home() {
   };
 
   return (
-    <main className=" min-h-screen">
+    <main className=" min-h-screen bg-gray-400">
        <form onSubmit={handleSubmit} className=" flex flex-col justify-evenly">
         <div className="  pt-20 px-4 sm:px-12 md:px-16 lg:px-32 md:pt-32 lg:pt-16">
           <div className="grid custom-xs:grid-cols-2 sm:grid-cols-3 gap-4 bg-gray-900 rounded shadow-md  py-4">
@@ -354,7 +354,7 @@ export default function Home() {
               <Input
                 id="pokemonName"
                 type="text"
-                className=" bg-gray-400 text-white border-blue-500"
+                className=" bg-gray-500 text-white border-blue-500"
                 placeholder="ポケモンを入力"
                 value={pokemonName}
                 onChange={handlePokemonNameChange}
@@ -370,7 +370,7 @@ export default function Home() {
               <Input
                 id="pokemonPersonality"
                 type="text"
-                className=" bg-gray-400 text-white border-blue-500"
+                className=" bg-gray-500 text-white border-blue-500"
                 placeholder="性格を入力"
                 value={pokemonPersonality}
                 onChange={handlePokemonPesonalityChange}
@@ -386,7 +386,7 @@ export default function Home() {
               <Input
                 id="pokemonLevel"
                 type="text"
-                className=" bg-gray-400 text-white border-blue-500"
+                className=" bg-gray-500 text-white border-blue-500"
                 placeholder="レベルを入力"
                 value={pokemonLevel}
                 onChange={handlePokemonlevelChange}
@@ -415,7 +415,7 @@ export default function Home() {
         <CardFooter className="flex justify-evenly">
           <div>
             <Button
-              className=" bg-gray-200 rounded transform hover:bg-gray-300 hover:scale-90 font-semibold transition-all duration-300"
+              className=" bg-white rounded transform hover:bg-gray-200 hover:scale-90 font-semibold transition-all duration-300"
               onClick={handleCancelButtonClick}
             >
               Cancel
@@ -440,7 +440,7 @@ export default function Home() {
               type="text"
               readOnly
               value={helperTime}
-              className=" bg-gray-400 text-white border-yellow-500 w-1/2 "
+              className=" bg-gray-500 text-white border-yellow-500 w-1/2 "
             />
           </div>
         </div>
