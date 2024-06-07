@@ -20,7 +20,7 @@ export default function RootLayout({
       <body className={RocknRollOne.className}>
         {/* <GoogleAnalytics gaId="G-TL1C6DW00G" /> */}
         <Header/>
-        <main className="  pt-2">
+        <main >
         {children}
         </main>
       </body>

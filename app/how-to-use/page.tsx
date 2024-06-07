@@ -1,8 +1,7 @@
 import React from "react";
-//375pxの時綺麗
 const otesupi = () => {
   return (
-    <main className=" pt-14">
+    <main className=" pt-20">
       <ul className="pb-2">
         <div className=" h-36 py-2">
           <div className="bg-ピカチュウ.1-bg min-h-full bg-center bg-contain bg-no-repeat object-cover"></div>
