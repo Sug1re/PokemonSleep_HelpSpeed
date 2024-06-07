@@ -342,9 +342,9 @@ export default function Home() {
 //768px以上の時のpadding,marginの調整（やること）
   return (
     <main className=" min-h-screen bg-gray-400">
-       <form onSubmit={handleSubmit}>
-        <div className=" py-4 px-4 sm:px-12 md:px-16 lg:px-32 md:pt-32 lg:pt-16">
-          <div className="grid sm:grid-cols-3 gap-4 bg-gray-900 rounded shadow-md  py-4">
+       <form onSubmit={handleSubmit} className=" flex flex-col justify-evenly">
+        <div className="  pt-4 px-4 sm:px-12 md:px-16 lg:px-32 md:pt-32 lg:pt-16">
+          <div className="grid custom-xs:grid-cols-2 sm:grid-cols-3 gap-4 bg-gray-900 rounded shadow-md  py-4">
             <div className=" flex flex-col space-y-2 container">
               <Label
                 className="text-xl text-white font-semibold"
@@ -401,8 +401,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="p-4 sm:py-4 sm:px-12 md:px-16 lg:px-36 ">
-          <div className="grid sm:grid-cols-2 gap-4 shadow-md rounded bg-gray-900 py-4 my-8 ">
+        <div className="px-4 sm:px-12 md:px-16 lg:px-36 ">
+          <div className="grid custom-sm-1:grid-cols-2 gap-4 shadow-md rounded bg-gray-900 py-4 my-8 ">
             <Bonuss
               pokemonBonuss={pokemonBonuss}
               setPokemonBonuss={setPokemonBonuss}
@@ -431,7 +431,7 @@ export default function Home() {
             </Button>
           </div>
         </CardFooter>
-        <div className="p-4 ">
+        <div className="px-4 pb-4">
           <div className=" bg-gray-900 rounded shadow-md space-y-2 py-4 flex items-center flex-col container w-4/5 md:w-3/5 lg:w-2/7">
             <Label htmlFor="helperTime" className="text-xl text-white flex">
               おてつだい時間

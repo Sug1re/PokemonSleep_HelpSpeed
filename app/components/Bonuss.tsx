@@ -36,7 +36,7 @@ const Bonuss: React.FC<BonussProps> = ({ pokemonBonuss, setPokemonBonuss }) => {
     }
   };
   return (
-    <div className="flex flex-col space-y-2 container md:w-4/5">
+    <div className="flex flex-col space-y-2 container  md:w-4/5">
         <Label className="text-xl text-white font-semibold" htmlFor="pokemonBonuss">
           おてつだいボーナス
         </Label>
