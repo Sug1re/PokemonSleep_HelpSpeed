@@ -2,7 +2,7 @@ import React from 'react'
 
 const CookingRecipes = () => {
   return (
-    <div>CookingRecipes</div>
+    <div>只今工事中です</div>
   )
 }
 

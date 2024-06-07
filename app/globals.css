@@ -3,6 +3,6 @@
 @tailwind utilities;
 /* globals.css */
 body {
-    padding-top: 44px; /* ヘッダーの高さ分のスペースを確保 */
+    padding-top: 0px; /* ヘッダーの高さ分のスペースを確保 */
   }
   
