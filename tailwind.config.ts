@@ -1,12 +1,13 @@
 import type { Config } from "tailwindcss"
 
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 const config = {
   darkMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
 	],
   prefix: "",
   theme: {
@@ -14,10 +15,19 @@ const config = {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        ...defaultTheme.screens,
       },
     },
     extend: {
+      screens: {
+        '3xs': '320px',
+        '2xs': '352px',
+        'xs': '375px',
+        'custom-sm': '720px',
+        'custom-md': '454px',
+        'custom-md-2': '358px',
+        'custom-md-3': '439px',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
