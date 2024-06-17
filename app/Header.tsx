@@ -122,8 +122,8 @@ const Header = () => {
                     </Accordion>
                   </li>
                   <li className="hover:text-yellow-300 duration-300 w-full flex flex-col">
-                    <a href="#" className="text-base">
-                      ポケモン一覧
+                    <a href="pokemon" className="text-base">
+                      ポケモン図鑑
                     </a>
                   </li>
                   <li className="hover:text-green-300 duration-300 w-full flex flex-col">

@@ -23,7 +23,7 @@ const information = () => {
                   </div>
                 </div>
               </div>
-              <div className=" mx-2 bg-244-bg min-w-16 min-h-16 bg-cover bg-center object-cover"></div>
+              {/* <div className=" mx-2 bg-244-bg min-w-16 min-h-16 bg-cover bg-center object-cover"></div> */}
             </div>
           </CardHeader>
         </Card>
