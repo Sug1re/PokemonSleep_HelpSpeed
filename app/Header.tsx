@@ -100,19 +100,22 @@ const Header = () => {
                         </AccordionTrigger>
                         <AccordionContent className="mt-4 flex flex-col space-y-8">
                           <a
-                            href="/cooking-recipes#K&S"
+                            // href="/cooking-recipes#K&S"
+                            href="#"
                             className="text-sm hover:text-red-300 duration-300"
                           >
                             カレー・シチュー
                           </a>
                           <a
-                            href="/cooking-recipes#S"
+                            href="#"
+                            // href="/cooking-recipes#S"
                             className="text-sm hover:text-green-300 duration-300"
                           >
                             サラダ
                           </a>
                           <a
-                            href="/cooking-recipes#D$D"
+                            href="#"
+                            // href="/cooking-recipes#D$D"
                             className="text-sm hover:text-blue-300 duration-300"
                           >
                             デザート・ドリンク
@@ -122,7 +125,7 @@ const Header = () => {
                     </Accordion>
                   </li>
                   <li className="hover:text-yellow-300 duration-300 w-full flex flex-col">
-                    <a href="pokemon" className="text-base">
+                    <a href="#" className="text-base">
                       ポケモン図鑑
                     </a>
                   </li>
