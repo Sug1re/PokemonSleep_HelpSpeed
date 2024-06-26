@@ -18,9 +18,27 @@ const information = () => {
                 <CardTitle>ポケモンの追加</CardTitle>
                 <div className="text-xs text-muted-foreground">
                   <div>2024/05/20 : 「エンテイ」を追加</div>
-                  <div className="text-xs text-blue-400 hover:text-red-400 duration-300 flex justify-end">
+                  {/* <div className="text-xs text-blue-400 hover:text-red-400 duration-300 flex justify-end">
                     エンテイのステータスURL
-                  </div>
+                  </div> */}
+                </div>
+              </div>
+              {/* <div className=" mx-2 bg-244-bg min-w-16 min-h-16 bg-cover bg-center object-cover"></div> */}
+            </div>
+          </CardHeader>
+        </Card>
+      </div>
+      <div className=" p-4 ">
+        <Card className=" rounded sm:w-1/2 lg:w-1/3">
+          <CardHeader>
+            <div className=" flex justify-between mx-2 md:mx-4 ">
+              <div className=" flex flex-col">
+                <CardTitle>ポケモンの追加</CardTitle>
+                <div className="text-xs text-muted-foreground">
+                  <div>2024/06/26 : 「ウッウ」を追加</div>
+                  {/* <div className="text-xs text-blue-400 hover:text-red-400 duration-300 flex justify-end">
+                    エンテイのステータスURL
+                  </div> */}
                 </div>
               </div>
               {/* <div className=" mx-2 bg-244-bg min-w-16 min-h-16 bg-cover bg-center object-cover"></div> */}
