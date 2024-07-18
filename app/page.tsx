@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import Skill from "./components/Skill";
 import Bonuss from "./components/Bonuss";
 import Energy from "./components/Energy";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 //ポケモンの固有のおてつだい時間を示す表
 const pokemonTimeMap: { [pokemonName: string]: number } = {
@@ -147,6 +147,15 @@ const pokemonTimeMap: { [pokemonName: string]: number } = {
   キテルグマ: 2800,
   キュワワー: 2500,
   ウッウ: 2700,
+  ニャオハ: 4600,
+  ニャローテ: 3500,
+  マスカーニャ: 2600,
+  ホゲータ: 4200,
+  アチゲーダ: 3100,
+  ラウドボーン: 2700,
+  クワッス: 4800,
+  ウェルカモ: 3600,
+  ウェーニバル: 2600,
   // 他のポケモン名と対応する時間を追加
 };
 
@@ -181,7 +190,7 @@ const pokemonPersonalityMap: { [pokemonPersonality: string]: number } = {
 
 //使用する関数一覧
 export default function Home() {
-  <GoogleAnalytics gaId="G-TL1C6DW00G" />
+  <GoogleAnalytics gaId="G-TL1C6DW00G" />;
 
   const [pokemonName, setPokemonName] = useState("");
   const [pokemonPersonality, setPokemonPersonality] = useState("");
@@ -342,7 +351,7 @@ export default function Home() {
 
   return (
     <main className=" min-h-screen bg-gray-400">
-       <form onSubmit={handleSubmit} className=" flex flex-col justify-evenly">
+      <form onSubmit={handleSubmit} className=" flex flex-col justify-evenly">
         <div className="  pt-20 px-4 sm:px-12 md:px-16 lg:px-32 md:pt-32 lg:pt-16">
           <div className="grid custom-xs:grid-cols-2 sm:grid-cols-3 gap-4 bg-gray-900 rounded shadow-md  py-4">
             <div className=" flex flex-col space-y-2 container">
@@ -449,4 +458,3 @@ export default function Home() {
     </main>
   );
 }
-
