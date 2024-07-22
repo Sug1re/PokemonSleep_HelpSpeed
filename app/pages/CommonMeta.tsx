@@ -37,7 +37,7 @@ const CommonMeta = (props: Props) => {
       />
       <meta property="og:url" content={"https://otesupi.com/"} />
       <meta property="og:type" content={"websites"} />
-      <meta property="og:image" content={"favicon.ico"} />
+      <meta property="og:image" content={"favicon.bg"} />
     </Head>
   );
 };
