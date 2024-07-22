@@ -96,6 +96,7 @@ const config = {
       "ピカチュウ.3-bg":"url('../app/img/how-to-use/ピカチュウ.3.png')",
       "ピカチュウ.4-bg":"url('../app/img/how-to-use/ピカチュウ.4.png')",
       "001-bg":"url('../app/img/ポケモン図鑑/001.png')",
+      "favicon.ico":"url('../app/favicon.ico')",
     },
   },
   plugins: [require("tailwindcss-animate")],
