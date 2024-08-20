@@ -6,7 +6,7 @@ import { CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Skill from "./components/Skill";
-import Bonuss from "./components/Bonuss";
+import Bonus from "./components/Bonus";
 import Energy from "./components/Energy";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
@@ -156,6 +156,8 @@ const pokemonTimeMap: { [pokemonName: string]: number } = {
   クワッス: 4800,
   ウェルカモ: 3600,
   ウェーニバル: 2600,
+  ウパー: 5900,
+  ヌオー: 3400,
   // 他のポケモン名と対応する時間を追加
 };
 
@@ -196,15 +198,15 @@ export default function Home() {
   const [pokemonPersonality, setPokemonPersonality] = useState("");
   const [pokemonLevel, setPokemonLevel] = useState("");
   const [pokemonSkill, setPokemonSkill] = useState("");
-  const [pokemonBonuss, setPokemonBonuss] = useState("");
+  const [pokemonBonus, setPokemonBonus] = useState("");
   const [pokemonEnergy, setPokemonEnergy] = useState("");
   const [helperTime, setHelperTime] = useState("");
 
   // TotalSkill の計算
   const calculateTotalSkill = () => {
     const skill = parseFloat(pokemonSkill);
-    const bonuss = parseFloat(pokemonBonuss);
-    const totalSkill = 1 - skill - bonuss;
+    const bonus = parseFloat(pokemonBonus);
+    const totalSkill = 1 - skill - bonus;
     return totalSkill < 0.65 ? 0.65 : totalSkill;
   };
 
@@ -218,7 +220,7 @@ export default function Home() {
   };
 
   //ポケモンの性格の入力フィールドの値が変更されたとき即座に対応する役割
-  const handlePokemonPesonalityChange = (
+  const handlePokemonPersonalityChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setPokemonPersonality(event.target.value);
@@ -258,7 +260,7 @@ export default function Home() {
       pokemonPersonality.trim() === "" ||
       pokemonLevel.trim() === "" ||
       pokemonSkill.trim() === "" ||
-      pokemonBonuss.trim() === "" ||
+      pokemonBonus.trim() === "" ||
       pokemonEnergy.trim() === ""
     ) {
       return;
@@ -279,7 +281,7 @@ export default function Home() {
       pokemonPersonality.trim() === "" ||
       pokemonLevel.trim() === "" ||
       pokemonSkill.trim() === "" ||
-      pokemonBonuss.trim() === ""
+      pokemonBonus.trim() === ""
     ) {
       return;
     }
@@ -294,7 +296,7 @@ export default function Home() {
     console.log("性格倍率:", pokemonPersonalityValue);
     console.log("レベル:", pokemonLevel);
     console.log("サブスキル倍率:", pokemonSkill);
-    console.log("おてつだいボーナス倍率:", pokemonBonuss);
+    console.log("おてつだいボーナス倍率:", pokemonBonus);
     console.log("トータルスキル倍率:", TotalSkill);
     console.log("げんき倍率:", pokemonEnergy);
 
@@ -307,7 +309,7 @@ export default function Home() {
       pokemonPersonalityValue !== undefined &&
       pokemonLevel !== undefined &&
       pokemonSkill !== undefined &&
-      pokemonBonuss !== undefined
+      pokemonBonus !== undefined
     ) {
       // チェックボタンの状態で分岐
       if (pokemonEnergy.trim() !== "") {
@@ -383,7 +385,7 @@ export default function Home() {
                 className=" bg-gray-500 text-white border-blue-500"
                 placeholder="性格を入力"
                 value={pokemonPersonality}
-                onChange={handlePokemonPesonalityChange}
+                onChange={handlePokemonPersonalityChange}
               />
             </div>
             <div className=" flex flex-col space-y-2 container">
@@ -412,9 +414,9 @@ export default function Home() {
         </div>
         <div className="px-4 sm:px-12 md:px-16 lg:px-36 ">
           <div className="grid custom-sm-1:grid-cols-2 gap-4 shadow-md rounded bg-gray-900 py-4 my-8 ">
-            <Bonuss
-              pokemonBonuss={pokemonBonuss}
-              setPokemonBonuss={setPokemonBonuss}
+            <Bonus
+              pokemonBonus={pokemonBonus}
+              setPokemonBonus={setPokemonBonus}
             />
             <Energy
               pokemonEnergy={pokemonEnergy}
