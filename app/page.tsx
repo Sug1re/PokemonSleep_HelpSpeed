@@ -356,7 +356,7 @@ export default function Home() {
     <main className=" min-h-screen bg-gray-400">
       <form onSubmit={handleSubmit} className=" flex flex-col justify-evenly">
         <div className="  pt-20 px-4 sm:px-12 md:px-16 lg:px-32 md:pt-32 lg:pt-16">
-          <div className="grid custom-xs:grid-cols-2 sm:grid-cols-3 gap-4 bg-gray-900 rounded shadow-md  py-4">
+          <div className="grid bg-gray-900 rounded shadow-md  py-4">
             <div className=" flex flex-col space-y-2 container">
               <Label
                 className="text-xl text-white font-semibold"
