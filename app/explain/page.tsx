@@ -92,14 +92,16 @@ const otesupi = () => {
             </div>
           </div>
           <div className=" flex flex-col ">
-            <div className=" flex custom-md:justify-center sm:justify-start ">間違って｢げんき補正｣を選択した場合は</div>
+            <div className=" flex custom-md:justify-center sm:justify-start ">
+              間違って｢げんき補正｣を選択した場合は
+            </div>
             <div className=" flex flex-col custom-md-3:flex-row custom-md:justify-center sm:justify-start ">
               <div className=" flex flex-row justify-center ">
                 <div className="text-green-600 flex">｢20未満｣</div>
                 を選択すると
               </div>
               <div className=" flex justify-center">
-                表示おてつだい時間が表示される
+                表示おてつだい時間が表示されます
               </div>
             </div>
           </div>

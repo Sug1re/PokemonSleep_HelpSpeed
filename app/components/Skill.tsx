@@ -34,48 +34,51 @@ const Skill: React.FC<SkillProps> = ({ pokemonSkill, setPokemonSkill }) => {
   };
 
   return (
-      <div className=" flex flex-col space-y-2 container">
-        <Label className="text-xl text-white font-semibold" htmlFor="pokemonSkill">
-          サブスキル
-        </Label>
-        <Select onValueChange={handlePokemonSkillChange} >
-          <SelectTrigger
-            id="pokemonSkill"
-            className="bg-gray-500 text-white border-blue-500"
+    <div className=" flex flex-col space-y-2 container">
+      <Label
+        className="text-xl text-white font-semibold"
+        htmlFor="pokemonSkill"
+      >
+        サブスキル
+      </Label>
+      <Select onValueChange={handlePokemonSkillChange} required>
+        <SelectTrigger
+          id="pokemonSkill"
+          className="bg-gray-500 text-white border-blue-500"
+        >
+          <SelectValue placeholder="サブスキルを選択" />
+        </SelectTrigger>
+        <SelectContent
+          position="popper"
+          className="bg-gray-500 text-white border-blue-500"
+        >
+          <SelectItem
+            value="おてつだいスピードS"
+            onClick={() => handlePokemonSkillChange("おてつだいスピードS")}
           >
-            <SelectValue placeholder="サブスキルを選択" />
-          </SelectTrigger>
-          <SelectContent
-            position="popper"
-            className="bg-gray-500 text-white border-blue-500"
+            おてつだいスピードS
+          </SelectItem>
+          <SelectItem
+            value="おてつだいスピードM"
+            onClick={() => handlePokemonSkillChange("おてつだいスピードM")}
           >
-            <SelectItem
-              value="おてつだいスピードS"
-              onClick={() => handlePokemonSkillChange("おてつだいスピードS")}
-            >
-              おてつだいスピードS
-            </SelectItem>
-            <SelectItem
-              value="おてつだいスピードM"
-              onClick={() => handlePokemonSkillChange("おてつだいスピードM")}
-            >
-              おてつだいスピードM
-            </SelectItem>
-            <SelectItem
-              value="両方"
-              onClick={() => handlePokemonSkillChange("両方")}
-            >
-              両方
-            </SelectItem>
-            <SelectItem
-              value="なし"
-              onClick={() => handlePokemonSkillChange("なし")}
-            >
-              なし
-            </SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
+            おてつだいスピードM
+          </SelectItem>
+          <SelectItem
+            value="両方"
+            onClick={() => handlePokemonSkillChange("両方")}
+          >
+            両方
+          </SelectItem>
+          <SelectItem
+            value="なし"
+            onClick={() => handlePokemonSkillChange("なし")}
+          >
+            なし
+          </SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
   );
 };
 

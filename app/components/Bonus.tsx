@@ -43,7 +43,7 @@ const Bonus: React.FC<BonusProps> = ({ pokemonBonus, setPokemonBonus }) => {
       >
         おてつだいボーナス
       </Label>
-      <Select onValueChange={handlePokemonBonusChange}>
+      <Select onValueChange={handlePokemonBonusChange} required>
         <SelectTrigger
           id="pokemonBonus"
           className="bg-gray-500 text-white border-red-500"

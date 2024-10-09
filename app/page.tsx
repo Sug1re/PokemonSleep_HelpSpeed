@@ -119,6 +119,9 @@ const pokemonTimeMap: { [pokemonName: string]: number } = {
   ヤルキモノ: 3500,
   ケッキング: 3800,
   ヤミラミ: 3600,
+  ココドラ: 5700,
+  コドラ: 4200,
+  ボスゴドラ: 3000,
   ゴクリン: 5900,
   マルノーム: 3500,
   チルット: 4200,
@@ -130,6 +133,9 @@ const pokemonTimeMap: { [pokemonName: string]: number } = {
   タマザラシ: 5600,
   トドクラー: 4000,
   トドゼルガ: 3000,
+  コリンク: 4400,
+  ルクシオ: 3200,
+  レントラー: 2400,
   ウソハチ: 6300,
   マネネ: 4300,
   リオル: 4200,
@@ -145,6 +151,9 @@ const pokemonTimeMap: { [pokemonName: string]: number } = {
   エルレイド: 2400,
   ニンフィア: 2600,
   デデンネ: 2500,
+  アゴジムシ: 4600,
+  デンヂムシ: 3300,
+  クワガノン: 2800,
   ヌイコグマ: 4100,
   キテルグマ: 2800,
   キュワワー: 2500,
@@ -371,6 +380,7 @@ export default function Home() {
                 placeholder="ポケモンを入力"
                 value={pokemonName}
                 onChange={handlePokemonNameChange}
+                required
               />
             </div>
             <div className=" flex flex-col space-y-2 container">
@@ -387,6 +397,7 @@ export default function Home() {
                 placeholder="性格を入力"
                 value={pokemonPersonality}
                 onChange={handlePokemonPersonalityChange}
+                required
               />
             </div>
             <div className=" flex flex-col space-y-2 container">
@@ -398,11 +409,12 @@ export default function Home() {
               </Label>
               <Input
                 id="pokemonLevel"
-                type="text"
+                type="number"
                 className=" bg-gray-500 text-white border-blue-500"
                 placeholder="レベルを入力"
                 value={pokemonLevel}
                 onChange={handlePokemonlevelChange}
+                required
               />
             </div>
             <div>
