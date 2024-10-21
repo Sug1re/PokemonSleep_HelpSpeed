@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -49,7 +51,7 @@ const Inquiry = () => {
                 お問い合わせフォーム
               </CardTitle>
               <CardDescription className=" px-6 py-2">
-                このお問い合わせフォームでは、サイトへのご質問やご要望をお送りいただけます。
+                このお問い合わせフォームでは、サイトへのご質問やご要望をお送りいただけます。本フォームはお問い合わせ専用です。返信はいたしかねますので、予めご了承ください。
               </CardDescription>
             </CardHeader>
             <CardContent className=" space-y-4">
