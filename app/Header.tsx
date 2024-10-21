@@ -133,8 +133,7 @@ const Header = () => {
                     </a>
                   </li>
                   <li className="hover:text-green-300 duration-300 w-full flex flex-col">
-                    {/* <a href="/inquiry" className="text-base"> */}
-                    <a href="#" className="text-base">
+                    <a href="/inquiry" className="text-base">
                       お問い合わせ
                     </a>
                   </li>
