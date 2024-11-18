@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-// import Link from "next/link";
 import {
   Sheet,
   SheetClose,
@@ -31,6 +30,7 @@ const Header = () => {
           </div>
         </div>
         <div>
+          コメント
           <Sheet>
             <SheetTrigger asChild>
               <Button className="text-white flex flex-col -space-y-4 hover:text-blue-300 duration-300">
@@ -132,12 +132,11 @@ const Header = () => {
                       ポケモン図鑑
                     </a>
                   </li>
-                  <li className="hover:text-green-300 duration-300 w-full flex flex-col">
-                    {/* <a href="/inquiry" className="text-base"> */}
+                  {/* <li className="hover:text-green-300 duration-300 w-full flex flex-col">
                     <a href="#" className="text-base">
                       お問い合わせ
                     </a>
-                  </li>
+                  </li> */}
                 </ul>
               </SheetDescription>
             </SheetContent>
