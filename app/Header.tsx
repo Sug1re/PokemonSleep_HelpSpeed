@@ -21,7 +21,7 @@ import {
 
 const Header = () => {
   return (
-    <header className=" fixed top-0 w-full z-50 bg-gray-900 p-2 max-w-full">
+    <header className=" fixed w-full  bg-gray-900 p-2 max-w-full">
       <nav className="flex justify-between items-center">
         <div>
           <h4 className="text-lg font-bold text-blue-500">おてスピ計</h4>
@@ -30,7 +30,6 @@ const Header = () => {
           </div>
         </div>
         <div>
-          コメント
           <Sheet>
             <SheetTrigger asChild>
               <Button className="text-white flex flex-col -space-y-4 hover:text-blue-300 duration-300">
