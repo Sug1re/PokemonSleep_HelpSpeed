@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import React from "react";
 import { LockClosedIcon } from "@heroicons/react/24/solid";
 
-const PokesuriDB = () => {
+const otesupi00 = () => {
   return (
-    <main className="min-h-screen bg-gray-400">
-      <div className="pt-24 bg-gray-400"></div>
-      <div className="text-sm grid grid-cols-5 bg-gray-900 p-2 mx-0 sm:mx-4 md:mx-8 lg:mx-36">
+    <main className=" min-h-screen bg-gray-400">
+      <div className=" pt-24 bg-gray-400"></div>
+      <div className=" grid grid-cols-5 bg-gray-900 p-2 mx-0 sm:mx-4 md:mx-8 lg:mx-36">
         <Link
           // href="/db/event/"
           href=""
@@ -47,9 +48,10 @@ const PokesuriDB = () => {
         </Link>
         <Link
           href="/db/otesupi/"
-          className="text-white hover:text-orange-400 flex justify-items-center justify-center border-l border-gray-400 hover:bg-gray-700"
+          className="text-blue-500 flex justify-items-center justify-center border-l
+           border-gray-400 hover:bg-gray-700  "
         >
-          <Button className=" text-2xs md:text-xs">おてスピ計</Button>
+          <Button className=" text-2xs md:text-xs"> おてスピ計</Button>
         </Link>
         <Link
           href=""
@@ -64,8 +66,20 @@ const PokesuriDB = () => {
           </Button>
         </Link>
       </div>
+      <div className=" flex flex-col py-20 px-40 space-y-10 container">
+        <Button className=" bg-white rounded py-14 text-lg hover:scale-105 hover:bg-white duration-200">
+          <Link href="/OTESUPI/V.1">おてスピ計(入力式)</Link>
+        </Button>
+        {/* <Button className=" relative bg-white rounded py-14 text-lg hover:scale-105 hover:bg-white duration-200">
+          <Link href="">
+            <span className="absolute inset-0 flex items-center justify-center">
+              おてスピ計(選択式)
+            </span>
+          </Link>
+        </Button> */}
+      </div>
     </main>
   );
 };
 
-export default PokesuriDB;
+export default otesupi00;

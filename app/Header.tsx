@@ -21,7 +21,7 @@ import {
 
 const Header = () => {
   return (
-    <header className=" fixed w-full  bg-gray-900 p-2 max-w-full">
+    <header className=" fixed top-0 w-full  bg-gray-900 p-2 max-w-full">
       <nav className="flex justify-between items-center">
         <div>
           <h4 className="text-lg font-bold text-blue-500">おてスピ計</h4>
@@ -32,14 +32,14 @@ const Header = () => {
         <div>
           <Sheet>
             <SheetTrigger asChild>
-              <Button className="text-white flex flex-col -space-y-4 hover:text-blue-300 duration-300">
+              <Button className="text-white hover:text-orange-400 duration-300 ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="size-6"
+                  className="size-8 "
                 >
                   <path
                     strokeLinecap="round"
@@ -58,21 +58,21 @@ const Header = () => {
               <SheetTitle className="text-blue-500">おてスピ計</SheetTitle>
               <SheetDescription className=" max-h-full overflow-y-auto">
                 <ul className="p-4 my-10 space-y-16">
-                  <li className="hover:text-gray-400 duration-300 w-full flex flex-col">
+                  <li className=" hover:text-orange-400 duration-300 w-full flex flex-col">
                     <a href="/" className="text-base">
-                      トップ
+                      ポケモンスリープDB
                     </a>
                   </li>
                   <li className="w-full flex flex-col">
                     <Accordion type="single" collapsible className="w-full">
                       <AccordionItem value="item-1">
-                        <AccordionTrigger className="text-base hover:text-blue-300 duration-300">
+                        <AccordionTrigger className="text-base hover:text-orange-400 duration-300">
                           本サイトについて
                         </AccordionTrigger>
                         <AccordionContent className="mt-4 flex flex-col space-y-8">
                           <a
-                            href="/explain"
-                            className="text-sm hover:text-blue-300 duration-300"
+                            href="/explain/"
+                            className="text-sm hover:text-orange-400 duration-300"
                           >
                             おてスピ計の使い方
                           </a>
@@ -83,53 +83,19 @@ const Header = () => {
                   <li className="w-full flex flex-col">
                     <Accordion type="single" collapsible className="w-full">
                       <AccordionItem value="item-2">
-                        <AccordionTrigger className="text-base hover:text-blue-300 duration-300">
+                        <AccordionTrigger className="text-base  hover:text-orange-400 duration-300">
                           お知らせ
                         </AccordionTrigger>
                         <AccordionContent className="mt-4 flex flex-col space-y-8">
                           <a
-                            href="/information"
-                            className="text-sm hover:text-red-300 duration-300"
+                            href="/infor/"
+                            className="text-sm hover:text-orange-400 duration-300"
                           >
                             アップデートのお知らせ
                           </a>
                         </AccordionContent>
                       </AccordionItem>
                     </Accordion>
-                  </li>
-                  <li className="w-full flex flex-col">
-                    <Accordion type="single" collapsible className="w-full">
-                      <AccordionItem value="item-3">
-                        <AccordionTrigger className="text-base hover:text-blue-300 duration-300">
-                          料理レシピ
-                        </AccordionTrigger>
-                        <AccordionContent className="mt-4 flex flex-col space-y-8">
-                          <a
-                            href="#"
-                            className="text-sm hover:text-red-300 duration-300"
-                          >
-                            カレー・シチュー
-                          </a>
-                          <a
-                            href="#"
-                            className="text-sm hover:text-green-300 duration-300"
-                          >
-                            サラダ
-                          </a>
-                          <a
-                            href="#"
-                            className="text-sm hover:text-blue-300 duration-300"
-                          >
-                            デザート・ドリンク
-                          </a>
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                  </li>
-                  <li className="hover:text-yellow-300 duration-300 w-full flex flex-col">
-                    <a href="#" className="text-base">
-                      ポケモン図鑑
-                    </a>
                   </li>
                   {/* <li className="hover:text-green-300 duration-300 w-full flex flex-col">
                     <a href="#" className="text-base">
