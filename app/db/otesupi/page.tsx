@@ -68,7 +68,7 @@ const otesupi00 = () => {
       </div>
       <div className=" flex flex-col py-20 px-40 space-y-10 container">
         <Button className=" bg-white rounded py-14 text-lg hover:scale-105 hover:bg-white duration-200">
-          <Link href="/OTESUPI/V.1">おてスピ計(入力式)</Link>
+          <Link href="/OTESUPI/V1">おてスピ計(入力式)</Link>
         </Button>
         {/* <Button className=" relative bg-white rounded py-14 text-lg hover:scale-105 hover:bg-white duration-200">
           <Link href="">

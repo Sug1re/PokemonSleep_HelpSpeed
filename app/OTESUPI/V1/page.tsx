@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Bonus, Energy, Skill } from "../../components";
-// import * as OTESUPI from "@/components/index";
+// import * as OTESUPI/V.1 from "@/components/index";
 
 //ポケモンの固有のおてつだい時間を示す表
 const pokemonTimeMap: { [pokemonName: string]: number } = {
@@ -84,7 +84,7 @@ const pokemonTimeMap: { [pokemonName: string]: number } = {
   バクフーン: 2400,
   ワニノコ: 4500,
   アリゲイツ: 3400,
-  オオダイル: 2800,
+  オーダイル: 2800,
   ピチュー: 4300,
   ピィ: 5600,
   ププリン: 5200,
