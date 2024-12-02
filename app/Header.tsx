@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import {
   Sheet,
@@ -21,7 +19,7 @@ import {
 
 const Header = () => {
   return (
-    <header className=" fixed top-0 w-full  bg-gray-900 p-2 max-w-full">
+    <header className=" fixed top-0 w-full  bg-gray-900 p-2 max-w-full z-50">
       <nav className="flex justify-between items-center">
         <div>
           <h4 className="text-lg font-bold text-blue-500">おてスピ計</h4>
@@ -54,7 +52,7 @@ const Header = () => {
                 </svg>
               </Button>
             </SheetTrigger>
-            <SheetContent className="bg-gray-900 text-white border-white border-l-2 border-b-2 bg-opacity-70">
+            <SheetContent className="bg-gray-900 text-white border-gray-400 border-l-2 border-b-2 bg-opacity-70">
               <SheetTitle className="text-blue-500">おてスピ計</SheetTitle>
               <SheetDescription className=" max-h-full overflow-y-auto">
                 <ul className="p-4 my-10 space-y-16">

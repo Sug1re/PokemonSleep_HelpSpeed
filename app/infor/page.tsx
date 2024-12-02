@@ -72,7 +72,7 @@ const Information = () => {
   const detailsData = data.slice(0, accordionIndex).reverse();
 
   return (
-    <main className="min-h-screen pt-20">
+    <main className="min-h-screen pt-20 bg-white">
       <div className="p-4">
         <div className=" pb-4 pl-4">
           <Dialog>
