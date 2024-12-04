@@ -1,21 +1,21 @@
 export interface pokemonData {
-    id:string;
+    id:number; //　動的ルートでフィルタリングをしたいので　id は　number型
     number:string;
     name:string;
     time:number;
 };
 
 export interface curry {
-    id:string;
+    id:number;
     name:string;
 };
 
 export interface salad {
-    id:string;
+    id:number;
     name:string;
 };
 
 export interface desserts{
-    id:string;
+    id:number;
     name:string;
 };

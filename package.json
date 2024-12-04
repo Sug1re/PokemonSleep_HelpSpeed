@@ -12,6 +12,7 @@
   "json-server:salad": "json-server app/data/salad.json --port 3007",
   "json-server:desserts": "json-server \"app/data/desserts.json\" --port 3008",
  "json-servers": "npm-run-all -p json-server:pokemon json-server:curry json-server:salad json-server:desserts"
+
 },
   "dependencies": {
     "@headlessui/react": "^2.0.4",

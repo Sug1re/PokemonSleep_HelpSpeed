@@ -61,7 +61,14 @@ const pokemon00 = () => {
             図鑑No.別
           </div>
           <div>
-            <div className=" grid grid-cols-3 md:grid-cols-5 bg-gray-500 text-white">
+            <div className=" flex bg-gray-500 text-white">
+              <Link href="/db/pokemon/all">
+                <Button className=" text-2xs md:text-xs underline decoration-solid hover:text-orange-500">
+                  全ポケモン
+                </Button>
+              </Link>
+            </div>
+            <div className=" grid grid-cols-3 md:grid-cols-5 bg-gray-600 text-white">
               <Link href="/db/pokemon/0001~0050">
                 <Button className=" text-2xs md:text-xs underline decoration-solid hover:text-orange-500">
                   No.0001〜0050
@@ -88,7 +95,7 @@ const pokemon00 = () => {
                 </Button>
               </Link>
             </div>
-            <div className=" grid grid-cols-3 md:grid-cols-5 bg-gray-600 text-white">
+            <div className=" grid grid-cols-3 md:grid-cols-5 bg-gray-500 text-white">
               <Link href="/db/pokemon/0151~0200" className=" md:hidden">
                 <Button className=" text-2xs underline decoration-solid hover:text-orange-400">
                   No.0151〜0200
@@ -125,7 +132,7 @@ const pokemon00 = () => {
                 </Button>
               </Link>
             </div>
-            <div className=" grid grid-cols-3 md:grid-cols-5  bg-gray-500 text-white">
+            <div className=" grid grid-cols-3 md:grid-cols-5  bg-gray-600 text-white">
               <Link href="/db/pokemon/0301~0350" className=" md:hidden">
                 <Button className=" text-2xs underline decoration-solid hover:text-orange-500">
                   No.0301〜0350
@@ -174,7 +181,7 @@ const pokemon00 = () => {
                 </Button>
               </Link>
             </div>
-            <div className=" grid grid-cols-3 md:grid-cols-5 bg-gray-600 text-white">
+            <div className=" grid grid-cols-3 md:grid-cols-5 bg-gray-500 text-white">
               <Link href="/db/pokemon/0451~0500" className=" md:hidden">
                 <Button className=" text-2xs  underline decoration-solid hover:text-orange-400">
                   No.0451〜0500
@@ -212,6 +219,23 @@ const pokemon00 = () => {
               </Link>
               {/* <div>No.0951〜1000</div> */}
             </div>
+            <div className=" md:hidden grid grid-cols-3 md:grid-cols-5 bg-gray-600 text-white">
+              <Link href="/db/pokemon/0601~0650">
+                <Button className="  text-2xs underline decoration-solid hover:text-orange-500">
+                  No.0601〜0650
+                </Button>
+              </Link>
+              <Link href="/db/pokemon/0651~0700">
+                <Button className="  text-2xs underline decoration-solid hover:text-orange-500">
+                  No.0651〜0700
+                </Button>
+              </Link>
+              <Link href="/db/pokemon/0701~0750">
+                <Button className="  text-2xs underline decoration-solid hover:text-orange-500">
+                  No.0701〜0750
+                </Button>
+              </Link>
+            </div>
             <div className=" md:hidden grid grid-cols-3 md:grid-cols-5 bg-gray-500 text-white">
               <Link href="/db/pokemon/0751~0800">
                 <Button className="  text-2xs underline decoration-solid hover:text-orange-500">
@@ -235,7 +259,16 @@ const pokemon00 = () => {
                   No.0901〜0950
                 </Button>
               </Link>
-              {/* <div>No.0951〜1000</div> */}
+              <Link href="/db/pokemon/0951~1000">
+                <Button className=" text-2xs  underline decoration-solid hover:text-orange-400">
+                  No.0951〜1000
+                </Button>
+              </Link>
+              <Link href="/db/pokemon/1001~1050">
+                <Button className=" text-2xs  underline decoration-solid hover:text-orange-400">
+                  No.1001〜1050
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
