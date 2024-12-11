@@ -21,8 +21,8 @@ const config = {
     extend: {
       fontSize: {
         '2xs': '10px',
-        '3xs': '8px',
-        '4xs': '6px'
+        '3xs': '7px',
+        '4xs': '5px'
       },
       screens: {
         '3xs': '320px',

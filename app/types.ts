@@ -3,6 +3,13 @@ export interface pokemonData {
     number:string;
     name:string;
     time:number;
+    forte:string;
+    type:string;
+    sleep:string;
+    skill:string;
+    foodA:string;
+    foodB:string;
+    foodC:string;
 };
 
 export interface curry {

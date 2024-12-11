@@ -211,7 +211,7 @@ const PokemonNumberPage = async ({
         ポケモン図鑑 No.{params.number}
       </div>
       <div className="mb-40 mx-0 sm:mx-4 md:mx-8 lg:mx-36">
-        <div className=" p-2 mb-4 flex bg-gray-900 text-white text-4xs md:text-xs whitespace-nowrap">
+        {/* <div className=" p-2 mb-4 flex bg-gray-900 text-white text-4xs md:text-xs whitespace-nowrap">
           <div className=" grid grid-cols-5 gap-1">
             <div>図鑑No.</div>
             <div>ポケモン名</div>
@@ -225,34 +225,34 @@ const PokemonNumberPage = async ({
             <div>食材A</div>
             <div>食材B</div>
             <div>食材C</div>
-          </div>
+          </div> */}
+        {/* </div> */}
+        <div className=" px-1 py-1.5 mb-4 flex justify-between bg-gray-900 text-white text-4xs md:text-xs">
+          <div className=" w-5 border-r border-gray-400">図鑑No.</div>
+          <div className=" w-8 border-r border-gray-400">ポケモン名</div>
+          <div className=" w-7 border-r border-gray-400">タイプ</div>
+          <div className=" w-6 border-r border-gray-400">睡眠</div>
+          <div className=" w-5 border-r border-gray-400">とくい</div>
+          <div className=" w-14 border-r border-gray-400">メインスキル</div>
+          <div className=" w-7 border-r border-gray-400">基礎時間</div>
+          <div className=" w-12 border-r border-gray-400">食材A</div>
+          <div className=" w-12 border-r border-gray-400">食材B</div>
+          <div className=" w-12">食材C</div>
         </div>
-        {/* <div className=" p-2 mb-4 flex justify-between bg-gray-900 text-white text-4xs md:text-xs">
-          <div>図鑑No.</div>
-          <div>ポケモン名</div>
-          <div>タイプ</div>
-          <div>とくい</div>
-          <div>睡眠</div>
-          <div>メインスキル</div>
-          <div>おてつだい時間</div>
-          <div>食材A</div>
-          <div>食材B</div>
-          <div>食材C</div>
-        </div> */}
-        <div className=" p-2 flex justify-between bg-gray-600 text-white text-4xs md:text-xs w-full whitespace-nowrap">
-          <div>0001</div>
-          <div>フシギダネ</div>
-          <div>くさ</div>
-          <div>食材</div>
-          <div>うとうと</div>
-          <div>食材ゲットS</div>
-          <div>4400</div>
-          <div>あまいミツ</div>
-          <div>ワカクサトマト</div>
-          <div>ほっこりポテト</div>
+        <div className=" px-1 py-1.5 flex justify-between bg-gray-500 text-white text-4xs md:text-xs">
+          <div className=" w-5">0001</div>
+          <div className=" w-8">フシギダネ</div>
+          <div className=" w-7">くさ</div>
+          <div className=" w-6">うとうと</div>
+          <div className=" w-5">食材</div>
+          <div className=" w-14">食材ゲットS</div>
+          <div className=" w-7">4400</div>
+          <div className=" w-12">あまいミツ</div>
+          <div className=" w-12">ワカクサトマト</div>
+          <div className=" w-12">ほっこりポテト</div>
         </div>
         {/*　ポケモンが追加されるたび　修正ポイント　*/}
-        {/* {[
+        {[
           "0551~0600",
           "0601~0650",
           "0851~0900",
@@ -268,14 +268,21 @@ const PokemonNumberPage = async ({
           filteredPokemonData.map((pokemonData) => (
             <div
               key={pokemonData.id}
-              className="p-2 grid grid-cols-9 bg-gray-600 text-white text-2xs md:text-xs"
+              className=" px-1 py-1.5 flex justify-between items-center bg-gray-600 border-x-2 border-gray-900 text-white text-4xs md:text-3xs"
             >
-              <div>{pokemonData.number}</div>
-              <div>{pokemonData.name}</div>
-              <div>{pokemonData.time}</div>
+              <div className=" w-5">{pokemonData.number}</div>
+              <div className=" w-8 text-balance">{pokemonData.name}</div>
+              <div className=" w-7">{pokemonData.type}</div>
+              <div className=" w-6">{pokemonData.sleep}</div>
+              <div className=" w-5">{pokemonData.forte}</div>
+              <div className=" w-14">{pokemonData.skill}</div>
+              <div className=" w-7">{pokemonData.time}</div>
+              <div className=" w-12">{pokemonData.foodA}</div>
+              <div className=" w-12">{pokemonData.foodB}</div>
+              <div className=" w-12">{pokemonData.foodC}</div>
             </div>
           ))
-        )} */}
+        )}
       </div>
       {/* <Button
         // onClick={handleScrollToTop}
