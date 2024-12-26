@@ -5,6 +5,7 @@ import { LockClosedIcon } from "@heroicons/react/24/solid";
 
 const pokemon00 = () => {
   return (
+    //12.26 スキルコピー追加
     <main className=" min-h-screen bg-gray-400">
       <div className=" pt-24 bg-gray-400"></div>
       <div className=" grid grid-cols-5 bg-gray-900 p-2 mx-0 sm:mx-4 md:mx-8 lg:mx-36">
@@ -548,6 +549,11 @@ const pokemon00 = () => {
                   きのみバースト
                 </Button>
               </Link>
+              <Link href="/db/pokemon/skill-copy" className=" hidden md:flex">
+                <Button className=" text-2xs md:text-xs underline decoration-solid hover:text-orange-500">
+                  スキルコピー
+                </Button>
+              </Link>
             </div>
             <div className=" md:hidden grid grid-cols-2 md:grid-cols-5 bg-gray-600 text-white">
               <Link href="/db/pokemon/metronome">
@@ -589,6 +595,11 @@ const pokemon00 = () => {
               <Link href="/db/pokemon/berry-burst">
                 <Button className=" text-2xs md:text-xs underline decoration-solid hover:text-orange-500">
                   きのみバースト
+                </Button>
+              </Link>
+              <Link href="/db/pokemon/skill-copy">
+                <Button className=" text-2xs md:text-xs underline decoration-solid hover:text-orange-500">
+                  スキルコピー
                 </Button>
               </Link>
             </div>
