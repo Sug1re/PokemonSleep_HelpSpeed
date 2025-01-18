@@ -7,5 +7,6 @@ main {
 }
 
 body {
-  @apply bg-gray-400; /* 背景色を灰色に設定 */
+  @apply overscroll-behavior: none; /* オーバースクロールを無効化 */
+
 }
