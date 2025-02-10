@@ -7,6 +7,6 @@ main {
 }
 
 body {
-  @apply overscroll-behavior: none; /* オーバースクロールを無効化 */
+ overscroll-behavior: none; /* オーバースクロールを無効化 */
 
 }
