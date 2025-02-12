@@ -1,6 +1,4 @@
-"use client";
-
-import { useState } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -9,74 +7,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  Accordion,
-  AccordionTrigger,
-  AccordionContent,
-  AccordionItem,
-} from "@/components/ui/accordion";
-import React from "react";
 
 const Information = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const data = [
-    { date: "2024/05/20", content: "「エンテイ」" },
-    { date: "2024/06/26", content: "「ウッウ」" },
-    {
-      date: "2024/07/18",
-      content: "「ニャオハ」「ニャローテ」「マスカーニャ」",
-    },
-    {
-      date: "2024/07/18",
-      content: "「ホゲータ」「アチゲータ」「ラウドボーン」",
-    },
-    {
-      date: "2024/07/18",
-      content: "「クワッス」「ウェルカモ」「ウェーニバル」",
-    },
-    { date: "2024/08/21", content: "「ウパー」「ヌオー」" },
-    { date: "2024/09/03", content: "「スイクン」" },
-    {
-      date: "2024/10/09",
-      content: "「アゴジムシ」「デンヂムシ」「クワガノン」",
-    },
-    {
-      date: "2024/10/09",
-      content: "「コリンク」「ルクシオ」「レントラー」",
-    },
-    {
-      date: "2024/10/09",
-      content: "「ココドラ」「コドラ」「ボスゴドラ」",
-    },
-    {
-      date: "2024/10/18",
-      content: "「フワンテ」「フワライド」",
-    },
-    {
-      date: "2024/11/1",
-      content: "「ミミッキュ」",
-    },
-    {
-      date: "2024/12/12",
-      content: "「ニューラ」「マニューラ」",
-    },
-  ];
-
-  // 日付が新しい順にソート
-  data.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-
-  // 下から4番目のインデックス
-  const accordionIndex = data.length - 4;
-
-  // 下から4番目以降のデータのみ表示
-  const displayData = data.slice(accordionIndex);
-
-  // 下から4番目より上のデータ（順序を反転）
-  const detailsData = data.slice(0, accordionIndex).reverse();
-
   return (
-    <main className="min-h-screen pt-20 bg-white">
+    <main className="min-h-screen pt-20 bg-white flex justify-center items-center">
       <div className="p-4">
         <div className=" pb-4 pl-4">
           <Dialog>
@@ -92,40 +26,7 @@ const Information = () => {
               <DialogHeader>
                 <DialogTitle>ポケモン追加情報</DialogTitle>
               </DialogHeader>
-              <div className="flex flex-col-reverse space-y-reverse space-y-3 text-sm">
-                {displayData.map((item, index) => {
-                  if (index === 0) {
-                    return (
-                      <Accordion key={index} type="single">
-                        <AccordionItem value={`item-${index}`}>
-                          <AccordionTrigger
-                            onClick={() =>
-                              setOpenIndex(openIndex === index ? null : index)
-                            }
-                          >
-                            {item.date} : {item.content}
-                          </AccordionTrigger>
-                          <AccordionContent>
-                            <div>
-                              {detailsData.map((detail, detailIndex) => (
-                                <div key={detailIndex}>
-                                  {detail.date} : {detail.content}
-                                </div>
-                              ))}
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
-                    );
-                  } else {
-                    return (
-                      <div key={index}>
-                        {item.date} : {item.content}
-                      </div>
-                    );
-                  }
-                })}
-              </div>
+              <p>「パルデアウパー」「ドオー」</p>
             </DialogContent>
           </Dialog>
         </div>
