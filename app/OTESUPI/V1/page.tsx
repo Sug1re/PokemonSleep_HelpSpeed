@@ -98,6 +98,7 @@ const pokemonTimeMap: { [pokemonName: string]: number } = {
   デンリュウ: 2500,
   ウソッキー: 4000,
   ウパー: 5900,
+  パルデアウパー: 6400,
   ヌオー: 3400,
   エーフィ: 2400,
   ブラッキー: 3500,
@@ -177,6 +178,7 @@ const pokemonTimeMap: { [pokemonName: string]: number } = {
   パモ: 4600,
   パモット: 3300,
   パーモット: 2400,
+  ドオー: 3500,
 
   // 他のポケモン名と対応する時間を追加
 };
