@@ -19,9 +19,9 @@ const CommonMeta = (props: Props) => {
       <title>{"おてスピ計算サイト"}</title>
       <meta
         name="description"
-        // content={
-        //   "ポケモンスリープのおてつだい時間を計算するサイトです。今後実装されるであろうLv100まで対応しているのでぜひ一足先にLv100のおてつだい時間をチェックしてみてください。"
-        // }
+        content={
+          "ポケモンスリープのおてつだい時間を計算するサイトです。今後実装されるであろうLv100まで対応しているのでぜひ一足先にLv100のおてつだい時間をチェックしてみてください。"
+        }
       />
       <meta
         name="google-adsense-account"
