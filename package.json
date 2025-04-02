@@ -3,17 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-  "dev": "next dev",
-  "build": "next build",
-  "start": "next start",
-  "lint": "next lint",
-  "json-server:pokemon": "json-server app/data/pokemonData.json --port 3002",
-  "json-server:curry": "json-server \"app/data/curry.json\" --port 3006",
-  "json-server:salad": "json-server app/data/salad.json --port 3007",
-  "json-server:desserts": "json-server \"app/data/desserts.json\" --port 3008",
- "json-servers": "npm-run-all -p json-server:pokemon json-server:curry json-server:salad json-server:desserts"
-
-},
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "json-server:pokemon": "json-server app/data/pokemonData.json --port 3002",
+    "json-server:curry": "json-server \"app/data/curry.json\" --port 3006",
+    "json-server:salad": "json-server app/data/salad.json --port 3007",
+    "json-server:desserts": "json-server \"app/data/desserts.json\" --port 3008",
+    "json-servers": "npm-run-all -p json-server:pokemon json-server:curry json-server:salad json-server:desserts"
+  },
   "dependencies": {
     "@headlessui/react": "^2.0.4",
     "@heroicons/react": "^2.2.0",
@@ -32,6 +31,7 @@
     "bootstrap": "^5.3.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "firebase": "^11.3.1",
     "lucide-react": "^0.365.0",
     "next": "^14.2.3",
     "next-themes": "^0.3.0",
