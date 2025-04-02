@@ -76,7 +76,7 @@ const otesupi00 = () => {
         </Button> */}
         <Button
           variant="outline"
-          className="rounded bg-white hover:bg-blue-100 border-gray-900 py-12 hover:scale-105 duration-1000"
+          className="rounded bg-white hover:bg-white border-gray-900 py-12 hover:scale-105"
         >
           <Link href="/OTESUPI/V1" className=" text-lg">
             おてスピ計(入力式)
