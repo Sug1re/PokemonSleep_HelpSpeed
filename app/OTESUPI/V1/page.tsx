@@ -182,6 +182,7 @@ const pokemonTimeMap: { [pokemonName: string]: number } = {
   ムンナ: 5700,
   ムシャーナ: 2800,
   クレセリア: 2300,
+  ダークライ: 2900,
 
   // 他のポケモン名と対応する時間を追加
 };
