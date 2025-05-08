@@ -14,8 +14,11 @@
     "json-servers": "npm-run-all -p json-server:pokemon json-server:curry json-server:salad json-server:desserts"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
     "@headlessui/react": "^2.0.4",
     "@heroicons/react": "^2.2.0",
+    "@mui/material": "^7.0.2",
     "@next/third-parties": "^14.2.3",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-checkbox": "^1.0.4",
@@ -28,6 +31,7 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-switch": "^1.0.3",
     "@tanstack/react-table": "^8.17.3",
+    "axios": "^1.9.0",
     "bootstrap": "^5.3.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
