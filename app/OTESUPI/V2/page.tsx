@@ -79,7 +79,7 @@ const FetchCalculation = () => {
     setResult(null);
 
     try {
-      const response = await axios.post("http://localhost:9090/pokemonSpeed", {
+      const response = await axios.post("http://0.0.0.0:9090/pokemonSpeed", {
         pokemonName: formData.pokemonName,
         personality: formData.personality,
         subSkill: formData.subSkill,
