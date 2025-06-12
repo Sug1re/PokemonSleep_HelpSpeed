@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "./Header";
-import { RocknRoll_One } from "next/font/google";
-const RocknRollOne = RocknRoll_One({ weight: "400", subsets: ["latin"] });
-import { GoogleAnalytics } from "@next/third-parties/google";
+import ClientLayout from "../app/ClientLayout";
+import { rocknRollOne } from "../app/types/fonts";
 
 export const metadata: Metadata = {
   title: "おてスピ計",
@@ -13,15 +11,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="ja">
-      <body className={RocknRollOne.className}>
-        <GoogleAnalytics gaId="G-TL1C6DW00G" />
-        <Header />
-        <main>{children}</main>
+      <body className={rocknRollOne.className}>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
