@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import {
   TextField,
@@ -79,22 +79,21 @@ const FetchCalculation = () => {
     setResult(null);
 
     try {
-      const response = await axios.post("http://0.0.0.0:9090/pokemonSpeed", {
-        pokemonName: formData.pokemonName,
-        personality: formData.personality,
-        subSkill: formData.subSkill,
-        level: formData.level,
-      });
+      const response = await axios.post(
+        "https://pokemon-sleep-api-1059650888282.asia-northeast1.run.app/pokemonSpeed",
+        {
+          pokemonName: formData.pokemonName,
+          personality: formData.personality,
+          subSkill: formData.subSkill,
+          level: formData.level,
+        }
+      );
 
       setResult(response.data);
     } catch (err: any) {
       setError(err.response?.data?.error || "エラーが発生しました");
     }
   };
-
-  useEffect(() => {
-    console.log("API結果:", result);
-  }, [result]);
 
   return (
     <>
@@ -202,17 +201,6 @@ const FetchCalculation = () => {
             <Box mt={3}>
               <Typography variant="subtitle1">
                 結果：
-                {/* <br />
-                {result.name}
-                <br />
-                {result.speed}
-                <br />
-                {result.personality_value}
-                <br />
-                {result.sub_skill_value}
-                <br />
-                {result.level}
-                <br /> */}
                 {result.formatted_time}
               </Typography>
             </Box>
