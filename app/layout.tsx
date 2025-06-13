@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ClientLayout from "../app/ClientLayout";
-import { rocknRollOne } from "../app/types/fonts";
+import { rocknRollOne } from "../types/fonts";
 
 export const metadata: Metadata = {
   title: "おてスピ計",

@@ -1,9 +1,17 @@
-import { Box } from "@mui/material";
+import React from "react";
+import * as Components from "@/components/index";
+import { Container } from "@mui/material";
 
 const HOME = () => {
   return (
     <>
-      <Box>コンんちは</Box>
+      <Components.Header />
+
+      <Components.Section />
+
+      <Container maxWidth="sm">
+        <Components.Calculation />
+      </Container>
     </>
   );
 };

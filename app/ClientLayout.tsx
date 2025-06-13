@@ -3,7 +3,7 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import theme from "../app/types/theme";
+import theme from "../types/theme";
 
 export default function ClientLayout({
   children,

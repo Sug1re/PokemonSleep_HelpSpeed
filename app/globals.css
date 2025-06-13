@@ -1,4 +1,8 @@
+main {
+    background-color: #b6b7b9;
+    @apply min-h-screen;
+}
+
 body {
  overscroll-behavior: none; /* オーバースクロールを無効化 */
-
 }
