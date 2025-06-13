@@ -2,7 +2,7 @@ import React from "react";
 import * as Components from "@/components/index";
 import { Container } from "@mui/material";
 
-const HOME = () => {
+const ZukanPage = () => {
   return (
     <>
       <Container maxWidth="sm">
@@ -11,5 +11,4 @@ const HOME = () => {
     </>
   );
 };
-
-export default HOME;
+export default ZukanPage;

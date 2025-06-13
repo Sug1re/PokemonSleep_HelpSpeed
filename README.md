@@ -8,4 +8,4 @@
 > `React`
 
 > UI ライブラリ
-> `tailwindCSS`
+> `MUI`

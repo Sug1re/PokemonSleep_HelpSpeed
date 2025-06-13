@@ -1,15 +1,23 @@
 "use client";
 
 import React from "react";
-import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Button, Toolbar } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { maxHeaderSize } from "http";
 
 const Section = () => {
   const router = useRouter();
 
-  const handleClick = () => {
-    router.push("/");
+  const handleClick = (label: string) => {
+    const pathMap: Record<string, string> = {
+      イベント: "/pages/events",
+      図鑑: "/pages/zukan",
+      おてスピ計: "/pages/otesupi",
+      料理: "/pages/cooking",
+      食材期待値: "/pages/ingredients",
+    };
+
+    const path = pathMap[label] || "/";
+    router.push(path);
   };
 
   // 共通のButton sxスタイル
@@ -59,7 +67,7 @@ const Section = () => {
               return (
                 <Button
                   key={label}
-                  onClick={handleClick}
+                  onClick={() => handleClick(label)}
                   color="inherit"
                   disableRipple
                   disableElevation
