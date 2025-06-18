@@ -23,9 +23,11 @@ const Section = () => {
   // 共通のButton sxスタイル
   const buttonSx = {
     textTransform: "none",
+    transition: "all 0.3s ease", // なめらかなアニメーション
     backgroundColor: "transparent",
     ":hover": {
       backgroundColor: "rgb(25, 61, 96)",
+      fontSize: "0.9rem",
     },
     boxShadow: "none",
     all: "unset",
