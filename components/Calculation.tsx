@@ -1,18 +1,13 @@
 "use client";
 
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import {
-  TextField,
   Button,
   Typography,
   Box,
   Stack,
   FormControl,
-  InputLabel,
-  MenuItem,
-  SelectChangeEvent,
-  Select,
   Slider,
   Grid,
   Input,
@@ -26,7 +21,36 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 const Calculation = () => {
   // GoogleAnalytics コンポーネントは return 内に移動すべき
 
-  const { isOpen, modalType, handleOpen, handleClose } = CustomHook.useModal();
+  const [pokemonLabel, setPokemonLabel] = useState("ポケモン");
+  const [personalityLabel, setPersonalityLabel] = useState("性格");
+  const [subSkillLabel, setSubSkillLabel] = useState("サブスキル");
+
+  const { isOpen, modalType, handleOpen, handleClose, handleSelect } =
+    CustomHook.useModal({
+      setPokemonLabel,
+      setPersonalityLabel,
+      setSubSkillLabel,
+    });
+
+  const getStyledLabel = (label: string) => {
+    if (label.includes("▲▲")) {
+      return (
+        <>
+          おてつだいスピード
+          <span style={{ color: "#f44336" }}>▲▲</span>
+        </>
+      );
+    }
+    if (label.includes("▼▼")) {
+      return (
+        <>
+          おてつだいスピード
+          <span style={{ color: "#2196f3" }}>▼▼</span>
+        </>
+      );
+    }
+    return <>{label}</>;
+  };
 
   const [formData, setFormData] = useState({
     pokemonName: "",
@@ -67,15 +91,21 @@ const Calculation = () => {
     });
   };
 
-  const handleChange = (
-    event:
-      | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-      | SelectChangeEvent
+  const handleModalSelect = (
+    type: "pokemon" | "personality" | "subSkill",
+    value: string
   ) => {
-    const { name, value } = event.target;
+    // ラベル更新（モーダルの表示用）
+    handleSelect(type, value);
+
+    // formData 更新
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [type === "pokemon"
+        ? "pokemonName"
+        : type === "personality"
+        ? "personality"
+        : "subSkill"]: value,
     }));
   };
 
@@ -87,6 +117,7 @@ const Calculation = () => {
     try {
       const response = await axios.post(
         "https://pokemon-sleep-api-1059650888282.asia-northeast1.run.app/pokemonSpeed",
+        // "http://0.0.0.0:9090/pokemonSpeed",
         {
           pokemonName: formData.pokemonName,
           personality: formData.personality,
@@ -101,30 +132,10 @@ const Calculation = () => {
     }
   };
 
-  const inputLabel = {
-    color: "#111827",
-    "&.Mui-focused": {
-      color: "#111827", // フォーカス時の色
-    },
-  };
-
-  const select = {
-    backgroundColor: "#ffffff",
-    "& .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#ffffff", // 通常時の枠線色
-    },
-    "&:hover .MuiOutlinedInput-notchedOutline": {
-      borderColor: "rgb(25, 61, 96)", // ホバー時の枠線色
-    },
-    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#193d60", // フォーカス時の枠線色
-    },
-    color: "#111827", // テキストカラー
-  };
-
   const button = {
     color: "#111827",
     backgroundColor: "#ffffff",
+
     transition: "all 0.3s ease", // なめらかなアニメーション
     ":hover": {
       color: "#ffffff",
@@ -141,11 +152,27 @@ const Calculation = () => {
           <Stack spacing={2}>
             {/* クリック時にモーダル表示で */}
 
-            {["ポケモン", "性格", "サブスキル"].map((label, index) => {
+            {["ポケモン", "性格", "サブスキル"].map((_, index) => {
               const type = ["pokemon", "personality", "subSkill"][index] as
                 | "pokemon"
                 | "personality"
                 | "subSkill";
+
+              // ラベルの状態に応じて表示名を変更
+              const selectedLabel =
+                type === "pokemon"
+                  ? pokemonLabel
+                  : type === "personality"
+                  ? personalityLabel
+                  : subSkillLabel;
+
+              const value =
+                type === "pokemon"
+                  ? formData.pokemonName
+                  : type === "personality"
+                  ? formData.personality
+                  : formData.subSkill;
+
               return (
                 <FormControl key={type}>
                   <Button
@@ -153,9 +180,29 @@ const Calculation = () => {
                     disableRipple
                     disableElevation
                     sx={button}
-                    onClick={() => handleOpen(type)}
+                    value={value}
+                    name={
+                      type === "pokemon"
+                        ? "pokemonName"
+                        : type === "personality"
+                        ? "personality"
+                        : "subSkill"
+                    }
+                    onClick={() => {
+                      setFormData((prev) => ({
+                        ...prev,
+                        [type === "pokemon"
+                          ? "pokemonName"
+                          : type === "personality"
+                          ? "personality"
+                          : "subSkill"]: selectedLabel,
+                      }));
+                      handleOpen(type);
+                    }}
                   >
-                    {label}
+                    {type === "personality"
+                      ? getStyledLabel(selectedLabel)
+                      : selectedLabel}
                   </Button>
                 </FormControl>
               );
@@ -174,7 +221,7 @@ const Calculation = () => {
                   top: "50%",
                   left: "50%",
                   transform: "translate(-50%, -50%)",
-                  width: 330,
+                  width: { xs: "90%", sm: "80%", md: "60%" },
                   bgcolor: "background.paper",
                   px: 4,
                   py: 2,
@@ -218,69 +265,79 @@ const Calculation = () => {
                     <CloseIcon />
                   </Button>
                 </Box>
+                <FormControl fullWidth sx={{ mt: 2 }}>
+                  {modalType === "pokemon" && (
+                    <Stack spacing={1}>
+                      {["フシギダネ", "ヒトカゲ", "ゼニガメ"].map(
+                        (label, index) => {
+                          return (
+                            <Button
+                              key={index}
+                              color="inherit"
+                              disableRipple
+                              disableElevation
+                              sx={button}
+                              onClick={() =>
+                                handleModalSelect("pokemon", label)
+                              }
+                            >
+                              {label}
+                            </Button>
+                          );
+                        }
+                      )}
+                    </Stack>
+                  )}
+
+                  {modalType === "personality" && (
+                    <Stack spacing={1}>
+                      {[
+                        "おてつだいスピード▲▲",
+                        "おてつだいスピード▼▼",
+                        "無補正",
+                      ].map((label, index) => (
+                        <Button
+                          key={index}
+                          color="inherit"
+                          disableRipple
+                          disableElevation
+                          sx={button}
+                          onClick={() =>
+                            handleModalSelect("personality", label)
+                          }
+                        >
+                          {getStyledLabel(label)}
+                        </Button>
+                      ))}
+                    </Stack>
+                  )}
+
+                  {modalType === "subSkill" && (
+                    <Stack spacing={1}>
+                      {[
+                        "おてつだいスピードS",
+                        "おてつだいスピードM",
+                        "おてつだいスピードSとM",
+                        "なし",
+                      ].map((label, index) => {
+                        return (
+                          <Button
+                            key={index}
+                            color="inherit"
+                            disableRipple
+                            disableElevation
+                            sx={button}
+                            onClick={() => handleModalSelect("subSkill", label)}
+                          >
+                            {label}
+                          </Button>
+                        );
+                      })}
+                    </Stack>
+                  )}
+                </FormControl>
               </Card>
             </Modal>
-
-            {/* ポケモン */}
-            <TextField
-              label="ポケモン"
-              name="pokemonName"
-              value={formData.pokemonName}
-              onChange={handleChange}
-              required
-              sx={select}
-            />
-
-            {/* 性格 */}
-            <FormControl>
-              <InputLabel id="personality-label" sx={inputLabel}>
-                性格
-              </InputLabel>
-              <Select
-                labelId="personality-label"
-                id="personality-select"
-                label="性格"
-                name="personality"
-                value={formData.personality}
-                onChange={handleChange}
-                required
-                sx={select}
-              >
-                <MenuItem value={1}>
-                  おてつだいスピード
-                  <span style={{ color: "#f44336" }}>▲▲</span>
-                </MenuItem>
-                <MenuItem value={2}>
-                  おてつだいスピード
-                  <span style={{ color: "#2196f3" }}>▼▼</span>
-                </MenuItem>
-                <MenuItem value={3}>無補正</MenuItem>
-              </Select>
-            </FormControl>
-
-            {/* サブスキル */}
-            <FormControl>
-              <InputLabel id="sub-skill-label" sx={inputLabel}>
-                サブスキル
-              </InputLabel>
-              <Select
-                labelId="sub-skill-label"
-                id="sub-skill-select"
-                label="サブスキル"
-                name="subSkill"
-                value={formData.subSkill}
-                onChange={handleChange}
-                required
-                sx={select}
-              >
-                <MenuItem value={1}>おてつだいスピードS</MenuItem>
-                <MenuItem value={2}>おてつだいスピードM</MenuItem>
-                <MenuItem value={3}>
-                  おてつだいスピードS おてつだいスピードM
-                </MenuItem>
-                <MenuItem value={4}>なし</MenuItem>
-              </Select>
-            </FormControl>
 
             {/* レベル */}
             <Grid container spacing={2} sx={{ alignItems: "center" }}>
