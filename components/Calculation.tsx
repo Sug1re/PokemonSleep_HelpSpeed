@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
   Button,
@@ -15,22 +15,33 @@ import {
   Card,
 } from "@mui/material";
 import * as CustomHook from "@/hooks/index";
+import { PokemonInfo } from "@/types/pokemonInfo";
 import CloseIcon from "@mui/icons-material/Close";
+import SearchIcon from "@mui/icons-material/Search";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 const Calculation = () => {
   // GoogleAnalytics コンポーネントは return 内に移動すべき
 
+  const [pokemonData, setPokemonData] = useState<Record<string, PokemonInfo>>(
+    {}
+  );
   const [pokemonLabel, setPokemonLabel] = useState("ポケモン");
   const [personalityLabel, setPersonalityLabel] = useState("性格");
   const [subSkillLabel, setSubSkillLabel] = useState("サブスキル");
 
-  const { isOpen, modalType, handleOpen, handleClose, handleSelect } =
-    CustomHook.useModal({
-      setPokemonLabel,
-      setPersonalityLabel,
-      setSubSkillLabel,
-    });
+  const {
+    isOpen,
+    modalType,
+    handleOpen,
+    handleClose,
+    handleSelect,
+    handleModalTypeChange,
+  } = CustomHook.useModal({
+    setPokemonLabel,
+    setPersonalityLabel,
+    setSubSkillLabel,
+  });
 
   const getStyledLabel = (label: string) => {
     if (label.includes("▲▲")) {
@@ -132,16 +143,38 @@ const Calculation = () => {
     }
   };
 
+  useEffect(() => {
+    const fetchPokemonData = async () => {
+      try {
+        const res = await axios.get(
+          "https://pokemon-sleep-api-1059650888282.asia-northeast1.run.app/pokemonName"
+          // "http://0.0.0.0:9090/pokemonName"
+        );
+        setPokemonData(res.data.pokemonData);
+      } catch (error) {
+        console.error("ポケモン名の取得に失敗しました", error);
+      }
+    };
+
+    fetchPokemonData();
+  }, [pokemonData]);
+
   const button = {
     color: "#111827",
     backgroundColor: "#ffffff",
-
+    borderRadius: "4px",
+    width: "80%",
     transition: "all 0.3s ease", // なめらかなアニメーション
     ":hover": {
       color: "#ffffff",
       backgroundColor: "#111827",
       transform: "scale(1.05)", // ← スケールを1.05倍に
     },
+  };
+
+  const formControl = {
+    alignItems: "center",
+    mt: 2,
   };
 
   return (
@@ -174,7 +207,7 @@ const Calculation = () => {
                   : formData.subSkill;
 
               return (
-                <FormControl key={type}>
+                <FormControl key={type} sx={formControl}>
                   <Button
                     color="inherit"
                     disableRipple
@@ -226,7 +259,7 @@ const Calculation = () => {
                   px: 4,
                   py: 2,
                   borderRadius: 3,
-                  border: `0.5px solid #FF6600`,
+                  border: `0.5px solid #111827`,
                 }}
               >
                 {/* 閉じるボタン */}
@@ -241,7 +274,7 @@ const Calculation = () => {
                       py: 1,
                       gap: 1,
                       borderRadius: 2,
-                      backgroundColor: "#FF6600",
+                      backgroundColor: "#111827",
                       width: "80%",
                     }}
                   >
@@ -249,10 +282,18 @@ const Calculation = () => {
                       ? "ポケモンを選択"
                       : modalType === "personality"
                       ? "性格を選択"
-                      : "サブスキルを選択"}
+                      : modalType === "subSkill"
+                      ? "サブスキルを選択"
+                      : modalType === "pokemonFilter"
+                      ? "絞り込む"
+                      : "選択肢を表示"}
                   </Typography>
                   <Button
-                    onClick={handleClose}
+                    onClick={
+                      modalType === "pokemonFilter"
+                        ? handleModalTypeChange
+                        : handleClose
+                    }
                     sx={{
                       color: "#000000",
                       width: "20%",
@@ -265,32 +306,100 @@ const Calculation = () => {
                     <CloseIcon />
                   </Button>
                 </Box>
-                <FormControl fullWidth sx={{ mt: 2 }}>
+
+                <FormControl fullWidth sx={formControl}>
                   {modalType === "pokemon" && (
-                    <Stack spacing={1}>
-                      {["フシギダネ", "ヒトカゲ", "ゼニガメ"].map(
-                        (label, index) => {
-                          return (
-                            <Button
-                              key={index}
-                              color="inherit"
-                              disableRipple
-                              disableElevation
-                              sx={button}
-                              onClick={() =>
-                                handleModalSelect("pokemon", label)
-                              }
-                            >
-                              {label}
-                            </Button>
-                          );
-                        }
-                      )}
+                    <Stack
+                      spacing={1}
+                      sx={{
+                        pt: 2,
+                        width: "80%",
+                        alignItems: "center",
+                      }}
+                    >
+                      {/* OFFボタンは常に固定表示 */}
+                      <Button
+                        sx={{
+                          color: "#ffffff",
+                          backgroundColor: "#111827",
+                          borderRadius: "4px",
+                          width: "80%",
+                          transition: "all 0.3s ease",
+                          ":hover": {
+                            color: "#ffffff",
+                            transform: "scale(0.95)",
+                          },
+                          "& .MuiSvgIcon-root": {
+                            color: "#ffffff",
+                            transition: "color 0.3s ease",
+                          },
+                          ":hover .MuiSvgIcon-root": {
+                            color: "#ffffff",
+                          },
+                        }}
+                        onClick={() => {
+                          if (modalType === "pokemon") {
+                            handleOpen("pokemonFilter");
+                          }
+                        }}
+                      >
+                        <SearchIcon sx={{ mr: 1 }} />
+                        OFF
+                      </Button>
+
+                      {/* スクロール可能なポケモンリスト */}
+                      <Box
+                        sx={{
+                          maxHeight: 300,
+                          overflowY: "auto",
+                          width: "100%",
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                          gap: 1, // spacingの代わり
+                          pt: 1, // OFFボタンとリストの間に余白
+                        }}
+                      >
+                        {Object.keys(pokemonData).map((label, index) => (
+                          <Button
+                            key={index}
+                            color="inherit"
+                            disableRipple
+                            disableElevation
+                            sx={button}
+                            onClick={() => handleModalSelect("pokemon", label)}
+                          >
+                            {label}
+                          </Button>
+                        ))}
+                      </Box>
+                    </Stack>
+                  )}
+
+                  {modalType === "pokemonFilter" && (
+                    <Stack
+                      spacing={1}
+                      sx={{
+                        maxHeight: 300,
+                        width: "80%",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Typography>
+                        ポケモンフィルターの選択肢をここに表示
+                      </Typography>
                     </Stack>
                   )}
 
                   {modalType === "personality" && (
-                    <Stack spacing={1}>
+                    <Stack
+                      spacing={1}
+                      sx={{
+                        maxHeight: 300, // 必要に応じて高さを調整
+                        width: "80%",
+                        alignItems: "center",
+                      }}
+                    >
                       {[
                         "おてつだいスピード▲▲",
                         "おてつだいスピード▼▼",
@@ -313,7 +422,14 @@ const Calculation = () => {
                   )}
 
                   {modalType === "subSkill" && (
-                    <Stack spacing={1}>
+                    <Stack
+                      spacing={1}
+                      sx={{
+                        maxHeight: 300, // 必要に応じて高さを調整
+                        width: "80%",
+                        alignItems: "center",
+                      }}
+                    >
                       {[
                         "おてつだいスピードS",
                         "おてつだいスピードM",
@@ -340,7 +456,7 @@ const Calculation = () => {
             </Modal>
 
             {/* レベル */}
-            <Grid container spacing={2} sx={{ alignItems: "center" }}>
+            <Grid container spacing={2} sx={formControl}>
               <Grid size="grow">
                 <Slider
                   name="level"
