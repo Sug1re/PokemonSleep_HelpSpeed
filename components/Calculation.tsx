@@ -13,6 +13,10 @@ import {
   Input,
   Modal,
   Card,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
 } from "@mui/material";
 import * as CustomHook from "@/hooks/index";
 import { PokemonInfo } from "@/types/pokemonInfo";
@@ -29,6 +33,7 @@ const Calculation = () => {
   const [pokemonLabel, setPokemonLabel] = useState("ポケモン");
   const [personalityLabel, setPersonalityLabel] = useState("性格");
   const [subSkillLabel, setSubSkillLabel] = useState("サブスキル");
+  const [selectedBerry, setSelectedBerry] = useState("");
 
   const {
     isOpen,
@@ -159,6 +164,14 @@ const Calculation = () => {
     fetchPokemonData();
   }, [pokemonData]);
 
+  const getFilteredPokemonKeys = () => {
+    if (!selectedBerry) return Object.keys(pokemonData); // フィルター未選択時は全件表示
+
+    return Object.keys(pokemonData).filter(
+      (name) => pokemonData[name].berry === selectedBerry
+    );
+  };
+
   const button = {
     color: "#111827",
     backgroundColor: "#ffffff",
@@ -183,8 +196,6 @@ const Calculation = () => {
       <Box>
         <form onSubmit={handleSubmit} method="post">
           <Stack spacing={2}>
-            {/* クリック時にモーダル表示で */}
-
             {["ポケモン", "性格", "サブスキル"].map((_, index) => {
               const type = ["pokemon", "personality", "subSkill"][index] as
                 | "pokemon"
@@ -274,7 +285,7 @@ const Calculation = () => {
                       py: 1,
                       gap: 1,
                       borderRadius: 2,
-                      backgroundColor: "#111827",
+                      backgroundColor: "#f44336",
                       width: "80%",
                     }}
                   >
@@ -360,7 +371,7 @@ const Calculation = () => {
                           pt: 1, // OFFボタンとリストの間に余白
                         }}
                       >
-                        {Object.keys(pokemonData).map((label, index) => (
+                        {getFilteredPokemonKeys().map((label, index) => (
                           <Button
                             key={index}
                             color="inherit"
@@ -382,12 +393,123 @@ const Calculation = () => {
                       sx={{
                         maxHeight: 300,
                         width: "80%",
-                        alignItems: "center",
                       }}
                     >
-                      <Typography>
-                        ポケモンフィルターの選択肢をここに表示
-                      </Typography>
+                      <FormControl>
+                        <FormLabel
+                          id="berry-label"
+                          sx={{
+                            color: "#111827",
+                            borderLeft: "8px solid #111827",
+                            pl: 1,
+                          }}
+                        >
+                          タイプ
+                        </FormLabel>
+                        <RadioGroup
+                          aria-labelledby="berry-label"
+                          value={selectedBerry}
+                          onChange={(e) => setSelectedBerry(e.target.value)}
+                          name="berry"
+                          sx={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "flex-start",
+                            width: "100%",
+                          }}
+                        >
+                          <FormControlLabel
+                            value="キーのみ"
+                            control={<Radio />}
+                            label="ノーマル"
+                          />
+                          <FormControlLabel
+                            value="ヒメリのみ"
+                            control={<Radio />}
+                            label="ほのお"
+                          />
+                          <FormControlLabel
+                            value="オレンのみ"
+                            control={<Radio />}
+                            label="みず"
+                          />
+                          <FormControlLabel
+                            value="ウブのみ"
+                            control={<Radio />}
+                            label="でんき"
+                          />
+                          <FormControlLabel
+                            value="ドリのみ"
+                            control={<Radio />}
+                            label="くさ"
+                          />
+                          <FormControlLabel
+                            value="チーゴのみ"
+                            control={<Radio />}
+                            label="こおり"
+                          />
+                          <FormControlLabel
+                            value="クラボのみ"
+                            control={<Radio />}
+                            label="かくとう"
+                          />
+                          <FormControlLabel
+                            value="カゴのみ"
+                            control={<Radio />}
+                            label="どく"
+                          />
+                          <FormControlLabel
+                            value="フィラのみ"
+                            control={<Radio />}
+                            label="じめん"
+                          />
+                          <FormControlLabel
+                            value="シーヤのみ"
+                            control={<Radio />}
+                            label="ひこう"
+                          />
+                          <FormControlLabel
+                            value="マゴのみ"
+                            control={<Radio />}
+                            label="エスパー"
+                          />
+                          <FormControlLabel
+                            value="ラムのみ"
+                            control={<Radio />}
+                            label="むし"
+                          />
+                          <FormControlLabel
+                            value="オボンのみ"
+                            control={<Radio />}
+                            label="いわ"
+                          />
+                          <FormControlLabel
+                            value="ブリーのみ"
+                            control={<Radio />}
+                            label="ゴースト"
+                          />
+                          <FormControlLabel
+                            value="ヤチェのみ"
+                            control={<Radio />}
+                            label="ドラゴン"
+                          />
+                          <FormControlLabel
+                            value="ウイのみ"
+                            control={<Radio />}
+                            label="あく"
+                          />
+                          <FormControlLabel
+                            value="ベリブのみ"
+                            control={<Radio />}
+                            label="はがね"
+                          />
+                          <FormControlLabel
+                            value="モモンのみ"
+                            control={<Radio />}
+                            label="フェアリー"
+                          />
+                        </RadioGroup>
+                      </FormControl>
                     </Stack>
                   )}
 
