@@ -38,6 +38,13 @@ const useModal = ({
     // フィルター情報は維持したままモーダルを切り替え
   };
 
+  const handleModalTypeNoChange = () => {
+  // フィルター情報をクリアしてから pokemon モーダルに遷移
+  setFilterData(null);
+  setModalType("pokemon");
+};
+
+
   const handleSelect = (type: Exclude<ModalType, null>, value: string) => {
     if (type === "pokemon") setPokemonLabel(value);
     else if (type === "personality") setPersonalityLabel(value);
@@ -53,6 +60,7 @@ const useModal = ({
     handleClose,
     handleSelect,
     handleModalTypeChange,
+    handleModalTypeNoChange,
   };
 };
 

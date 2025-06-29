@@ -20,7 +20,6 @@ import {
 } from "@mui/material";
 import * as CustomHook from "@/hooks/index";
 import { PokemonInfo } from "@/types/pokemonInfo";
-import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
@@ -42,11 +41,17 @@ const Calculation = () => {
     handleClose,
     handleSelect,
     handleModalTypeChange,
+    handleModalTypeNoChange: baseHandleModalTypeNoChange,
   } = CustomHook.useModal({
     setPokemonLabel,
     setPersonalityLabel,
     setSubSkillLabel,
   });
+
+  const handleModalTypeNoChange = () => {
+    setSelectedBerry(""); // これでフィルター選択をクリア
+    baseHandleModalTypeNoChange();
+  };
 
   const getStyledLabel = (label: string) => {
     if (label.includes("▲▲")) {
@@ -172,7 +177,7 @@ const Calculation = () => {
     );
   };
 
-  const button = {
+  const selectButton = {
     color: "#111827",
     backgroundColor: "#ffffff",
     borderRadius: "4px",
@@ -223,7 +228,7 @@ const Calculation = () => {
                     color="inherit"
                     disableRipple
                     disableElevation
-                    sx={button}
+                    sx={selectButton}
                     value={value}
                     name={
                       type === "pokemon"
@@ -267,26 +272,26 @@ const Calculation = () => {
                   transform: "translate(-50%, -50%)",
                   width: { xs: "90%", sm: "80%", md: "60%" },
                   bgcolor: "background.paper",
-                  px: 4,
-                  py: 2,
+                  pb: 2,
                   borderRadius: 3,
-                  border: `0.5px solid #111827`,
                 }}
               >
-                {/* 閉じるボタン */}
-                <Box sx={{ display: "flex" }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    position: "relative",
+                    justifyContent: "center",
+                  }}
+                >
                   <Typography
                     sx={{
                       fontWeight: "bold",
                       color: "#FFFFFF",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
+                      pl: "10%",
                       py: 1,
                       gap: 1,
-                      borderRadius: 2,
                       backgroundColor: "#f44336",
-                      width: "80%",
+                      width: "100%",
                     }}
                   >
                     {modalType === "pokemon"
@@ -299,23 +304,65 @@ const Calculation = () => {
                       ? "絞り込む"
                       : "選択肢を表示"}
                   </Typography>
+                  {/* キャンセル */}
                   <Button
+                    disableRipple
+                    disableElevation
                     onClick={
                       modalType === "pokemonFilter"
-                        ? handleModalTypeChange
+                        ? handleModalTypeNoChange
                         : handleClose
                     }
                     sx={{
-                      color: "#000000",
-                      width: "20%",
-                      backgroundColor: "transparent",
+                      position: "absolute",
+                      fontSize: "8px",
+                      borderRadius: 4,
+                      padding: 0,
+                      py: 0.25,
+                      top: "50%", // 垂直方向中央の起点
+                      right:
+                        modalType === "pokemonFilter"
+                          ? { xs: "25%", sm: "15%" }
+                          : "5%",
+                      transform: "translateY(-50%)", // ボタン自身の高さの半分だけ上にずらす
+                      color: "#111827",
+                      backgroundColor: "#ffffff",
                       ":hover": {
-                        backgroundColor: "transparent",
+                        backgroundColor: "#ffffff",
+                        transform: "translateY(-50%) scale(1.10)", // ← 拡大しつつ中央位置キープ
                       },
                     }}
                   >
-                    <CloseIcon />
+                    キャンセル
                   </Button>
+                  {/* OK */}
+                  {modalType === "pokemonFilter" && (
+                    <Button
+                      disableRipple
+                      disableElevation
+                      onClick={handleModalTypeChange}
+                      sx={{
+                        position: "absolute",
+                        fontSize: "8px",
+                        borderRadius: 4,
+                        padding: 0,
+                        py: 0.25,
+                        border: 0.5,
+                        top: "50%", // 垂直方向中央の起点
+                        right: "5%",
+                        transform: "translateY(-50%)", // ボタン自身の高さの半分だけ上にずらす
+                        color: "#ffffff",
+                        borderColor: "#E0E0E0",
+                        backgroundColor: "#4CAF50",
+                        ":hover": {
+                          backgroundColor: "#4CAF50",
+                          transform: "translateY(-50%) scale(1.10)", // ← 拡大しつつ中央位置キープ
+                        },
+                      }}
+                    >
+                      OK
+                    </Button>
+                  )}
                 </Box>
 
                 <FormControl fullWidth sx={formControl}>
@@ -323,13 +370,14 @@ const Calculation = () => {
                     <Stack
                       spacing={1}
                       sx={{
-                        pt: 2,
                         width: "80%",
                         alignItems: "center",
                       }}
                     >
                       {/* OFFボタンは常に固定表示 */}
                       <Button
+                        disableRipple
+                        disableElevation
                         sx={{
                           color: "#ffffff",
                           backgroundColor: "#111827",
@@ -355,7 +403,7 @@ const Calculation = () => {
                         }}
                       >
                         <SearchIcon sx={{ mr: 1 }} />
-                        OFF
+                        {selectedBerry === "" ? "OFF" : "ON"}
                       </Button>
 
                       {/* スクロール可能なポケモンリスト */}
@@ -377,7 +425,7 @@ const Calculation = () => {
                             color="inherit"
                             disableRipple
                             disableElevation
-                            sx={button}
+                            sx={selectButton}
                             onClick={() => handleModalSelect("pokemon", label)}
                           >
                             {label}
@@ -532,7 +580,7 @@ const Calculation = () => {
                           color="inherit"
                           disableRipple
                           disableElevation
-                          sx={button}
+                          sx={selectButton}
                           onClick={() =>
                             handleModalSelect("personality", label)
                           }
@@ -564,7 +612,7 @@ const Calculation = () => {
                             color="inherit"
                             disableRipple
                             disableElevation
-                            sx={button}
+                            sx={selectButton}
                             onClick={() => handleModalSelect("subSkill", label)}
                           >
                             {label}
@@ -623,6 +671,8 @@ const Calculation = () => {
 
             {/* ボタン */}
             <Button
+              disableRipple
+              disableElevation
               type="submit"
               variant="contained"
               sx={{

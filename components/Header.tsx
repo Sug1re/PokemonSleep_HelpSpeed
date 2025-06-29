@@ -28,6 +28,7 @@ const Header = () => {
             }}
           >
             <IconButton
+              disableRipple
               size="large"
               edge="start"
               color="inherit"
@@ -37,6 +38,8 @@ const Header = () => {
               <MenuIcon />
             </IconButton>
             <Button
+              disableRipple
+              disableElevation
               onClick={handleClick}
               color="inherit"
               sx={{
