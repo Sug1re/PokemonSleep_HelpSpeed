@@ -6,7 +6,7 @@ const HOME = () => {
   return (
     <>
       <Container maxWidth="sm">
-        <Components.Calculation />
+        <Components.Calculator />
       </Container>
     </>
   );

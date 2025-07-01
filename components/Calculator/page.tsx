@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import {
   Button,
   Typography,
@@ -19,16 +18,16 @@ import {
   Radio,
 } from "@mui/material";
 import * as CustomHook from "@/hooks/index";
-import { PokemonInfo } from "@/types/pokemonInfo";
+import * as utils from "@/utils/index";
+import * as styles from "@/styles/calculator";
+import { calculatePokemonSpeed } from "@/lib/api/pokemon";
+import { filterPokemon } from "@/lib/filter";
 import SearchIcon from "@mui/icons-material/Search";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 const Calculator = () => {
   // GoogleAnalytics コンポーネントは return 内に移動すべき
 
-  const [pokemonData, setPokemonData] = useState<Record<string, PokemonInfo>>(
-    {}
-  );
   const [pokemonLabel, setPokemonLabel] = useState("ポケモン");
   const [personalityLabel, setPersonalityLabel] = useState("性格");
   const [subSkillLabel, setSubSkillLabel] = useState("サブスキル");
@@ -58,25 +57,7 @@ const Calculator = () => {
     resetFilterStates,
   });
 
-  const getStyledLabel = (label: string) => {
-    if (label.includes("▲▲")) {
-      return (
-        <>
-          おてつだいスピード
-          <span style={{ color: "#f44336" }}>▲▲</span>
-        </>
-      );
-    }
-    if (label.includes("▼▼")) {
-      return (
-        <>
-          おてつだいスピード
-          <span style={{ color: "#2196f3" }}>▼▼</span>
-        </>
-      );
-    }
-    return <>{label}</>;
-  };
+  const { pokemonData } = CustomHook.usePokemonData();
 
   const [formData, setFormData] = useState({
     pokemonName: "",
@@ -141,51 +122,18 @@ const Calculator = () => {
     setResult(null);
 
     try {
-      const response = await axios.post(
-        "https://pokemon-sleep-api-1059650888282.asia-northeast1.run.app/pokemonSpeed",
-        // "http://0.0.0.0:9090/pokemonSpeed",
-        {
-          pokemonName: formData.pokemonName,
-          personality: formData.personality,
-          subSkill: formData.subSkill,
-          level: formData.level,
-        }
-      );
-
-      setResult(response.data);
+      const data = await calculatePokemonSpeed(formData);
+      setResult(data);
     } catch (err: any) {
       setError(err.response?.data?.error || "エラーが発生しました");
     }
   };
 
-  useEffect(() => {
-    const fetchPokemonData = async () => {
-      try {
-        const res = await axios.get(
-          "https://pokemon-sleep-api-1059650888282.asia-northeast1.run.app/pokemonName"
-          // "http://0.0.0.0:9090/pokemonName"
-        );
-        setPokemonData(res.data.pokemonData);
-      } catch (error) {
-        console.error("ポケモン名の取得に失敗しました", error);
-      }
-    };
-
-    fetchPokemonData();
-  }, [pokemonData]);
-
   const getFilteredPokemonKeys = () => {
-    return Object.keys(pokemonData).filter((name) => {
-      const pokemon = pokemonData[name];
-
-      const matchesBerry = !selectedBerry || pokemon.berry === selectedBerry;
-      const matchesSleepType =
-        !selectedSleepType || pokemon.sleepType === selectedSleepType;
-
-      const matchesStrengths =
-        !selectedStrengths || pokemon.strengths === selectedStrengths;
-
-      return matchesBerry && matchesSleepType && matchesStrengths;
+    return filterPokemon(pokemonData, {
+      selectedBerry,
+      selectedSleepType,
+      selectedStrengths,
     });
   };
 
@@ -196,57 +144,6 @@ const Calculator = () => {
   };
 
   const { filterLabel } = CustomHook.useFilterState(filterValues);
-
-  const selectButton = {
-    color: "#111827",
-    backgroundColor: "#ffffff",
-    borderRadius: "4px",
-    transition: "all 0.3s ease",
-    ":hover": {
-      color: "#ffffff",
-      backgroundColor: "#111827",
-      transform: "scale(0.95)",
-    },
-  };
-
-  const modalButton = {
-    maxHeight: 300,
-    overflowY: "auto",
-    width: "60%",
-    gap: 1,
-    display: "flex",
-    flexDirection: "column",
-  };
-
-  const formControl = {
-    display: "flex",
-    justifyContent: "center",
-  };
-
-  const customRadio = {
-    color: "#111827",
-    "&.Mui-checked": {
-      color: "#111827",
-    },
-  };
-
-  const filterFormLabel = {
-    color: "#111827 !important", // フォーカス時にも上書きされないように
-    borderLeft: "8px solid #4CAF50",
-    pl: 1,
-  };
-
-  const formBorder = {
-    borderBottom: "1px solid #ccc",
-    my: 1,
-  };
-
-  const formRadioGroup = {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    mb: 2,
-  };
 
   return (
     <>
@@ -277,14 +174,14 @@ const Calculator = () => {
 
               return (
                 <FormControl key={type}>
-                  <Box sx={formControl}>
+                  <Box sx={styles.formControl}>
                     <Button
                       color="inherit"
                       disableRipple
                       disableElevation
                       sx={{
                         width: "80%",
-                        ...selectButton,
+                        ...styles.selectButton,
                       }}
                       value={value}
                       name={
@@ -307,7 +204,7 @@ const Calculator = () => {
                       }}
                     >
                       {type === "personality"
-                        ? getStyledLabel(selectedLabel)
+                        ? utils.getStyledLabel(selectedLabel)
                         : selectedLabel}
                     </Button>
                   </Box>
@@ -336,9 +233,7 @@ const Calculator = () => {
                 {/* 上部固定 */}
                 <Box
                   sx={{
-                    display: "flex",
                     position: "relative",
-                    justifyContent: "center",
                   }}
                 >
                   <Typography
@@ -430,12 +325,17 @@ const Calculator = () => {
                         {filterLabel}
                       </Button>
 
-                      {/* スクロール可能なポケモンリスト */}
-                      <Box sx={modalButton}>
+                      <Box sx={styles.modalButton}>
                         {getFilteredPokemonKeys().length === 0 ? (
-                          <Typography sx={{ color: "#f44336" }}>
-                            該当するポケモンが見つかりませんでした
-                          </Typography>
+                          <Box sx={styles.formControl}>
+                            <Typography
+                              sx={{
+                                color: "#f44336",
+                              }}
+                            >
+                              該当するポケモンが見つかりませんでした
+                            </Typography>
+                          </Box>
                         ) : (
                           getFilteredPokemonKeys().map((label, index) => (
                             <Button
@@ -443,7 +343,7 @@ const Calculator = () => {
                               color="inherit"
                               disableRipple
                               disableElevation
-                              sx={selectButton}
+                              sx={styles.selectButton}
                               onClick={() =>
                                 handleModalSelect("pokemon", label)
                               }
@@ -462,174 +362,180 @@ const Calculator = () => {
                       sx={{
                         maxHeight: 300,
                         overflowY: "auto",
-                        mx: 4,
+                        mx: 12,
                       }}
                     >
                       <FormControl>
-                        <FormLabel id="berry-label" sx={filterFormLabel}>
+                        <FormLabel id="berry-label" sx={styles.filterFormLabel}>
                           タイプ
                         </FormLabel>
-                        <Box sx={formBorder} />
+                        <Box sx={styles.formBorder} />
                         <RadioGroup
                           aria-labelledby="berry-label"
                           value={selectedBerry}
                           onChange={(e) => setSelectedBerry(e.target.value)}
                           name="berry"
-                          sx={formRadioGroup}
+                          sx={styles.formRadioGroup}
                         >
                           <FormControlLabel
                             value="キーのみ"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="ノーマル"
                           />
                           <FormControlLabel
                             value="ヒメリのみ"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="ほのお"
                           />
                           <FormControlLabel
                             value="オレンのみ"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="みず"
                           />
                           <FormControlLabel
                             value="ウブのみ"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="でんき"
                           />
                           <FormControlLabel
                             value="ドリのみ"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="くさ"
                           />
                           <FormControlLabel
                             value="チーゴのみ"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="こおり"
                           />
                           <FormControlLabel
                             value="クラボのみ"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="かくとう"
                           />
                           <FormControlLabel
                             value="カゴのみ"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="どく"
                           />
                           <FormControlLabel
                             value="フィラのみ"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="じめん"
                           />
                           <FormControlLabel
                             value="シーヤのみ"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="ひこう"
                           />
                           <FormControlLabel
                             value="マゴのみ"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="エスパー"
                           />
                           <FormControlLabel
                             value="ラムのみ"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="むし"
                           />
                           <FormControlLabel
                             value="オボンのみ"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="いわ"
                           />
                           <FormControlLabel
                             value="ブリーのみ"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="ゴースト"
                           />
                           <FormControlLabel
                             value="ヤチェのみ"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="ドラゴン"
                           />
                           <FormControlLabel
                             value="ウイのみ"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="あく"
                           />
                           <FormControlLabel
                             value="ベリブのみ"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="はがね"
                           />
                           <FormControlLabel
                             value="モモンのみ"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="フェアリー"
                           />
                         </RadioGroup>
                       </FormControl>
                       <FormControl>
-                        <FormLabel id="sleepType-label" sx={filterFormLabel}>
+                        <FormLabel
+                          id="sleepType-label"
+                          sx={styles.filterFormLabel}
+                        >
                           睡眠タイプ
                         </FormLabel>
-                        <Box sx={formBorder} />
+                        <Box sx={styles.formBorder} />
 
                         <RadioGroup
                           aria-labelledby="sleepType-label"
                           value={selectedSleepType}
                           onChange={(e) => setSelectedSleepType(e.target.value)}
                           name="sleepType"
-                          sx={formRadioGroup}
+                          sx={styles.formRadioGroup}
                         >
                           <FormControlLabel
                             value="うとうと"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="うとうと"
                           />
                           <FormControlLabel
                             value="すやすや"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="すやすや"
                           />
                           <FormControlLabel
                             value="ぐっすり"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="ぐっすり"
                           />
                         </RadioGroup>
                       </FormControl>
                       <FormControl>
-                        <FormLabel id="strengths-label" sx={filterFormLabel}>
+                        <FormLabel
+                          id="strengths-label"
+                          sx={styles.filterFormLabel}
+                        >
                           睡眠タイプ
                         </FormLabel>
-                        <Box sx={formBorder} />
+                        <Box sx={styles.formBorder} />
 
                         <RadioGroup
                           aria-labelledby="strengths-label"
                           value={selectedStrengths}
                           onChange={(e) => setSelectedStrengths(e.target.value)}
                           name="strengths"
-                          sx={formRadioGroup}
+                          sx={styles.formRadioGroup}
                         >
                           <FormControlLabel
                             value="きのみ"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="きのみ"
                           />
                           <FormControlLabel
                             value="食材"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="食材"
                           />
                           <FormControlLabel
                             value="スキル"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="スキル"
                           />
                           <FormControlLabel
                             value="オール"
-                            control={<Radio sx={customRadio} />}
+                            control={<Radio sx={styles.customRadio} />}
                             label="オール"
                           />
                         </RadioGroup>
@@ -639,7 +545,7 @@ const Calculator = () => {
 
                   {modalType === "personality" && (
                     <Stack spacing={1} sx={{ alignItems: "center" }}>
-                      <Box sx={modalButton}>
+                      <Box sx={styles.modalButton}>
                         {[
                           "おてつだいスピード▲▲",
                           "おてつだいスピード▼▼",
@@ -650,12 +556,12 @@ const Calculator = () => {
                             color="inherit"
                             disableRipple
                             disableElevation
-                            sx={selectButton}
+                            sx={styles.selectButton}
                             onClick={() =>
                               handleModalSelect("personality", label)
                             }
                           >
-                            {getStyledLabel(label)}
+                            {utils.getStyledLabel(label)}
                           </Button>
                         ))}
                       </Box>
@@ -664,7 +570,7 @@ const Calculator = () => {
 
                   {modalType === "subSkill" && (
                     <Stack spacing={1} sx={{ alignItems: "center" }}>
-                      <Box sx={modalButton}>
+                      <Box sx={styles.modalButton}>
                         {[
                           "おてつだいスピードS",
                           "おてつだいスピードM",
@@ -677,7 +583,7 @@ const Calculator = () => {
                               color="inherit"
                               disableRipple
                               disableElevation
-                              sx={selectButton}
+                              sx={styles.selectButton}
                               onClick={() =>
                                 handleModalSelect("subSkill", label)
                               }
@@ -754,7 +660,7 @@ const Calculator = () => {
 
             {/* レベル */}
             <Grid container>
-              <Grid size="grow" sx={formControl}>
+              <Grid size="grow" sx={styles.formControl}>
                 <Slider
                   name="level"
                   value={
@@ -798,7 +704,7 @@ const Calculator = () => {
             </Grid>
 
             {/* ボタン */}
-            <Box sx={formControl}>
+            <Box sx={styles.formControl}>
               <Button
                 disableRipple
                 disableElevation
