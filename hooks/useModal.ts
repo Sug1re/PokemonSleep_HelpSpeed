@@ -44,6 +44,10 @@ const useModal = ({
   setModalType("pokemon");
 };
 
+ const resetFilterData = () => {
+    setFilterData(null);
+  };
+
 
   const handleSelect = (type: Exclude<ModalType, null>, value: string) => {
     if (type === "pokemon") setPokemonLabel(value);
@@ -61,6 +65,7 @@ const useModal = ({
     handleSelect,
     handleModalTypeChange,
     handleModalTypeNoChange,
+    resetFilterData,
   };
 };
 
