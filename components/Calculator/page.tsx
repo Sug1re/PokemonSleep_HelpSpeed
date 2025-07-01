@@ -23,7 +23,7 @@ import { PokemonInfo } from "@/types/pokemonInfo";
 import SearchIcon from "@mui/icons-material/Search";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
-const Calculation = () => {
+const Calculator = () => {
   // GoogleAnalytics コンポーネントは return 内に移動すべき
 
   const [pokemonData, setPokemonData] = useState<Record<string, PokemonInfo>>(
@@ -838,4 +838,4 @@ const Calculation = () => {
   );
 };
 
-export default Calculation;
+export default Calculator;

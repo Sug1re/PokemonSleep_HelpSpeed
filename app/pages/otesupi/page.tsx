@@ -6,7 +6,7 @@ const ZukanPage = () => {
   return (
     <>
       <Container maxWidth="sm">
-        <Components.Calculation />
+        <Components.Calculator />
       </Container>
     </>
   );

@@ -8,16 +8,18 @@ type HandleSelectProps = {
   setPokemonLabel: (value: string) => void;
   setPersonalityLabel: (value: string) => void;
   setSubSkillLabel: (value: string) => void;
+  resetFilterStates: () => void; 
 };
 
 const useModal = ({
   setPokemonLabel,
   setPersonalityLabel,
   setSubSkillLabel,
+  resetFilterStates,
 }: HandleSelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalType, setModalType] = useState<ModalType>(null);
-  const [filterData, setFilterData] = useState<any>(null); // 任意の型に合わせて修正
+  const [filterData, setFilterData] = useState<any>(null);
 
   const handleOpen = (type: ModalType, filters: any = null) => {
     setModalType(type);
@@ -39,12 +41,14 @@ const useModal = ({
   };
 
   const handleModalTypeNoChange = () => {
-  // フィルター情報をクリアしてから pokemon モーダルに遷移
-  setFilterData(null);
-  setModalType("pokemon");
-};
+    // フィルター情報をクリアしてから pokemon モーダルに遷移
+    resetFilterStates();
+    setFilterData(null);
+    setModalType("pokemon");
+  };
 
- const resetFilterData = () => {
+  const resetFilterData = () => {
+    resetFilterStates();
     setFilterData(null);
   };
 
