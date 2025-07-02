@@ -1,7 +1,4 @@
-import { Button } from "@/components/ui/button";
-import { LockClosedIcon } from "@heroicons/react/24/solid";
 import Head from "next/head";
-import Link from "next/link";
 import React from "react";
 
 type Props = {
