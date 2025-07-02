@@ -5,6 +5,7 @@ const ZukanPage = () => {
   return (
     <>
       <Typography>ZukanPage</Typography>
+      <Typography>test</Typography>
     </>
   );
 };
