@@ -13,19 +13,18 @@ import {
   skillGroups2,
   skillGroups3,
   skillGroups4,
-  typeGroups4,
-  typeGroups6,
   typeGroups7,
   typeGroups9,
+  typeGroups5,
 } from "@/constants/PokemonDataBase";
 
 const PokemonDataBase = () => {
   const router = useRouter();
 
-  const isWideScreen1 = useMediaQuery("(min-width:675px)");
-  const isWideScreen2 = useMediaQuery("(min-width:565px)");
-  const isWideScreen3 = useMediaQuery("(min-width:455px)");
-  const isWideScreen4 = useMediaQuery("(min-width:345px)");
+  const isWideScreen1 = useMediaQuery("(min-width:820px)");
+  const isWideScreen2 = useMediaQuery("(min-width:690px)");
+  const isWideScreen3 = useMediaQuery("(min-width:550px)");
+  const isWideScreen4 = useMediaQuery("(min-width:430px)");
 
   let numberGroups;
 
@@ -46,11 +45,11 @@ const PokemonDataBase = () => {
   if (isWideScreen1) {
     typeGroups = typeGroups9;
   } else if (isWideScreen2) {
-    typeGroups = typeGroups7;
+    typeGroups = typeGroups9;
   } else if (isWideScreen3) {
-    typeGroups = typeGroups6;
+    typeGroups = typeGroups7;
   } else {
-    typeGroups = typeGroups4;
+    typeGroups = typeGroups5;
   }
 
   let sleepTypeGroups = sleepTypeGroups3;
@@ -62,6 +61,8 @@ const PokemonDataBase = () => {
   if (isWideScreen1) {
     skillGroups = skillGroups4;
   } else if (isWideScreen2) {
+    skillGroups = skillGroups4;
+  } else if (isWideScreen3) {
     skillGroups = skillGroups3;
   } else {
     skillGroups = skillGroups2;
@@ -128,7 +129,7 @@ const PokemonDataBase = () => {
                       }}
                       onClick={() => handleRangeClick(range)}
                     >
-                      {range}
+                      No.{range}
                     </Typography>
                   ))}
                 </Box>
