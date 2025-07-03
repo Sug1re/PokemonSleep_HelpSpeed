@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useRouter } from "next/navigation";
 import {
@@ -13,10 +13,11 @@ import {
   skillGroups2,
   skillGroups3,
   skillGroups4,
+  typeGroups5,
   typeGroups7,
   typeGroups9,
-  typeGroups5,
 } from "@/constants/PokemonDataBase";
+import * as styles from "@/styles/pokemonDataBase";
 
 const PokemonDataBase = () => {
   const router = useRouter();
@@ -24,317 +25,83 @@ const PokemonDataBase = () => {
   const isWideScreen1 = useMediaQuery("(min-width:820px)");
   const isWideScreen2 = useMediaQuery("(min-width:690px)");
   const isWideScreen3 = useMediaQuery("(min-width:550px)");
-  const isWideScreen4 = useMediaQuery("(min-width:430px)");
 
-  let numberGroups;
+  const { numberGroups, typeGroups, skillGroups } = useMemo(() => {
+    const number = isWideScreen1
+      ? numberGroups6
+      : isWideScreen2
+      ? numberGroups5
+      : isWideScreen3
+      ? numberGroups4
+      : numberGroups3;
 
-  if (isWideScreen1) {
-    numberGroups = numberGroups6;
-  } else if (isWideScreen2) {
-    numberGroups = numberGroups5;
-  } else if (isWideScreen3) {
-    numberGroups = numberGroups4;
-  } else if (isWideScreen4) {
-    numberGroups = numberGroups3;
-  } else {
-    numberGroups = numberGroups3;
-  }
+    const type =
+      isWideScreen1 || isWideScreen2
+        ? typeGroups9
+        : isWideScreen3
+        ? typeGroups7
+        : typeGroups5;
 
-  let typeGroups;
+    const skill =
+      isWideScreen1 || isWideScreen2
+        ? skillGroups4
+        : isWideScreen3
+        ? skillGroups3
+        : skillGroups2;
 
-  if (isWideScreen1) {
-    typeGroups = typeGroups9;
-  } else if (isWideScreen2) {
-    typeGroups = typeGroups9;
-  } else if (isWideScreen3) {
-    typeGroups = typeGroups7;
-  } else {
-    typeGroups = typeGroups5;
-  }
-
-  let sleepTypeGroups = sleepTypeGroups3;
-
-  let strengthsGroups = strengthsGroups4;
-
-  let skillGroups;
-
-  if (isWideScreen1) {
-    skillGroups = skillGroups4;
-  } else if (isWideScreen2) {
-    skillGroups = skillGroups4;
-  } else if (isWideScreen3) {
-    skillGroups = skillGroups3;
-  } else {
-    skillGroups = skillGroups2;
-  }
+    return { numberGroups: number, typeGroups: type, skillGroups: skill };
+  }, [isWideScreen1, isWideScreen2, isWideScreen3]);
 
   const handleRangeClick = (range: string) => {
     const path = range.replace("~", "-");
     router.push(`pages/zukan/${path}`);
   };
 
-  return (
-    <>
-      <Box sx={{ pb: 4 }}>
-        <Typography
-          sx={{
-            py: 2,
-            pl: 1,
-            mb: 2,
-            borderRadius: 4,
-            color: "#ffffff",
-            backgroundColor: "#111827",
-          }}
-        >
-          ポケモン図鑑
-        </Typography>
-
-        <Box>
-          <Typography
-            sx={{
-              py: 2,
-              pl: 1,
-              mb: 0.5,
-              borderRadius: 4,
-              fontSize: "0.8rem",
-              color: "#ffffff",
-              backgroundColor: "#111827",
-            }}
-          >
-            ポケモン一覧
-          </Typography>
-          <Box sx={{ mb: 3, border: "0.5px solid #ffffff" }}>
-            {numberGroups.map((group, index) => (
-              <Box
-                key={index}
-                sx={{
-                  px: 2,
-                  py: 1,
-                  gap: 1,
-                  color: "#ffffff",
-                  backgroundColor: index % 2 === 0 ? "#111827" : "#1f2937",
-                }}
-              >
-                <Box sx={{ display: "flex", flexDirection: "row", gap: 3 }}>
-                  {group.map((range) => (
-                    <Typography
-                      key={range}
-                      sx={{
-                        fontSize: "0.8rem",
-                        cursor: "pointer",
-                        "&:hover": {
-                          textDecoration: "underline",
-                          color: "#2196f3",
-                        },
-                      }}
-                      onClick={() => handleRangeClick(range)}
-                    >
-                      No.{range}
-                    </Typography>
-                  ))}
-                </Box>
-              </Box>
-            ))}
+  const renderGroupSection = (
+    title: string,
+    groups: string[][],
+    prefix?: string
+  ) => (
+    <Box>
+      <Typography sx={styles.sectionTitleSx}>{title}</Typography>
+      <Box sx={styles.groupBoxSx}>
+        {groups.map((group, index) => (
+          <Box key={index} sx={styles.groupRowSx(index)}>
+            <Box sx={{ display: "flex", flexDirection: "row", gap: 3 }}>
+              {group.map((item) => (
+                <Typography
+                  key={item}
+                  sx={styles.linkSx}
+                  onClick={() => handleRangeClick(item)}
+                >
+                  {prefix ? `${prefix}${item}` : item}
+                </Typography>
+              ))}
+            </Box>
           </Box>
-        </Box>
-
-        <Box>
-          <Typography
-            sx={{
-              py: 2,
-              pl: 1,
-              mb: 0.5,
-              borderRadius: 4,
-              fontSize: "0.8rem",
-              color: "#ffffff",
-              backgroundColor: "#111827",
-            }}
-          >
-            タイプ別
-          </Typography>
-          <Box sx={{ mb: 3, border: "0.5px solid #ffffff" }}>
-            {typeGroups.map((group, index) => (
-              <Box
-                key={index}
-                sx={{
-                  px: 2,
-                  py: 1,
-                  gap: 1,
-                  color: "#ffffff",
-                  backgroundColor: index % 2 === 0 ? "#111827" : "#1f2937",
-                }}
-              >
-                <Box sx={{ display: "flex", flexDirection: "row", gap: 3 }}>
-                  {group.map((range) => (
-                    <Typography
-                      key={range}
-                      sx={{
-                        fontSize: "0.8rem",
-                        cursor: "pointer",
-                        "&:hover": {
-                          textDecoration: "underline",
-                          color: "#2196f3",
-                        },
-                      }}
-                      onClick={() => handleRangeClick(range)}
-                    >
-                      {range}
-                    </Typography>
-                  ))}
-                </Box>
-              </Box>
-            ))}
-          </Box>
-        </Box>
-
-        <Box>
-          <Typography
-            sx={{
-              py: 2,
-              pl: 1,
-              mb: 0.5,
-              borderRadius: 4,
-              fontSize: "0.8rem",
-              color: "#ffffff",
-              backgroundColor: "#111827",
-            }}
-          >
-            睡眠タイプ別
-          </Typography>
-          <Box sx={{ mb: 3, border: "0.5px solid #ffffff" }}>
-            {sleepTypeGroups.map((group, index) => (
-              <Box
-                key={index}
-                sx={{
-                  px: 2,
-                  py: 1,
-                  gap: 1,
-                  color: "#ffffff",
-                  backgroundColor: index % 2 === 0 ? "#111827" : "#1f2937",
-                }}
-              >
-                <Box sx={{ display: "flex", flexDirection: "row", gap: 3 }}>
-                  {group.map((range) => (
-                    <Typography
-                      key={range}
-                      sx={{
-                        fontSize: "0.8rem",
-                        cursor: "pointer",
-                        "&:hover": {
-                          textDecoration: "underline",
-                          color: "#2196f3",
-                        },
-                      }}
-                      onClick={() => handleRangeClick(range)}
-                    >
-                      {range}
-                    </Typography>
-                  ))}
-                </Box>
-              </Box>
-            ))}
-          </Box>
-        </Box>
-
-        <Box>
-          <Typography
-            sx={{
-              py: 2,
-              pl: 1,
-              mb: 0.5,
-              borderRadius: 4,
-              fontSize: "0.8rem",
-              color: "#ffffff",
-              backgroundColor: "#111827",
-            }}
-          >
-            とくいなもの別
-          </Typography>
-          <Box sx={{ mb: 3, border: "0.5px solid #ffffff" }}>
-            {strengthsGroups.map((group, index) => (
-              <Box
-                key={index}
-                sx={{
-                  px: 2,
-                  py: 1,
-                  gap: 1,
-                  color: "#ffffff",
-                  backgroundColor: index % 2 === 0 ? "#111827" : "#1f2937",
-                }}
-              >
-                <Box sx={{ display: "flex", flexDirection: "row", gap: 3 }}>
-                  {group.map((range) => (
-                    <Typography
-                      key={range}
-                      sx={{
-                        fontSize: "0.8rem",
-                        cursor: "pointer",
-                        "&:hover": {
-                          textDecoration: "underline",
-                          color: "#2196f3",
-                        },
-                      }}
-                      onClick={() => handleRangeClick(range)}
-                    >
-                      {range}
-                    </Typography>
-                  ))}
-                </Box>
-              </Box>
-            ))}
-          </Box>
-        </Box>
-
-        <Box>
-          <Typography
-            sx={{
-              py: 2,
-              pl: 1,
-              mb: 0.5,
-              borderRadius: 4,
-              fontSize: "0.8rem",
-              color: "#ffffff",
-              backgroundColor: "#111827",
-            }}
-          >
-            メインスキル別
-          </Typography>
-          <Box sx={{ border: "0.5px solid #ffffff" }}>
-            {skillGroups.map((group, index) => (
-              <Box
-                key={index}
-                sx={{
-                  px: 2,
-                  py: 1,
-                  gap: 1,
-                  color: "#ffffff",
-                  backgroundColor: index % 2 === 0 ? "#111827" : "#1f2937",
-                }}
-              >
-                <Box sx={{ display: "flex", flexDirection: "row", gap: 3 }}>
-                  {group.map((range) => (
-                    <Typography
-                      key={range}
-                      sx={{
-                        fontSize: "0.8rem",
-                        cursor: "pointer",
-                        "&:hover": {
-                          textDecoration: "underline",
-                          color: "#2196f3",
-                        },
-                      }}
-                      onClick={() => handleRangeClick(range)}
-                    >
-                      {range}
-                    </Typography>
-                  ))}
-                </Box>
-              </Box>
-            ))}
-          </Box>
-        </Box>
+        ))}
       </Box>
-    </>
+    </Box>
+  );
+
+  return (
+    <Box sx={{ pb: 4 }}>
+      <Typography
+        sx={{
+          ...styles.sectionTitleSx,
+          fontSize: "1rem",
+          mb: 2,
+        }}
+      >
+        ポケモン図鑑
+      </Typography>
+
+      {renderGroupSection("ポケモン一覧", numberGroups, "No.")}
+      {renderGroupSection("タイプ別", typeGroups)}
+      {renderGroupSection("睡眠タイプ別", sleepTypeGroups3)}
+      {renderGroupSection("とくいなもの別", strengthsGroups4)}
+      {renderGroupSection("メインスキル別", skillGroups)}
+    </Box>
   );
 };
 
