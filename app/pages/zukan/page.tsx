@@ -1,11 +1,13 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import * as Components from "@/components/index";
+import { Container } from "@mui/material";
 
 const ZukanPage = () => {
   return (
     <>
-      <Typography>ZukanPage</Typography>
-      <Typography>test</Typography>
+      <Container maxWidth="md">
+        <Components.pokemonDataBase />
+      </Container>
     </>
   );
 };
