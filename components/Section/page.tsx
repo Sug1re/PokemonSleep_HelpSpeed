@@ -9,11 +9,11 @@ import { useRouter } from "next/navigation";
 const menuLabels = ["イベント", "図鑑", "おてスピ計", "料理", "食材期待値"];
 
 const pathMap: Record<string, string> = {
-  イベント: "/pages/events",
-  図鑑: "/pages/zukan",
-  おてスピ計: "/pages/otesupi",
-  料理: "/pages/cooking",
-  食材期待値: "/pages/ingredients",
+  イベント: "/events",
+  図鑑: "/zukan",
+  おてスピ計: "/otesupi",
+  料理: "/cooking",
+  食材期待値: "/ingredients",
 };
 
 const Section = () => {

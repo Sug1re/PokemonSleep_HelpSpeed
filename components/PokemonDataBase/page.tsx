@@ -3,21 +3,8 @@
 import React, { useMemo } from "react";
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useRouter } from "next/navigation";
-import {
-  numberGroups3,
-  numberGroups4,
-  numberGroups5,
-  numberGroups6,
-  sleepTypeGroups3,
-  strengthsGroups4,
-  skillGroups2,
-  skillGroups3,
-  skillGroups4,
-  typeGroups5,
-  typeGroups7,
-  typeGroups9,
-} from "@/constants/PokemonDataBase";
 import * as styles from "@/styles/pokemonDataBase";
+import { getResponsiveGroups } from "@/lib/responsiveGroups";
 
 const PokemonDataBase = () => {
   const router = useRouter();
@@ -25,36 +12,28 @@ const PokemonDataBase = () => {
   const isWideScreen1 = useMediaQuery("(min-width:820px)");
   const isWideScreen2 = useMediaQuery("(min-width:690px)");
   const isWideScreen3 = useMediaQuery("(min-width:550px)");
+  const isWideScreen4 = useMediaQuery("(min-width:420px)");
 
-  const { numberGroups, typeGroups, skillGroups } = useMemo(() => {
-    const number = isWideScreen1
-      ? numberGroups6
-      : isWideScreen2
-      ? numberGroups5
-      : isWideScreen3
-      ? numberGroups4
-      : numberGroups3;
-
-    const type =
-      isWideScreen1 || isWideScreen2
-        ? typeGroups9
-        : isWideScreen3
-        ? typeGroups7
-        : typeGroups5;
-
-    const skill =
-      isWideScreen1 || isWideScreen2
-        ? skillGroups4
-        : isWideScreen3
-        ? skillGroups3
-        : skillGroups2;
-
-    return { numberGroups: number, typeGroups: type, skillGroups: skill };
-  }, [isWideScreen1, isWideScreen2, isWideScreen3]);
+  const {
+    numberGroups,
+    typeGroups,
+    sleepTypeGroups,
+    strengthsGroups,
+    skillGroups,
+  } = useMemo(
+    () =>
+      getResponsiveGroups(
+        isWideScreen1,
+        isWideScreen2,
+        isWideScreen3,
+        isWideScreen4
+      ),
+    [isWideScreen1, isWideScreen2, isWideScreen3, isWideScreen4]
+  );
 
   const handleRangeClick = (range: string) => {
-    const path = range.replace("~", "-");
-    router.push(`pages/zukan/${path}`);
+    const path = range.replace("〜", "-");
+    router.push(`/zukan/${path}`);
   };
 
   const renderGroupSection = (
@@ -67,7 +46,7 @@ const PokemonDataBase = () => {
       <Box sx={styles.groupBoxSx}>
         {groups.map((group, index) => (
           <Box key={index} sx={styles.groupRowSx(index)}>
-            <Box sx={{ display: "flex", flexDirection: "row", gap: 3 }}>
+            <Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
               {group.map((item) => (
                 <Typography
                   key={item}
@@ -98,8 +77,8 @@ const PokemonDataBase = () => {
 
       {renderGroupSection("ポケモン一覧", numberGroups, "No.")}
       {renderGroupSection("タイプ別", typeGroups)}
-      {renderGroupSection("睡眠タイプ別", sleepTypeGroups3)}
-      {renderGroupSection("とくいなもの別", strengthsGroups4)}
+      {renderGroupSection("睡眠タイプ別", sleepTypeGroups)}
+      {renderGroupSection("とくいなもの別", strengthsGroups)}
       {renderGroupSection("メインスキル別", skillGroups)}
     </Box>
   );
