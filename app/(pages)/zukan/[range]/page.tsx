@@ -8,9 +8,10 @@ const DynamicPage = () => {
   const params = useParams();
   const rangeParam = params?.range;
 
-  // 例: "001-050" → "001~050"
   const formattedRange =
-    typeof rangeParam === "string" ? rangeParam.replace("-", "〜") : "";
+    typeof rangeParam === "string"
+      ? decodeURIComponent(rangeParam).replace("-", "〜")
+      : "";
 
   return (
     <>

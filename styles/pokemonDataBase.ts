@@ -1,11 +1,12 @@
 export const sectionTitleSx = {
-  py: 2,
-  pl: 1,
+  p: 2,
   mb: 0.5,
   borderRadius: 4,
   fontSize: "0.8rem",
   color: "#ffffff",
   backgroundColor: "#111827",
+  display:"flex",
+  justifyContent: "space-between",
 };
 
 export const groupBoxSx = {
@@ -28,4 +29,10 @@ export const linkSx = {
     textDecoration: "underline",
     color: "#2196f3",
   },
+};
+
+export const dropIconSx = {
+  padding: 0,
+  color: "#ffffff",
+  backgroundColor: "transparent",
 };
