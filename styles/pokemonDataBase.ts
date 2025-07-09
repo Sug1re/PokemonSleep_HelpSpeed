@@ -36,3 +36,7 @@ export const dropIconSx = {
   color: "#ffffff",
   backgroundColor: "transparent",
 };
+
+export const tableSx = {
+  color: "#ffffff", backgroundColor: "#111827"
+};
