@@ -4,4 +4,5 @@ export type PokemonInfo = {
   strengths: string;
   speed: string;
   berry: string;
+  mainSkill: string;
 };

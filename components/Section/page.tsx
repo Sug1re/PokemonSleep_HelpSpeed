@@ -6,14 +6,20 @@ import * as styles from "@/styles/section";
 
 import { useRouter } from "next/navigation";
 
-const menuLabels = ["イベント", "図鑑", "おてスピ計", "料理", "食材期待値"];
+const menuLabels = [
+  // "イベント",
+  "図鑑",
+  "おてスピ計",
+  //  "料理",
+  //  "食材期待値"
+];
 
 const pathMap: Record<string, string> = {
-  イベント: "/events",
+  // イベント: "/events",
   図鑑: "/zukan",
   おてスピ計: "/otesupi",
-  料理: "/cooking",
-  食材期待値: "/ingredients",
+  // 料理: "/cooking",
+  // 食材期待値: "/ingredients",
 };
 
 const Section = () => {
