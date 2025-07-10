@@ -2,14 +2,13 @@ import React from "react";
 import * as Components from "@/components/index";
 import { Container } from "@mui/material";
 
-const HOME = () => {
+const ZukanPage = () => {
   return (
     <>
-      <Container maxWidth="sm">
-        <Components.Calculator />
+      <Container maxWidth="md">
+        <Components.pokemonDataBase />
       </Container>
     </>
   );
 };
-
-export default HOME;
+export default ZukanPage;
