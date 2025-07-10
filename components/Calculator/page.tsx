@@ -303,7 +303,7 @@ const Calculator = () => {
             sx={{
               mt: 8,
               mb: 4,
-              width: "60%",
+              width: "85%",
               borderRadius: 4,
               color: "#ffffff",
               backgroundColor: "#111827",
