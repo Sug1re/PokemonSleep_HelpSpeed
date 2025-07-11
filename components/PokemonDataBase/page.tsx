@@ -106,7 +106,7 @@ const PokemonDataBase = () => {
         ポケモン図鑑
       </Typography>
 
-      {renderGroupSection("ポケモン一覧", numberGroups, "No.")}
+      {renderGroupSection("番号別", numberGroups, "No.")}
       {renderGroupSection("タイプ別", typeGroups)}
       {renderGroupSection("睡眠タイプ別", sleepTypeGroups)}
       {renderGroupSection("とくいなもの別", strengthsGroups)}
