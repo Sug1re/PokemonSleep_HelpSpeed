@@ -1,11 +1,14 @@
 import React from "react";
 import * as Components from "@/components/index";
 import { Container, Typography } from "@mui/material";
+import SelectPokemonButton from "@/components/Buttons/SelectPokemonButton";
 
 const HOME = () => {
   return (
     <>
       <Container maxWidth="sm">
+        <SelectPokemonButton />
+
         <Components.Calculator />
 
         <Typography
