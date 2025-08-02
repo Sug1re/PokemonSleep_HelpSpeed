@@ -1,12 +1,12 @@
 import React from "react";
-import * as Components from "@/components/index";
 import { Container } from "@mui/material";
+import Calculator from "@/components/Calculator/page";
 
 const ZukanPage = () => {
   return (
     <>
       <Container maxWidth="sm">
-        <Components.Calculator />
+        <Calculator />
       </Container>
     </>
   );

@@ -1,15 +1,15 @@
 import React from "react";
-import * as Components from "@/components/index";
 import { Container, Typography } from "@mui/material";
-import SelectPokemonButton from "@/components/Buttons/SelectPokemonButton";
+import Calculator from "@/components/Calculator/page";
+import CalculatorForm from "@/components/Forms/CalculatorForm";
 
 const HOME = () => {
   return (
     <>
       <Container maxWidth="sm">
-        <SelectPokemonButton />
+        <CalculatorForm />
 
-        <Components.Calculator />
+        <Calculator />
 
         <Typography
           variant="body2"

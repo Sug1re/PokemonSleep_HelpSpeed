@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Box,
-  Button,
   Card,
   FormControl,
   Modal as MuiModal,
@@ -14,16 +13,23 @@ type Props = {
   title: string;
   isOpen: boolean;
   onClose: () => void;
+  type?: "filter" | "other";
 };
 
-const BaseModal = ({ children, title, isOpen, onClose }: Props) => {
+const BaseModal = ({
+  children,
+  title,
+  isOpen,
+  onClose,
+  type = "other",
+}: Props) => {
   return (
     <>
       <MuiModal
         open={isOpen}
         onClose={onClose}
         BackdropProps={{
-          sx: { backgroundColor: "rgba(0, 0, 0, 0.7)" },
+          sx: { backgroundColor: "rgba(170, 170, 170, 0.31)" },
         }}
       >
         <Card
@@ -42,7 +48,7 @@ const BaseModal = ({ children, title, isOpen, onClose }: Props) => {
               py: 1,
               display: "flex",
               alignItems: "center",
-              justifyContent: "space-between",
+              justifyContent: "space-around",
               bgcolor: "#f44336",
             }}
           >
@@ -50,36 +56,47 @@ const BaseModal = ({ children, title, isOpen, onClose }: Props) => {
               sx={{
                 fontWeight: "bold",
                 color: "#FFFFFF",
-                pl: "5%",
                 backgroundColor: "#f44336",
                 width: "50%",
               }}
             >
               {title}
             </Typography>
-            <RoundButton color="light" type="submit" width="40%">
-              キャンセル
+            <RoundButton
+              color="light"
+              type="submit"
+              size="small"
+              onClick={onClose}
+            >
+              {type === "other" ? "キャンセル" : "リセット"}
             </RoundButton>
           </Box>
 
           <FormControl fullWidth>{children}</FormControl>
 
-          <Box
-            sx={{
-              borderTop: "1px solid #e0e0e0",
-              py: 1,
-              display: "flex",
-              justifyContent: "space-around",
-              bgcolor: "#fff",
-            }}
-          >
-            <RoundButton color="light" type="submit" width="40%">
-              キャンセル
-            </RoundButton>
-            <RoundButton color="green" type="submit" width="40%">
-              OK
-            </RoundButton>
-          </Box>
+          {type === "filter" && (
+            <Box
+              sx={{
+                borderTop: "1px solid #e0e0e0",
+                py: 1,
+                display: "flex",
+                justifyContent: "space-around",
+                bgcolor: "#fff",
+              }}
+            >
+              <RoundButton
+                color="light"
+                type="submit"
+                width="40%"
+                onClick={onClose}
+              >
+                キャンセル
+              </RoundButton>
+              <RoundButton color="green" type="submit" width="40%">
+                OK
+              </RoundButton>
+            </Box>
+          )}
         </Card>
       </MuiModal>
     </>

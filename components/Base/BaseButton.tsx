@@ -27,12 +27,12 @@ export const BaseButton = ({
       sx={{
         width,
         margin: "0 auto", // ★ 中央寄せ
-        display: "block", // ★ 横方向の中央寄せには block にする
+        display: "flex",
         color: color === "dark" ? "#ffffff" : "#111827",
         bgcolor: color === "dark" ? "#111827" : "#ffffff",
         "&:hover": {
           backgroundColor: "#111827",
-          color: color === "dark" ? "#111827" : "#ffffff",
+          color: "#ffffff",
           transform: "scale(0.95)",
         },
         transition: "all 0.3s ease",

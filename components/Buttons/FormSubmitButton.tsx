@@ -4,7 +4,7 @@ import { BaseButton } from "../Base/BaseButton";
 const FormSubmitButton = () => {
   return (
     <>
-      <BaseButton color="dark" type="submit" width="60%" borderRadius="4px">
+      <BaseButton color="dark" type="submit" width="60%">
         計算
       </BaseButton>
     </>

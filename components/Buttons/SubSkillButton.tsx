@@ -1,14 +1,14 @@
 import React from "react";
 import { BaseButton } from "../Base/BaseButton";
 
-const SelectSubSkillButton = () => {
+const SubSkillButton = () => {
   return (
     <>
-      <BaseButton color="light" type="button" width="80%" borderRadius="4px">
+      <BaseButton color="light" type="button" width="80%">
         サブスキル
       </BaseButton>
     </>
   );
 };
 
-export default SelectSubSkillButton;
+export default SubSkillButton;

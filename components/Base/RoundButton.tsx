@@ -7,6 +7,7 @@ type Props = {
   color?: "green" | "light";
   type?: "button" | "submit";
   width?: string;
+  size?: " normal" | "small";
   leftIcon?: React.ReactNode;
 };
 
@@ -16,6 +17,7 @@ export const RoundButton = ({
   color = "light",
   type = "button",
   width = "auto",
+  size = " normal",
   leftIcon,
 }: Props): React.ReactElement => {
   return (
@@ -26,8 +28,8 @@ export const RoundButton = ({
       type={type}
       sx={{
         width,
-        margin: "0 auto", // ★ 中央寄せ
-        display: "block", // ★ 横方向の中央寄せには block にする
+        px: size === "small" ? 2.5 : 1,
+        py: size === "small" ? 0.25 : 1,
         fontSize: "12px",
         borderRadius: "18px",
         border: 0.5,

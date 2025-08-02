@@ -13,7 +13,6 @@ import {
   Typography,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import SelectPokemonFilterModal from "./SelectPokemonFilterModal";
 import {
   berryOptions,
   sleepTypeOptions,

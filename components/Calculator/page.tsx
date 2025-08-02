@@ -11,13 +11,13 @@ import {
   Grid,
   Input,
 } from "@mui/material";
-import * as Components from "@/components/index";
 import * as CustomHook from "@/hooks/index";
 import * as utils from "@/utils/index";
 import * as styles from "@/styles/calculator";
 import { calculatePokemonSpeed } from "@/lib/api/pokemon";
 import { filterPokemon } from "@/lib/filter";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Modal from "../Modals/page";
 
 const Calculator = () => {
   // GoogleAnalytics コンポーネントは return 内に移動すべき
@@ -206,7 +206,7 @@ const Calculator = () => {
               );
             })}
 
-            <Components.Modal
+            <Modal
               isOpen={isOpen}
               modalType={modalType}
               filterLabel={filterLabel}
