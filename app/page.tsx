@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Typography } from "@mui/material";
-import Calculator from "@/components/Calculator/page";
 import CalculatorForm from "@/components/Forms/CalculatorForm";
 
 const HOME = () => {
@@ -8,8 +7,6 @@ const HOME = () => {
     <>
       <Container maxWidth="sm">
         <CalculatorForm />
-
-        <Calculator />
 
         <Typography
           variant="body2"

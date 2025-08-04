@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { Box, Grid, Input, Slider, Stack, Typography } from "@mui/material";
 
 import { calculatePokemonSpeed } from "@/lib/api/pokemon";
-import * as styles from "@/styles/calculator";
 
 import PokemonButton from "../Buttons/PokemonButton";
 import PersonalityButton from "../Buttons/PersonalityButton";
@@ -55,7 +54,6 @@ const CalculatorForm = () => {
     e.preventDefault();
     setError("");
     setResult(null);
-    console.log("送信データ:", formData);
 
     try {
       const data = await calculatePokemonSpeed(formData);
@@ -140,7 +138,7 @@ const CalculatorForm = () => {
         </Stack>
       </form>
 
-      <Box sx={styles.formControl}>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
         <Box
           sx={{
             mt: 8,
@@ -159,7 +157,7 @@ const CalculatorForm = () => {
       </Box>
 
       {error && (
-        <Box sx={styles.formControl}>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Typography color="error">{error}</Typography>
         </Box>
       )}

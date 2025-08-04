@@ -1,12 +1,11 @@
 "use client";
 
 import React from "react";
+import { Box, Stack, Typography } from "@mui/material";
 import { useDisclosure } from "@mantine/hooks";
 import SearchIcon from "@mui/icons-material/Search";
 import BaseModal from "../Base/BaseModal";
-import { BaseButton } from "../Base/BaseButton";
-import { Box, Stack, Typography } from "@mui/material";
-import * as styles from "@/styles/calculator";
+import BaseButton from "../Base/BaseButton";
 import PokemonFilterModal from "./PokemonFilterModal";
 import { useRadioLabel } from "@/hooks/useRadioLabel";
 
@@ -70,7 +69,7 @@ const PokemonModal = ({
           sx={{ maxHeight: 300, overflowY: "auto", mt: 2 }}
         >
           {getFilteredPokemon().length === 0 ? (
-            <Box sx={styles.formControl}>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
               <Typography
                 sx={{
                   color: "#f44336",

@@ -11,7 +11,7 @@ type Props = {
   leftIcon?: React.ReactNode;
 };
 
-export const BaseButton = ({
+const BaseButton = ({
   children,
   onClick,
   color = "light",
@@ -52,3 +52,5 @@ export const BaseButton = ({
     </Button>
   );
 };
+
+export default BaseButton;
