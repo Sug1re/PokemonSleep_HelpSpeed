@@ -13,6 +13,8 @@ type Props = {
   title: string;
   isOpen: boolean;
   onClose: () => void;
+  onReset?: () => void;
+  onSubmit?: () => void;
   type?: "filter" | "other";
 };
 
@@ -21,6 +23,8 @@ const BaseModal = ({
   title,
   isOpen,
   onClose,
+  onReset,
+  onSubmit,
   type = "other",
 }: Props) => {
   return (
@@ -35,7 +39,7 @@ const BaseModal = ({
         <Card
           sx={{
             position: "absolute",
-            top: "50%",
+            top: "70%",
             left: "50%",
             transform: "translate(-50%, -50%)",
             width: { xs: "90%", sm: "80%", md: "60%" },
@@ -66,9 +70,9 @@ const BaseModal = ({
               color="light"
               type="submit"
               size="small"
-              onClick={onClose}
+              onClick={type === "filter" && onReset ? onReset : onClose}
             >
-              {type === "other" ? "キャンセル" : "リセット"}
+              {type === "filter" ? "リセット" : "キャンセル"}
             </RoundButton>
           </Box>
 
@@ -88,11 +92,22 @@ const BaseModal = ({
                 color="light"
                 type="submit"
                 width="40%"
-                onClick={onClose}
+                onClick={() => {
+                  if (onReset) onReset();
+                  onClose();
+                }}
               >
                 キャンセル
               </RoundButton>
-              <RoundButton color="green" type="submit" width="40%">
+              <RoundButton
+                color="green"
+                type="submit"
+                width="40%"
+                onClick={() => {
+                  if (onSubmit) onSubmit();
+                  onClose();
+                }}
+              >
                 OK
               </RoundButton>
             </Box>

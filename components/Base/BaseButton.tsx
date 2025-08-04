@@ -1,5 +1,6 @@
-import { Button } from "@mui/material";
 import React from "react";
+import { Button } from "@mui/material";
+import { getStyledLabel } from "@/utils/index";
 
 type Props = {
   children: React.ReactNode;
@@ -18,6 +19,14 @@ export const BaseButton = ({
   width = "auto",
   leftIcon,
 }: Props): React.ReactElement => {
+  const renderChildren = () => {
+    if (typeof children === "string") {
+      if (children.includes("▲▲") || children.includes("▼▼")) {
+        return getStyledLabel(children);
+      }
+    }
+    return children;
+  };
   return (
     <Button
       disableRipple
@@ -26,7 +35,7 @@ export const BaseButton = ({
       type={type}
       sx={{
         width,
-        margin: "0 auto", // ★ 中央寄せ
+        margin: "0 auto", // 中央寄せ
         display: "flex",
         color: color === "dark" ? "#ffffff" : "#111827",
         bgcolor: color === "dark" ? "#111827" : "#ffffff",
@@ -39,7 +48,7 @@ export const BaseButton = ({
       }}
       startIcon={leftIcon}
     >
-      {children}
+      {renderChildren()}
     </Button>
   );
 };

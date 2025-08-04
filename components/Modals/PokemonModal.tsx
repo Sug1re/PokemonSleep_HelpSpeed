@@ -7,12 +7,16 @@ import BaseModal from "../Base/BaseModal";
 import { BaseButton } from "../Base/BaseButton";
 import { Box, Stack, Typography } from "@mui/material";
 import * as styles from "@/styles/calculator";
-import SelectPokemonFilterModal from "./PokemonFilterModal";
+import PokemonFilterModal from "./PokemonFilterModal";
 
 type Props = {
   opened: boolean;
   onClose: () => void;
   getFilteredPokemon: () => string[];
+  selectedBerry: string;
+  setSelectedBerry: (value: string) => void;
+  filterStatus: string;
+  setFilterStatus: (label: string) => void;
   onSelect: (label: string) => void;
 };
 
@@ -20,6 +24,10 @@ const PokemonModal = ({
   opened,
   onClose,
   getFilteredPokemon,
+  selectedBerry,
+  setSelectedBerry,
+  filterStatus,
+  setFilterStatus,
   onSelect,
 }: Props): React.ReactElement => {
   const [isFilterOpen, { open: openFilter, close: closeFilter }] =
@@ -27,7 +35,13 @@ const PokemonModal = ({
 
   if (isFilterOpen) {
     return (
-      <SelectPokemonFilterModal opened={isFilterOpen} onClose={closeFilter} />
+      <PokemonFilterModal
+        opened={isFilterOpen}
+        onClose={closeFilter}
+        selectedBerry={selectedBerry}
+        setSelectedBerry={setSelectedBerry}
+        setFilterStatus={setFilterStatus}
+      />
     );
   }
 
@@ -39,9 +53,11 @@ const PokemonModal = ({
           type="button"
           width="50%"
           leftIcon={<SearchIcon />}
-          onClick={openFilter}
+          onClick={() => {
+            openFilter();
+          }}
         >
-          OFF
+          {filterStatus}
         </BaseButton>
 
         <Stack
@@ -64,11 +80,11 @@ const PokemonModal = ({
               <BaseButton
                 color="light"
                 type="button"
-                width="80%"
+                width="60%"
                 key={index}
                 onClick={() => {
                   onSelect(label);
-                  onClose(); // モーダルを閉じるのもここでOK
+                  onClose();
                 }}
               >
                 {label}

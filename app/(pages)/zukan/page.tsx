@@ -1,12 +1,12 @@
 import React from "react";
-import * as Components from "@/components/index";
 import { Container } from "@mui/material";
+import PokemonDataBase from "@/components/PokemonDataBase/page";
 
 const ZukanPage = () => {
   return (
     <>
       <Container maxWidth="md">
-        <Components.pokemonDataBase />
+        <PokemonDataBase />
       </Container>
     </>
   );

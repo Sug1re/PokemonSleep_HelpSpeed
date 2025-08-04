@@ -1,138 +1,85 @@
-import React from "react";
-import {
-  Box,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
-  Stack,
-} from "@mui/material";
+"use client";
+
+import React, { useEffect } from "react";
+import { Box, Stack } from "@mui/material";
 import {
   berryOptions,
   sleepTypeOptions,
   strengthsOptions,
 } from "@/constants/options";
-import * as styles from "@/styles/calculator";
 import BaseModal from "../Base/BaseModal";
-
+import BaseRadio from "../Base/BaseRadio";
+import { useRadioLabel } from "@/hooks/useRadioLabel";
 type Props = {
   opened: boolean;
   onClose: () => void;
-  // filterLabel: string;
-  // selectedBerry: string;
-  // selectedSleepType: string;
-  // selectedStrengths: string;
-  // getFilteredPokemonKeys: () => string[];
-  // handleClose: () => void;
-  // handleModalTypeChange: () => void;
-  // handleModalTypeNoChange: () => void;
-  // handleModalSelect: (
-  //   type: "pokemon" | "personality" | "subSkill",
-  //   value: string
-  // ) => void;
-  // resetFilterData: () => void;
-  // setSelectedBerry: (value: string) => void;
-  // setSelectedSleepType: (value: string) => void;
-  // setSelectedStrengths: (value: string) => void;
+  selectedBerry: string;
+  setSelectedBerry: (value: string) => void;
+  setFilterStatus: (value: string) => void;
 };
 
 const PokemonFilterModal = ({
   opened,
   onClose,
-}: // selectedBerry,
-// selectedSleepType,
-// selectedStrengths,
-// setSelectedBerry,
-// setSelectedSleepType,
-// setSelectedStrengths,
-Props) => {
+  selectedBerry,
+  setSelectedBerry,
+  setFilterStatus,
+}: Props) => {
+  const {
+    tempRadioLabel,
+    updateTempRadioLabel,
+    resetTempRadioLabel,
+    submitRadioLabel,
+  } = useRadioLabel({
+    stateRadioLabel: selectedBerry,
+  });
+
+  useEffect(() => {
+    if (opened) {
+      updateTempRadioLabel(selectedBerry);
+    }
+  }, [opened, selectedBerry, updateTempRadioLabel]);
+
+  const handleReset = () => {
+    resetTempRadioLabel();
+    setSelectedBerry("");
+    setFilterStatus("OFF");
+  };
+
+  const handleSubmit = () => {
+    submitRadioLabel();
+    setSelectedBerry(tempRadioLabel);
+    setFilterStatus(tempRadioLabel === "" ? "OFF" : "ON");
+  };
+
   return (
     <>
       <BaseModal
         title="絞り込む"
         isOpen={opened}
         onClose={onClose}
+        onReset={handleReset}
+        onSubmit={handleSubmit}
         type="filter"
       >
-        a
-        {/* <FormControl fullWidth sx={{ my: 2 }}>
+        <Box sx={{ py: 2 }}>
           <Stack
             spacing={1}
             sx={{
               maxHeight: 300,
               overflowY: "auto",
-              mx: 12,
+              alignItems: "center",
             }}
           >
-            <FormControl>
-              <FormLabel id="berry-label" sx={styles.filterFormLabel}>
-                タイプ
-              </FormLabel>
-              <Box sx={styles.formBorder} />
-              <RadioGroup
-                aria-labelledby="berry-label"
-                value={selectedBerry}
-                onChange={(e) => setSelectedBerry(e.target.value)}
-                name="berry"
-                sx={styles.formRadioGroup}
-              >
-                {berryOptions.map(({ value, label }) => (
-                  <FormControlLabel
-                    key={value}
-                    value={value}
-                    control={<Radio sx={styles.customRadio} />}
-                    label={label}
-                  />
-                ))}
-              </RadioGroup>
-            </FormControl>
-            <FormControl>
-              <FormLabel id="sleepType-label" sx={styles.filterFormLabel}>
-                睡眠タイプ
-              </FormLabel>
-              <Box sx={styles.formBorder} />
-              <RadioGroup
-                aria-labelledby="sleepType-label"
-                value={selectedSleepType}
-                onChange={(e) => setSelectedSleepType(e.target.value)}
-                name="sleepType"
-                sx={styles.formRadioGroup}
-              >
-                {sleepTypeOptions.map(({ value, label }) => (
-                  <FormControlLabel
-                    key={value}
-                    value={value}
-                    control={<Radio sx={styles.customRadio} />}
-                    label={label}
-                  />
-                ))}
-              </RadioGroup>
-            </FormControl>
-            <FormControl>
-              <FormLabel id="strengths-label" sx={styles.filterFormLabel}>
-                とくいなもの
-              </FormLabel>
-              <Box sx={styles.formBorder} />
-              <RadioGroup
-                aria-labelledby="strengths-label"
-                value={selectedStrengths}
-                onChange={(e) => setSelectedStrengths(e.target.value)}
-                name="strengths"
-                sx={styles.formRadioGroup}
-              >
-                {strengthsOptions.map(({ value, label }) => (
-                  <FormControlLabel
-                    key={value}
-                    value={value}
-                    control={<Radio sx={styles.customRadio} />}
-                    label={label}
-                  />
-                ))}
-              </RadioGroup>
-            </FormControl>
+            <BaseRadio
+              title="タイプ"
+              width="80%"
+              maps={berryOptions}
+              stateRadioLabel={tempRadioLabel}
+              onChange={updateTempRadioLabel}
+            />
           </Stack>
-        </FormControl> */}
+        </Box>
       </BaseModal>
     </>
   );
