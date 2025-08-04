@@ -6,12 +6,23 @@ import { useDisclosure } from "@mantine/hooks";
 import { useLabel } from "@/hooks/useLabel";
 import SubSkillModal from "../Modals/SubSkillModal";
 
-const SubSkillButton = () => {
+type Props = {
+  value: string;
+  onSelect: (name: string) => void;
+};
+
+const SubSkillButton = ({ value, onSelect }: Props) => {
   const [isOpened, handlers] = useDisclosure(false);
 
   const { selectedLabel, setLabel } = useLabel({
-    stateLabel: "サブスキル",
+    stateLabel: value || "サブスキル",
   });
+
+  const handleSelect = (label: string) => {
+    setLabel(label);
+    onSelect(label);
+  };
+
   return (
     <>
       <BaseButton
@@ -26,7 +37,7 @@ const SubSkillButton = () => {
       <SubSkillModal
         opened={isOpened}
         onClose={handlers.close}
-        onSelect={setLabel}
+        onSelect={handleSelect}
       />
     </>
   );

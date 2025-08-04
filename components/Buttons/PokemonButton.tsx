@@ -8,12 +8,17 @@ import * as CustomHook from "@/hooks/index";
 import { useLabel } from "@/hooks/useLabel";
 import { useRadioLabel } from "@/hooks/useRadioLabel";
 
-const PokemonButton = () => {
+type Props = {
+  value: string;
+  onSelect: (name: string) => void;
+};
+
+const PokemonButton = ({ value, onSelect }: Props) => {
   const [isOpened, handlers] = useDisclosure(false);
   const { pokemonData } = CustomHook.usePokemonData();
 
   const { selectedLabel, setLabel } = useLabel({
-    stateLabel: "ポケモン",
+    stateLabel: value || "ポケモン",
   });
 
   const berryLabel = useRadioLabel({ stateRadioLabel: "" });
@@ -40,6 +45,11 @@ const PokemonButton = () => {
     return Object.keys(pokemonData);
   };
 
+  const handleSelect = (label: string) => {
+    setLabel(label);
+    onSelect(label);
+  };
+
   return (
     <>
       <BaseButton
@@ -60,7 +70,7 @@ const PokemonButton = () => {
         strengthLabel={strengthLabel}
         filterStatus={filterStatus}
         setFilterStatus={setFilterStatus}
-        onSelect={setLabel}
+        onSelect={handleSelect}
       />
     </>
   );
