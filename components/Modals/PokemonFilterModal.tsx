@@ -13,43 +13,50 @@ import { useRadioLabel } from "@/hooks/useRadioLabel";
 type Props = {
   opened: boolean;
   onClose: () => void;
-  selectedBerry: string;
-  setSelectedBerry: (value: string) => void;
+  berryLabel: ReturnType<typeof useRadioLabel>;
+  typeLabel: ReturnType<typeof useRadioLabel>;
+  strengthLabel: ReturnType<typeof useRadioLabel>;
   setFilterStatus: (value: string) => void;
 };
 
 const PokemonFilterModal = ({
   opened,
   onClose,
-  selectedBerry,
-  setSelectedBerry,
+  berryLabel,
+  typeLabel,
+  strengthLabel,
   setFilterStatus,
 }: Props) => {
-  const {
-    tempRadioLabel,
-    updateTempRadioLabel,
-    resetTempRadioLabel,
-    submitRadioLabel,
-  } = useRadioLabel({
-    stateRadioLabel: selectedBerry,
-  });
-
   useEffect(() => {
     if (opened) {
-      updateTempRadioLabel(selectedBerry);
+      berryLabel.updateTempRadioLabel(berryLabel.tempRadioLabel);
+      typeLabel.updateTempRadioLabel(typeLabel.tempRadioLabel);
+      strengthLabel.updateTempRadioLabel(strengthLabel.tempRadioLabel);
     }
-  }, [opened, selectedBerry, updateTempRadioLabel]);
+  }, [opened, berryLabel, typeLabel, strengthLabel]);
 
   const handleReset = () => {
-    resetTempRadioLabel();
-    setSelectedBerry("");
+    berryLabel.resetTempRadioLabel();
+    typeLabel.resetTempRadioLabel();
+    strengthLabel.resetTempRadioLabel();
+    berryLabel.submitRadioLabel();
+    typeLabel.submitRadioLabel();
+    strengthLabel.submitRadioLabel();
     setFilterStatus("OFF");
   };
 
   const handleSubmit = () => {
-    submitRadioLabel();
-    setSelectedBerry(tempRadioLabel);
-    setFilterStatus(tempRadioLabel === "" ? "OFF" : "ON");
+    berryLabel.submitRadioLabel();
+    typeLabel.submitRadioLabel();
+    strengthLabel.submitRadioLabel();
+
+    const isActive =
+      berryLabel.tempRadioLabel !== "" ||
+      typeLabel.tempRadioLabel !== "" ||
+      strengthLabel.tempRadioLabel !== "";
+    setFilterStatus(isActive ? "ON" : "OFF");
+
+    onClose();
   };
 
   return (
@@ -72,11 +79,28 @@ const PokemonFilterModal = ({
             }}
           >
             <BaseRadio
+              name="berry"
               title="タイプ"
               width="80%"
               maps={berryOptions}
-              stateRadioLabel={tempRadioLabel}
-              onChange={updateTempRadioLabel}
+              stateRadioLabel={berryLabel.tempRadioLabel}
+              onChange={berryLabel.updateTempRadioLabel}
+            />
+            <BaseRadio
+              name="sleepType"
+              title="睡眠タイプ"
+              width="80%"
+              maps={sleepTypeOptions}
+              stateRadioLabel={typeLabel.tempRadioLabel}
+              onChange={typeLabel.updateTempRadioLabel}
+            />
+            <BaseRadio
+              name="strengths"
+              title="とくいなもの"
+              width="80%"
+              maps={strengthsOptions}
+              stateRadioLabel={strengthLabel.tempRadioLabel}
+              onChange={strengthLabel.updateTempRadioLabel}
             />
           </Stack>
         </Box>

@@ -8,13 +8,15 @@ import { BaseButton } from "../Base/BaseButton";
 import { Box, Stack, Typography } from "@mui/material";
 import * as styles from "@/styles/calculator";
 import PokemonFilterModal from "./PokemonFilterModal";
+import { useRadioLabel } from "@/hooks/useRadioLabel";
 
 type Props = {
   opened: boolean;
   onClose: () => void;
   getFilteredPokemon: () => string[];
-  selectedBerry: string;
-  setSelectedBerry: (value: string) => void;
+  berryLabel: ReturnType<typeof useRadioLabel>;
+  typeLabel: ReturnType<typeof useRadioLabel>;
+  strengthLabel: ReturnType<typeof useRadioLabel>;
   filterStatus: string;
   setFilterStatus: (label: string) => void;
   onSelect: (label: string) => void;
@@ -24,8 +26,9 @@ const PokemonModal = ({
   opened,
   onClose,
   getFilteredPokemon,
-  selectedBerry,
-  setSelectedBerry,
+  berryLabel,
+  typeLabel,
+  strengthLabel,
   filterStatus,
   setFilterStatus,
   onSelect,
@@ -38,8 +41,9 @@ const PokemonModal = ({
       <PokemonFilterModal
         opened={isFilterOpen}
         onClose={closeFilter}
-        selectedBerry={selectedBerry}
-        setSelectedBerry={setSelectedBerry}
+        berryLabel={berryLabel}
+        typeLabel={typeLabel}
+        strengthLabel={strengthLabel}
         setFilterStatus={setFilterStatus}
       />
     );

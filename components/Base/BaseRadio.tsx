@@ -13,6 +13,7 @@ type Option = {
 };
 
 type Props = {
+  name: string;
   title: string;
   width?: string;
   maps: Option[];
@@ -21,6 +22,7 @@ type Props = {
 };
 
 const BaseRadio = ({
+  name,
   title,
   width = "auto",
   maps,
@@ -41,6 +43,7 @@ const BaseRadio = ({
         <Typography sx={{ mb: 1 }}>{title}</Typography>
       </Box>
       <RadioGroup
+        name={name}
         value={stateRadioLabel}
         onChange={(e) => onChange(e.target.value)}
         sx={{

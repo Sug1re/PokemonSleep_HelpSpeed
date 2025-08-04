@@ -16,16 +16,25 @@ const PokemonButton = () => {
     stateLabel: "ポケモン",
   });
 
-  const { tempRadioLabel, setRadioLabel } = useRadioLabel({
-    stateRadioLabel: "",
-  });
+  const berryLabel = useRadioLabel({ stateRadioLabel: "" });
+  const typeLabel = useRadioLabel({ stateRadioLabel: "" });
+  const strengthLabel = useRadioLabel({ stateRadioLabel: "" });
 
   const [filterStatus, setFilterStatus] = useState("OFF");
 
   const FilteredPokemon = () => {
     if (filterStatus === "ON") {
       return Object.entries(pokemonData)
-        .filter(([_, value]) => value.berry === tempRadioLabel)
+        .filter(([_, value]) => {
+          return (
+            (!berryLabel.selectedRadioLabel ||
+              value.berry === berryLabel.selectedRadioLabel) &&
+            (!typeLabel.selectedRadioLabel ||
+              value.sleepType === typeLabel.selectedRadioLabel) &&
+            (!strengthLabel.selectedRadioLabel ||
+              value.strengths === strengthLabel.selectedRadioLabel)
+          );
+        })
         .map(([key]) => key);
     }
     return Object.keys(pokemonData);
@@ -46,8 +55,9 @@ const PokemonButton = () => {
         opened={isOpened}
         onClose={handlers.close}
         getFilteredPokemon={FilteredPokemon}
-        selectedBerry={tempRadioLabel}
-        setSelectedBerry={setRadioLabel}
+        berryLabel={berryLabel}
+        typeLabel={typeLabel}
+        strengthLabel={strengthLabel}
         filterStatus={filterStatus}
         setFilterStatus={setFilterStatus}
         onSelect={setLabel}
