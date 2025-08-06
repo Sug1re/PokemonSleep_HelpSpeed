@@ -4,8 +4,8 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "../types/theme";
-import Header from "@/components/Header/page";
 import Section from "@/components/Section/page";
+import Header from "@/components/Header";
 
 export default function ClientLayout({
   children,

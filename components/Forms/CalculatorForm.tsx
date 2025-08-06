@@ -9,46 +9,20 @@ import PokemonButton from "../Buttons/PokemonButton";
 import PersonalityButton from "../Buttons/PersonalityButton";
 import SubSkillButton from "../Buttons/SubSkillButton";
 import FormSubmitButton from "../Buttons/FormSubmitButton";
+import AddButton from "../Buttons/AddButton";
+import { useGrid } from "@/hooks/useGrid";
+import BaseGrid from "../Base/BaseGrid";
 
 const CalculatorForm = () => {
-  const [formData, setFormData] = useState({
-    pokemonName: "",
-    personality: "",
-    subSkill: "",
-    level: 1,
-  });
+  const {
+    formData,
+    setFormData,
+    handleSliderChange,
+    handleInputChange,
+    handleBlur,
+  } = useGrid();
   const [result, setResult] = useState<any>(null);
   const [error, setError] = useState("");
-
-  const handleSliderChange = (event: Event, newValue: number) => {
-    setFormData((prev) => ({
-      ...prev,
-      level: newValue,
-    }));
-  };
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value === "" ? 1 : Number(event.target.value);
-    setFormData((prev) => ({
-      ...prev,
-      level: newValue,
-    }));
-  };
-
-  const handleBlur = () => {
-    setFormData((prev) => {
-      let adjustedLevel = prev.level;
-      if (adjustedLevel < 1) {
-        adjustedLevel = 1;
-      } else if (adjustedLevel > 100) {
-        adjustedLevel = 100;
-      }
-      return {
-        ...prev,
-        level: adjustedLevel,
-      };
-    });
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -86,53 +60,25 @@ const CalculatorForm = () => {
             }
           />
 
-          <Grid container alignItems="center" spacing={2} width="80%">
-            <Grid size="grow">
-              <Slider
-                name="level"
-                value={typeof formData.level === "number" ? formData.level : 1}
-                onChange={handleSliderChange}
-                aria-labelledby="input-slider"
-                min={1}
-                max={100}
-                sx={{
-                  width: "80%",
-                  color: "#111827",
-                  "& .MuiSlider-thumb": {
-                    backgroundColor: "#111827", // 進捗部分の色を変更
-                  },
-                  "& .MuiSlider-track": {
-                    backgroundColor: "#111827", // 丸いスライダーの色を変更
-                  },
-                  "& .MuiSlider-rail": {
-                    backgroundColor: "rgb(25, 61, 96)", // 未選択部分の色を薄めの青に
-                  },
-                }}
-              />
-            </Grid>
-            <Typography>Lv.</Typography>
-            <Grid>
-              <Input
-                disableUnderline
-                value={formData.level}
-                name="level"
-                size="small"
-                onChange={handleInputChange}
-                onBlur={handleBlur}
-                inputProps={{
-                  step: 1,
-                  min: 1,
-                  max: 100,
-                  type: "number",
-                  "aria-labelledby": "input-slider",
-                }}
-                sx={{
-                  borderBottom: 1,
-                  borderColor: "#111827",
-                }}
-              />
-            </Grid>
-          </Grid>
+          <AddButton value="add" />
+
+          <BaseGrid
+            type="level"
+            text="Lv."
+            value={formData.level}
+            onChange={handleSliderChange}
+            onInputChange={handleInputChange}
+            onBlur={handleBlur}
+          />
+
+          <BaseGrid
+            type="skill"
+            text="おてつだいボーナス"
+            value={formData.skill}
+            onChange={handleSliderChange}
+            onInputChange={handleInputChange}
+            onBlur={handleBlur}
+          />
 
           <FormSubmitButton />
         </Stack>

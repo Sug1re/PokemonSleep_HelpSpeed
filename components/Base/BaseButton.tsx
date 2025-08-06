@@ -4,10 +4,10 @@ import { getStyledLabel } from "@/utils/index";
 
 type Props = {
   children: React.ReactNode;
-  onClick?: () => void;
-  color?: "dark" | "light";
-  type?: "button" | "submit";
-  width?: string;
+  onClick: () => void;
+  color: "dark" | "light";
+  type: "button" | "submit";
+  width: string;
   leftIcon?: React.ReactNode;
 };
 
