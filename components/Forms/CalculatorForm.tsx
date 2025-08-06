@@ -12,6 +12,7 @@ import FormSubmitButton from "../Buttons/FormSubmitButton";
 import AddButton from "../Buttons/AddButton";
 import { useGrid } from "@/hooks/useGrid";
 import BaseGrid from "../Base/BaseGrid";
+import { useLabel } from "@/hooks/useLabel";
 
 const CalculatorForm = () => {
   const {
@@ -21,6 +22,11 @@ const CalculatorForm = () => {
     handleInputChange,
     handleBlur,
   } = useGrid();
+
+  const { selectedLabel, setLabel } = useLabel({ stateLabel: "" });
+
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+
   const [result, setResult] = useState<any>(null);
   const [error, setError] = useState("");
 
@@ -35,6 +41,11 @@ const CalculatorForm = () => {
     } catch (err: any) {
       setError(err.response?.data?.error || "エラーが発生しました");
     }
+  };
+
+  const handleAddSelect = (label: string) => {
+    setLabel(label);
+    setSelectedItems((prev) => [...prev, label]);
   };
 
   return (
@@ -60,7 +71,11 @@ const CalculatorForm = () => {
             }
           />
 
-          <AddButton value="add" />
+          <AddButton
+            value="add"
+            onSelect={handleAddSelect}
+            excludedItems={selectedItems}
+          />
 
           <BaseGrid
             type="level"
@@ -71,14 +86,16 @@ const CalculatorForm = () => {
             onBlur={handleBlur}
           />
 
-          <BaseGrid
-            type="skill"
-            text="おてつだいボーナス"
-            value={formData.skill}
-            onChange={handleSliderChange}
-            onInputChange={handleInputChange}
-            onBlur={handleBlur}
-          />
+          {selectedLabel === "おてつだいボーナス" && (
+            <BaseGrid
+              type="skill"
+              text="おてつだいボーナス"
+              value={formData.skill}
+              onChange={handleSliderChange}
+              onInputChange={handleInputChange}
+              onBlur={handleBlur}
+            />
+          )}
 
           <FormSubmitButton />
         </Stack>

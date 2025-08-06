@@ -9,15 +9,27 @@ import BaseButton from "../Base/BaseButton";
 type Props = {
   opened: boolean;
   onClose: () => void;
-  //   onSelect: (label: string) => void;
+  onSelect: (label: string) => void;
+  excludedItems: string[];
 };
 
 const AddModal = ({
   opened,
   onClose,
-}: //  onSelect
+  onSelect,
+  excludedItems,
+}: Props): React.ReactElement => {
+  const allLabels = [
+    "げんき",
+    "おてつだいボーナス",
+    "キャンチケ",
+    "おやすみリボン",
+  ];
 
-Props): React.ReactElement => {
+  const availableLabels = allLabels.filter(
+    (label) => !excludedItems.includes(label)
+  );
+
   return (
     <BaseModal title="項目を追加" isOpen={opened} onClose={onClose}>
       <Box sx={{ py: 2 }}>
@@ -26,22 +38,20 @@ Props): React.ReactElement => {
           alignItems="center"
           sx={{ maxHeight: 300, overflowY: "auto", mt: 2 }}
         >
-          {["げんき", "おてつだいボーナス", "キャンチケ", "おやすみリボン"].map(
-            (label, index) => (
-              <BaseButton
-                color="light"
-                type="button"
-                width="60%"
-                key={index}
-                onClick={() => {
-                  //   onSelect(label);
-                  onClose();
-                }}
-              >
-                {label}
-              </BaseButton>
-            )
-          )}
+          {availableLabels.map((label, index) => (
+            <BaseButton
+              color="light"
+              type="button"
+              width="60%"
+              key={index}
+              onClick={() => {
+                onSelect(label);
+                onClose();
+              }}
+            >
+              {label}
+            </BaseButton>
+          ))}
         </Stack>
       </Box>
     </BaseModal>

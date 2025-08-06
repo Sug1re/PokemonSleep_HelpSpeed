@@ -8,18 +8,17 @@ import { useDisclosure } from "@mantine/hooks";
 
 type Props = {
   value: string;
-  //   onSelect: (name: string) => void;
+  onSelect: (label: string) => void;
+  excludedItems: string[];
 };
 
-const AddButton = ({
-  value,
-}: // onSelect
-Props) => {
+const AddButton = ({ value, onSelect, excludedItems }: Props) => {
   const [isOpened, handlers] = useDisclosure(false);
 
-  //   const handleSelect = (label: string) => {
-  //     onSelect(label);
-  //   };
+  const handleSelect = (label: string) => {
+    onSelect(label);
+    handlers.close();
+  };
   return (
     <>
       <BaseButton
@@ -35,7 +34,8 @@ Props) => {
       <AddModal
         opened={isOpened}
         onClose={handlers.close}
-        // onSelect={handleSelect}
+        onSelect={handleSelect}
+        excludedItems={excludedItems}
       />
     </>
   );
