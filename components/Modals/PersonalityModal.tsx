@@ -1,9 +1,10 @@
 "use client";
 
 import React from "react";
-import BaseModal from "../Base/BaseModal";
-import { BaseButton } from "../Base/BaseButton";
 import { Box, Stack } from "@mui/material";
+
+import BaseModal from "../Base/BaseModal";
+import BaseButton from "../Base/BaseButton";
 import * as utils from "@/utils/index";
 
 type Props = {

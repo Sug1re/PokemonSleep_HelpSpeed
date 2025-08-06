@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
-import { BaseButton } from "../Base/BaseButton";
+import BaseButton from "../Base/BaseButton";
 import PokemonModal from "../Modals/PokemonModal";
 import * as CustomHook from "@/hooks/index";
 import { useLabel } from "@/hooks/useLabel";

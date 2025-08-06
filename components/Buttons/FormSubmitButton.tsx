@@ -1,5 +1,5 @@
 import React from "react";
-import { BaseButton } from "../Base/BaseButton";
+import BaseButton from "../Base/BaseButton";
 
 const FormSubmitButton = () => {
   return (

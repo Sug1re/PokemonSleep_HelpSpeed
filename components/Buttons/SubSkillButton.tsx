@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { BaseButton } from "../Base/BaseButton";
+import BaseButton from "../Base/BaseButton";
 import { useDisclosure } from "@mantine/hooks";
 import { useLabel } from "@/hooks/useLabel";
 import SubSkillModal from "../Modals/SubSkillModal";

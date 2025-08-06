@@ -2,7 +2,7 @@
 
 import React from "react";
 import BaseModal from "../Base/BaseModal";
-import { BaseButton } from "../Base/BaseButton";
+import BaseButton from "../Base/BaseButton";
 import { Box, Stack } from "@mui/material";
 
 type Props = {
