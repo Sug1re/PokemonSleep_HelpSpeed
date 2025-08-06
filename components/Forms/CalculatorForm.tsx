@@ -1,18 +1,21 @@
 "use client";
 
 import React, { useState } from "react";
-import { Box, Grid, Input, Slider, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 
 import { calculatePokemonSpeed } from "@/lib/api/pokemon";
 
 import PokemonButton from "../Buttons/PokemonButton";
 import PersonalityButton from "../Buttons/PersonalityButton";
 import SubSkillButton from "../Buttons/SubSkillButton";
+import EnergyButton from "../Buttons/EnergyButton";
 import FormSubmitButton from "../Buttons/FormSubmitButton";
 import AddButton from "../Buttons/AddButton";
-import { useGrid } from "@/hooks/useGrid";
 import BaseGrid from "../Base/BaseGrid";
+import { useGrid } from "@/hooks/useGrid";
 import { useLabel } from "@/hooks/useLabel";
+import RibbonButton from "../Buttons/RibbonButton";
+import BaseSwitch from "../Base/BaseSwitch";
 
 const CalculatorForm = () => {
   const {
@@ -23,9 +26,7 @@ const CalculatorForm = () => {
     handleBlur,
   } = useGrid();
 
-  const { selectedLabel, setLabel } = useLabel({ stateLabel: "" });
-
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const { selectedLabels, addLabel } = useLabel({ stateLabel: "" });
 
   const [result, setResult] = useState<any>(null);
   const [error, setError] = useState("");
@@ -34,6 +35,8 @@ const CalculatorForm = () => {
     e.preventDefault();
     setError("");
     setResult(null);
+
+    console.log("Submitting form with data:", formData);
 
     try {
       const data = await calculatePokemonSpeed(formData);
@@ -44,8 +47,7 @@ const CalculatorForm = () => {
   };
 
   const handleAddSelect = (label: string) => {
-    setLabel(label);
-    setSelectedItems((prev) => [...prev, label]);
+    addLabel(label);
   };
 
   return (
@@ -70,11 +72,26 @@ const CalculatorForm = () => {
               setFormData((prev) => ({ ...prev, subSkill: name }))
             }
           />
-
+          {selectedLabels.includes("げんき") && (
+            <EnergyButton
+              value={formData.energy}
+              onSelect={(name) =>
+                setFormData((prev) => ({ ...prev, energy: name }))
+              }
+            />
+          )}
+          {selectedLabels.includes("おやすみリボン") && (
+            <RibbonButton
+              value={formData.ribbon}
+              onSelect={(name) =>
+                setFormData((prev) => ({ ...prev, ribbon: name }))
+              }
+            />
+          )}
           <AddButton
             value="add"
             onSelect={handleAddSelect}
-            excludedItems={selectedItems}
+            excludedItems={selectedLabels}
           />
 
           <BaseGrid
@@ -86,7 +103,7 @@ const CalculatorForm = () => {
             onBlur={handleBlur}
           />
 
-          {selectedLabel === "おてつだいボーナス" && (
+          {selectedLabels.includes("おてつだいボーナス") && (
             <BaseGrid
               type="skill"
               text="おてつだいボーナス"
@@ -94,6 +111,16 @@ const CalculatorForm = () => {
               onChange={handleSliderChange}
               onInputChange={handleInputChange}
               onBlur={handleBlur}
+            />
+          )}
+
+          {selectedLabels.includes("キャンチケ") && (
+            <BaseSwitch
+              text="キャンチケ"
+              checked={formData.ticket}
+              onChange={(checked) =>
+                setFormData((prev) => ({ ...prev, ticket: checked }))
+              }
             />
           )}
 

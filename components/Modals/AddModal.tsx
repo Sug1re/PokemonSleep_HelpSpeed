@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 
 import BaseModal from "../Base/BaseModal";
 import BaseButton from "../Base/BaseButton";
@@ -38,20 +38,30 @@ const AddModal = ({
           alignItems="center"
           sx={{ maxHeight: 300, overflowY: "auto", mt: 2 }}
         >
-          {availableLabels.map((label, index) => (
-            <BaseButton
-              color="light"
-              type="button"
-              width="60%"
-              key={index}
-              onClick={() => {
-                onSelect(label);
-                onClose();
+          {availableLabels.length > 0 ? (
+            availableLabels.map((label, index) => (
+              <BaseButton
+                color="light"
+                type="button"
+                width="60%"
+                key={index}
+                onClick={() => {
+                  onSelect(label);
+                  onClose();
+                }}
+              >
+                {label}
+              </BaseButton>
+            ))
+          ) : (
+            <Typography
+              sx={{
+                color: "#f44336",
               }}
             >
-              {label}
-            </BaseButton>
-          ))}
+              選択できる項目がありません
+            </Typography>
+          )}
         </Stack>
       </Box>
     </BaseModal>

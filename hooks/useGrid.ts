@@ -7,8 +7,11 @@ export const useGrid = () => {
     pokemonName: "",
     personality: "",
     subSkill: "",
+    energy: "",
+    ribbon: "",
     level: 1,
     skill: 0,
+    ticket: false,
   });
 
   const handleSliderChange = (key: GridKey, newValue: number) => {

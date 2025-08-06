@@ -45,7 +45,7 @@ const BaseGrid = ({
                 backgroundColor: "#111827",
               },
               "& .MuiSlider-rail": {
-                backgroundColor: "rgb(25, 61, 96)",
+                backgroundColor: "rgb(85, 87, 89)",
               },
             }}
           />
