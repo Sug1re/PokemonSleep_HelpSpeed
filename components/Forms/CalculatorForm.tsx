@@ -80,14 +80,14 @@ const CalculatorForm = () => {
               }
             />
           )}
-          {selectedLabels.includes("おやすみリボン") && (
+          {/* {selectedLabels.includes("おやすみリボン") && (
             <RibbonButton
               value={formData.ribbon}
               onSelect={(name) =>
                 setFormData((prev) => ({ ...prev, ribbon: name }))
               }
             />
-          )}
+          )} */}
           <AddButton
             value="add"
             onSelect={handleAddSelect}
@@ -105,9 +105,9 @@ const CalculatorForm = () => {
 
           {selectedLabels.includes("おてつだいボーナス") && (
             <BaseGrid
-              type="skill"
+              type="skillBonus"
               text="おてつだいボーナス"
-              value={formData.skill}
+              value={formData.skillBonus}
               onChange={handleSliderChange}
               onInputChange={handleInputChange}
               onBlur={handleBlur}
@@ -146,11 +146,17 @@ const CalculatorForm = () => {
         </Box>
       </Box>
 
-      {error && (
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Typography color="error">{error}</Typography>
-        </Box>
-      )}
+      {Array.isArray(error)
+        ? error.map((errMsg, index) => (
+            <Box key={index} sx={{ display: "flex", justifyContent: "center" }}>
+              <Typography color="error">{errMsg}</Typography>
+            </Box>
+          ))
+        : error && (
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <Typography color="error">{error}</Typography>
+            </Box>
+          )}
     </>
   );
 };

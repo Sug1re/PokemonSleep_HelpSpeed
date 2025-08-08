@@ -23,7 +23,7 @@ const AddModal = ({
     "げんき",
     "おてつだいボーナス",
     "キャンチケ",
-    "おやすみリボン",
+    // "おやすみリボン",
   ];
 
   const availableLabels = allLabels.filter(

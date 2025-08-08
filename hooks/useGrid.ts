@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-type GridKey = "level" | "skill";
+type GridKey = "level" | "skillBonus";
 
 export const useGrid = () => {
   const [formData, setFormData] = useState({
@@ -8,9 +8,9 @@ export const useGrid = () => {
     personality: "",
     subSkill: "",
     energy: "",
-    ribbon: "",
+    // ribbon: "",
     level: 1,
-    skill: 0,
+    skillBonus: 0,
     ticket: false,
   });
 
@@ -27,7 +27,7 @@ export const useGrid = () => {
   ) => {
     const newValue =
       e.target.value === ""
-        ? key === "skill"
+        ? key === "skillBonus"
           ? 0
           : 1
         : Number(e.target.value);
@@ -42,7 +42,7 @@ export const useGrid = () => {
     setFormData((prev) => {
       let adjustedValue = prev[key];
 
-      if (key === "skill") {
+      if (key === "skillBonus") {
         if (adjustedValue < 0) adjustedValue = 0;
         else if (adjustedValue > 5) adjustedValue = 5;
       } else {

@@ -2,15 +2,15 @@ import { Grid, Input, Slider, Typography } from "@mui/material";
 import React from "react";
 
 type Props = {
-  type: "level" | "skill";
+  type: "level" | "skillBonus";
   text: string;
   value: number;
-  onChange: (key: "level" | "skill", value: number) => void;
+  onChange: (key: "level" | "skillBonus", value: number) => void;
   onInputChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    key: "level" | "skill"
+    key: "level" | "skillBonus"
   ) => void;
-  onBlur: (key: "level" | "skill") => void;
+  onBlur: (key: "level" | "skillBonus") => void;
 };
 
 const BaseGrid = ({
@@ -21,8 +21,8 @@ const BaseGrid = ({
   onInputChange,
   onBlur,
 }: Props) => {
-  const min = type === "skill" ? 0 : 1;
-  const max = type === "skill" ? 5 : 100;
+  const min = type === "skillBonus" ? 0 : 1;
+  const max = type === "skillBonus" ? 5 : 100;
 
   return (
     <>
