@@ -12,6 +12,7 @@ export const useGrid = () => {
     level: 1,
     skillBonus: 0,
     ticket: false,
+    exField:""
   });
 
   const handleSliderChange = (key: GridKey, newValue: number) => {

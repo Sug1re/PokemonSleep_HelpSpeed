@@ -24,6 +24,7 @@ const AddModal = ({
     "おてつだいボーナス",
     "キャンチケ",
     // "おやすみリボン",
+    "EXフィールド効果",
   ];
 
   const availableLabels = allLabels.filter(

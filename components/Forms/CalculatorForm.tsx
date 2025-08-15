@@ -16,6 +16,7 @@ import { useGrid } from "@/hooks/useGrid";
 import { useLabel } from "@/hooks/useLabel";
 import RibbonButton from "../Buttons/RibbonButton";
 import BaseSwitch from "../Base/BaseSwitch";
+import ExFieldButton from "../Buttons/ExfieldButton";
 
 const CalculatorForm = () => {
   const {
@@ -88,6 +89,16 @@ const CalculatorForm = () => {
               }
             />
           )} */}
+
+          {selectedLabels.includes("EXフィールド効果") && (
+            <ExFieldButton
+              value={formData.exField}
+              onSelect={(name) =>
+                setFormData((prev) => ({ ...prev, exField: name }))
+              }
+            />
+          )}
+
           <AddButton
             value="add"
             onSelect={handleAddSelect}
