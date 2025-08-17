@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@mui/material";
-import { getStyledLabel } from "@/utils/index";
+import { personalityColor } from "@/utils/personalityColor";
 
 type Props = {
   children: React.ReactNode;
@@ -22,7 +22,7 @@ const BaseButton = ({
   const renderChildren = () => {
     if (typeof children === "string") {
       if (children.includes("▲▲") || children.includes("▼▼")) {
-        return getStyledLabel(children);
+        return personalityColor(children);
       }
     }
     return children;
