@@ -6,12 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "json-server:pokemon": "json-server app/data/pokemonData.json --port 3002",
-    "json-server:curry": "json-server \"app/data/curry.json\" --port 3006",
-    "json-server:salad": "json-server app/data/salad.json --port 3007",
-    "json-server:desserts": "json-server \"app/data/desserts.json\" --port 3008",
-    "json-servers": "npm-run-all -p json-server:pokemon json-server:curry json-server:salad json-server:desserts"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -38,7 +33,6 @@
     "bootstrap": "^5.3.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
-    "firebase": "^11.3.1",
     "lucide-react": "^0.365.0",
     "next": "^14.2.3",
     "next-themes": "^0.3.0",
@@ -47,8 +41,6 @@
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18",
     "react-router-dom": "^6.23.1",
-    "tailwind-merge": "^2.2.2",
-    "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.1"
   },
   "devDependencies": {
@@ -59,7 +51,6 @@
     "eslint": "^8",
     "eslint-config-next": "14.1.4",
     "postcss": "^8",
-    "tailwindcss": "^3.4.4",
     "typescript": "^5"
   }
 }
