@@ -1,14 +1,14 @@
 import React from "react";
 import { Container } from "@mui/material";
-import CalculatorForm from "@/components/Forms/CalculatorForm";
+import PokemonSpeedForm from "@/components/Forms/PokemonSpeedForm";
 
-const ZukanPage = () => {
+const OtesupiPage = () => {
   return (
     <>
       <Container maxWidth="sm">
-        <CalculatorForm />
+        <PokemonSpeedForm />
       </Container>
     </>
   );
 };
-export default ZukanPage;
+export default OtesupiPage;

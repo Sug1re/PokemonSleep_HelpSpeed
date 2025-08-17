@@ -4,21 +4,21 @@ import React, { useState } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 
 import { calculatePokemonSpeed } from "@/lib/api/pokemon";
-
+import BaseButton from "../Base/BaseButton";
+import BaseGrid from "../Base/BaseGrid";
+import BaseSwitch from "../Base/BaseSwitch";
 import PokemonButton from "../Buttons/PokemonButton";
 import PersonalityButton from "../Buttons/PersonalityButton";
 import SubSkillButton from "../Buttons/SubSkillButton";
 import EnergyButton from "../Buttons/EnergyButton";
-import FormSubmitButton from "../Buttons/FormSubmitButton";
 import AddButton from "../Buttons/AddButton";
-import BaseGrid from "../Base/BaseGrid";
+import ExFieldButton from "../Buttons/ExfieldButton";
+// import RibbonButton from "../Buttons/RibbonButton";
 import { useGrid } from "@/hooks/useGrid";
 import { useLabel } from "@/hooks/useLabel";
-import RibbonButton from "../Buttons/RibbonButton";
-import BaseSwitch from "../Base/BaseSwitch";
-import ExFieldButton from "../Buttons/ExfieldButton";
+import { PokemonSpeed } from "@/types/pokemonSpeed";
 
-const CalculatorForm = () => {
+const PokemonSpeedForm = () => {
   const {
     formData,
     setFormData,
@@ -29,7 +29,7 @@ const CalculatorForm = () => {
 
   const { selectedLabels, addLabel } = useLabel({ stateLabel: "" });
 
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<PokemonSpeed | null>(null);
   const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -42,8 +42,12 @@ const CalculatorForm = () => {
     try {
       const data = await calculatePokemonSpeed(formData);
       setResult(data);
-    } catch (err: any) {
-      setError(err.response?.data?.error || "エラーが発生しました");
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("エラーが発生しました");
+      }
     }
   };
 
@@ -135,7 +139,9 @@ const CalculatorForm = () => {
             />
           )}
 
-          <FormSubmitButton />
+          <BaseButton color="dark" type="submit" width="60%">
+            計算
+          </BaseButton>
         </Stack>
       </form>
 
@@ -172,4 +178,4 @@ const CalculatorForm = () => {
   );
 };
 
-export default CalculatorForm;
+export default PokemonSpeedForm;

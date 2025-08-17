@@ -1,18 +1,18 @@
 import React from "react";
 import { Container, Typography } from "@mui/material";
-import CalculatorForm from "@/components/Forms/CalculatorForm";
+import PokemonSpeedForm from "@/components/Forms/PokemonSpeedForm";
 
 const HOME = () => {
   return (
     <>
       <Container maxWidth="sm">
-        <CalculatorForm />
+        <PokemonSpeedForm />
 
         <Typography
           variant="body2"
           color="text.secondary"
           sx={{
-            mt: 4,
+            py: 5,
             a: {
               color: "#2196f3",
               textDecoration: "none",

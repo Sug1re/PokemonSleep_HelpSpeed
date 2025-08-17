@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { fetchPokemonData } from "@/lib/api/pokemon";
-import { PokemonInfo } from "@/types/pokemonInfo";
+import { Pokemon } from "@/types/pokemon";
 
 export const usePokemonData = () => {
-  const [pokemonData, setPokemonData] = useState<Record<string, PokemonInfo>>({});
+  const [pokemonData, setPokemonData] = useState<Record<string, Pokemon>>({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,7 +14,7 @@ export const usePokemonData = () => {
         setPokemonData(data);
       } catch (err) {
         console.error("ポケモン情報の取得に失敗しました", err);
-      } 
+      }
     };
 
     fetchData();

@@ -1,4 +1,4 @@
-export type PokemonInfo = {
+export type Pokemon = {
   number: string;
   sleepType: string;
   strengths: string;

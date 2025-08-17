@@ -1,4 +1,4 @@
-import { PokemonInfo } from "@/types/pokemonInfo";
+import { Pokemon } from "@/types/pokemon";
 
 type FilterValues = {
   selectedBerry: string;
@@ -7,7 +7,7 @@ type FilterValues = {
 };
 
 export const filterPokemon = (
-  data: Record<string, PokemonInfo>,
+  data: Record<string, Pokemon>,
   { selectedBerry, selectedSleepType, selectedStrengths }: FilterValues
 ) => {
   return Object.keys(data).filter((name) => {
